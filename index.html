@@ -1,7 +1,3 @@
-Claude
-
-
-Ielts speaking hub · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +13,7 @@ Ielts speaking hub · HTML
             --accent-purple: #c084fc;
             --text-main: #f8fafc;
             --text-sub: #cbd5e1;
- 
+
             /* Highlighters */
             --hl-yellow: #fef08a;
             --hl-yellow-text: #854d0e;
@@ -26,14 +22,14 @@ Ielts speaking hub · HTML
             --hl-blue: #bae6fd;
             --hl-blue-text: #075985;
         }
- 
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
- 
+
         body {
             color: var(--text-main);
             padding: 24px 12px;
@@ -46,7 +42,7 @@ Ielts speaking hub · HTML
             transition: background-image 1.5s ease-in-out;
             position: relative;
         }
- 
+
         /* Уменьшили затемнение и блюр, чтобы обои было отлично видно! */
         body::before {
             content: "";
@@ -56,7 +52,7 @@ Ielts speaking hub · HTML
             backdrop-filter: blur(4px);
             z-index: 0;
         }
- 
+
         .container {
             max-width: 950px;
             width: 100%;
@@ -66,7 +62,7 @@ Ielts speaking hub · HTML
             position: relative;
             z-index: 1;
         }
- 
+
         header {
             border-bottom: 2px solid var(--card-border);
             padding-bottom: 16px;
@@ -77,18 +73,18 @@ Ielts speaking hub · HTML
             border-radius: 14px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
- 
+
         header h1 {
             font-size: 2.2rem;
             color: var(--accent-blue);
             text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
         }
- 
+
         header p {
             color: var(--text-sub);
             margin-top: 6px;
         }
- 
+
         .section-title {
             font-size: 1.4rem;
             color: var(--text-main);
@@ -100,7 +96,7 @@ Ielts speaking hub · HTML
             padding-left: 10px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
- 
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -110,17 +106,17 @@ Ielts speaking hub · HTML
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(8px);
         }
- 
+
         .q-en { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
         .q-ru { font-size: 0.95rem; color: var(--text-sub); margin-top: 4px; font-style: italic; }
- 
+
         .action-bar {
             display: flex;
             gap: 10px;
             margin-top: 14px;
             flex-wrap: wrap;
         }
- 
+
         .btn {
             background: rgba(255, 255, 255, 0.12);
             color: var(--text-main);
@@ -135,13 +131,13 @@ Ielts speaking hub · HTML
             align-items: center;
             gap: 6px;
         }
- 
+
         .btn:hover { background: rgba(255, 255, 255, 0.25); }
         .btn-audio { background: rgba(56, 189, 248, 0.25); color: var(--accent-blue); border-color: var(--accent-blue); }
         .btn-audio:hover { background: var(--accent-blue); color: #0f172a; }
         .btn-toggle { background: rgba(192, 132, 252, 0.25); color: var(--accent-purple); border-color: var(--accent-purple); }
         .btn-toggle:hover { background: var(--accent-purple); color: #0f172a; }
- 
+
         .sample-box {
             display: none;
             background: rgba(11, 15, 25, 0.85);
@@ -153,11 +149,11 @@ Ielts speaking hub · HTML
             line-height: 1.6;
         }
         .sample-box.active { display: block; }
- 
+
         .hl-y { background-color: var(--hl-yellow); color: var(--hl-yellow-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .hl-g { background-color: var(--hl-green); color: var(--hl-green-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
         .hl-b { background-color: var(--hl-blue); color: var(--hl-blue-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
- 
+
         textarea {
             width: 100%;
             height: 70px;
@@ -169,13 +165,13 @@ Ielts speaking hub · HTML
             margin-top: 12px;
             resize: vertical;
         }
- 
+
         .vocab-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 14px;
         }
- 
+
         .vocab-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -187,12 +183,12 @@ Ielts speaking hub · HTML
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.3);
         }
- 
+
         .vocab-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
         .vocab-word { font-weight: 700; color: var(--accent-blue); }
         .vocab-ipa { font-size: 0.8rem; color: var(--accent-purple); }
         .vocab-ru { font-size: 0.85rem; color: var(--text-sub); margin-top: 6px; }
- 
+
         .btn-mini-audio {
             background: rgba(56, 189, 248, 0.2);
             color: var(--accent-blue);
@@ -203,7 +199,7 @@ Ielts speaking hub · HTML
             cursor: pointer;
         }
         .btn-mini-audio:hover { background: var(--accent-blue); color: #000; }
- 
+
         /* ===== NEW STYLES (added for the new sections) ===== */
         .sub-title {
             font-size: 1.1rem;
@@ -219,9 +215,9 @@ Ielts speaking hub · HTML
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         .sub-title small { font-size: 0.8rem; color: var(--text-sub); font-weight: 400; }
- 
+
         .ru-line { font-size: 0.88rem; color: var(--text-sub); font-style: italic; margin-top: 8px; line-height: 1.55; }
- 
+
         .cue-card {
             background: rgba(6, 78, 59, 0.6);
             border: 2px solid #34d399;
@@ -235,7 +231,7 @@ Ielts speaking hub · HTML
         .cue-card .cue-say { font-weight: 700; margin-top: 12px; }
         .cue-card ul { margin: 6px 0 0 22px; line-height: 1.7; }
         .cue-card ul li i { color: var(--text-sub); }
- 
+
         .tip-box {
             background: rgba(120, 53, 15, 0.6);
             border: 1px solid #fb923c;
@@ -246,10 +242,10 @@ Ielts speaking hub · HTML
             font-size: 0.92rem;
             line-height: 1.55;
         }
- 
+
         .collapsible { display: none; margin-top: 14px; }
         .collapsible.active { display: block; }
- 
+
         .tbl-wrap { overflow-x: auto; }
         .tpl-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
         .tpl-table th { text-align: left; color: var(--accent-purple); padding: 8px 10px; border-bottom: 2px solid var(--card-border); }
@@ -257,7 +253,7 @@ Ielts speaking hub · HTML
         .tpl-table td.en { font-weight: 600; color: var(--accent-blue); }
         .tpl-table td.ru { color: var(--text-sub); }
         .tpl-table td.purpose { color: var(--hl-yellow); font-style: italic; white-space: nowrap; }
- 
+
         .btn-big {
             background: linear-gradient(135deg, #16a34a, #22c55e);
             color: #052e16;
@@ -272,7 +268,7 @@ Ielts speaking hub · HTML
         }
         .btn-big:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(34, 197, 94, 0.6); }
         .tpl-table td.syn { color: var(--hl-blue); font-weight: 600; }
- 
+
         /* ===== HOME PAGE: welcome, profile, links, menu buttons ===== */
         .welcome { display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--card-border); }
         .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent-blue); background: rgba(255, 255, 255, 0.08) center/cover no-repeat; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-align: center; color: var(--text-sub); box-shadow: 0 0 24px rgba(56, 189, 248, 0.4); flex-shrink: 0; line-height: 1.1; }
@@ -287,7 +283,7 @@ Ielts speaking hub · HTML
         .social-btn.tg { background: linear-gradient(135deg, #2aabee, #229ed9); }
         .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
         .gallery-slot { aspect-ratio: 4 / 3; border-radius: 10px; border: 2px dashed var(--card-border); background: rgba(255, 255, 255, 0.06) center/cover no-repeat; display: flex; align-items: center; justify-content: center; color: var(--text-sub); font-size: 0.8rem; }
- 
+
         .main-nav { background: rgba(15, 23, 42, 0.72); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
         .nav-group { margin-bottom: 14px; }
         .nav-group:last-child { margin-bottom: 0; }
@@ -296,13 +292,57 @@ Ielts speaking hub · HTML
         .nav-btn { background: rgba(255, 255, 255, 0.1); color: var(--text-main); border: 1px solid var(--card-border); padding: 9px 16px; border-radius: 10px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s ease; }
         .nav-btn:hover { background: rgba(255, 255, 255, 0.22); }
         .nav-btn.active { background: var(--accent-blue); color: #0f172a; border-color: var(--accent-blue); box-shadow: 0 4px 16px rgba(56, 189, 248, 0.45); }
- 
+
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
+
+        /* ===== MOBILE FIX + ACCORDION BLOCKS ===== */
+        html { -webkit-text-size-adjust: 100%; max-width: 100%; overflow-x: hidden; }
+        body { display: block; max-width: 100%; overflow-x: hidden; }
+        .container { margin: 0 auto; }
+        .container > * { min-width: 0; }
+        .vocab-word, .q-en, .sample-box { overflow-wrap: anywhere; }
+
+        .acc { margin-bottom: 10px; }
+        .acc-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; text-align: left; background: var(--card-bg); color: var(--text-main); border: 1px solid var(--card-border); border-radius: 12px; padding: 13px 16px; font-size: 0.98rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(8px); }
+        .acc-btn:hover { background: rgba(30, 41, 59, 0.85); }
+        .acc.open .acc-btn { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .acc-arrow { transition: transform 0.2s ease; }
+        .acc.open .acc-arrow { transform: rotate(180deg); }
+        .acc-body { display: none; margin-top: 8px; }
+        .acc.open .acc-body { display: block; }
+
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .container { gap: 16px; }
+            header { padding: 14px; }
+            header h1 { font-size: 1.5rem; }
+            .welcome { gap: 14px; }
+            .avatar { width: 96px; height: 96px; }
+            .welcome-text { text-align: center; }
+            .welcome-name { font-size: 1.6rem; }
+            .socials { justify-content: center; }
+            .gallery { gap: 6px; }
+            .main-nav { padding: 12px; }
+            .nav-btn { padding: 8px 12px; font-size: 0.82rem; }
+            .section-title { font-size: 1.15rem; }
+            .card { padding: 14px; }
+            .q-en { font-size: 1rem; }
+            .vocab-grid { grid-template-columns: 1fr; }
+            .action-bar .btn { flex: 1 1 auto; justify-content: center; }
+
+            /* tables become readable cards on a phone */
+            .tpl-table.stack thead { display: none; }
+            .tpl-table.stack, .tpl-table.stack tbody, .tpl-table.stack tr, .tpl-table.stack td { display: block; width: 100%; }
+            .tpl-table.stack tr { padding: 10px 2px; border-bottom: 1px solid var(--card-border); }
+            .tpl-table.stack td { border: none; padding: 3px 8px; }
+            .tpl-table.stack td.en { font-size: 1.05rem; }
+            .tpl-table.stack td[data-label]:not([data-label=""])::before { content: attr(data-label) ": "; color: var(--text-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; font-style: normal; }
+        }
     </style>
 </head>
 <body>
- 
+
 <div class="container">
     <header>
         <!-- Welcome + profile photo + social links (set photo and links in PROFILE at the top of the script) -->
@@ -317,18 +357,18 @@ Ielts speaking hub · HTML
                 </div>
             </div>
         </div>
- 
+
         <!-- Picture slots -->
         <div class="gallery" id="galleryBox">
             <div class="gallery-slot">🖼️ Photo 1</div>
             <div class="gallery-slot">🖼️ Photo 2</div>
             <div class="gallery-slot">🖼️ Photo 3</div>
         </div>
- 
-        <h1>🎙️ IELTS Speaking & Slang Hub</h1>
-        <p>Complete 10 Questions, Band 8+ Vocabulary Bank & 65+ Spoken Phrases</p>
+
+        <h1>Here my practice</h1>
+        <p>yoooo it's been ages! how's it going?</p>
     </header>
- 
+
     <!-- MAIN MENU: tap a button to show its words / questions -->
     <nav class="main-nav" id="mainNav">
         <div class="nav-group">
@@ -357,9 +397,9 @@ Ielts speaking hub · HTML
             </div>
         </div>
     </nav>
- 
+
     <div class="card" id="tabHint" style="text-align:center; color:var(--text-sub);">👆 Choose a section above — tap a button to open it. Tap it again to close.</div>
- 
+
     <!-- SPEAKING FILLERS (NEW) -->
     <section class="tab-panel" id="tab-fillers">
         <h2 class="section-title">⏳ Speaking Starters: Buy Yourself Time</h2>
@@ -373,11 +413,11 @@ Ielts speaking hub · HTML
             <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">That's a really interesting question...</span><button class="btn-mini-audio" onclick="speak('That\'s a really interesting question...')">🔊 Audio</button></div><div class="vocab-ipa">[ðæts ə ˈrɪəli ˈɪntrəstɪŋ ˈkwestʃən]</div></div><div class="vocab-ru">Это действительно интересный вопрос...</div></div>
         </div>
     </section>
- 
+
     <!-- TOPIC 2 -->
     <section class="tab-panel" id="tab-topic2">
         <h2 class="section-title">📘 Topic 2: Work and Studies (5 Questions)</h2>
- 
+
         <div class="card">
             <div class="q-en">1. What usually fills most of your time during the week?</div>
             <div class="q-ru">Что обычно занимает большую часть вашего времени в течение недели?</div>
@@ -390,7 +430,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">2. Do you prefer learning in a classroom or on your own?</div>
             <div class="q-ru">Вы предпочитаете учиться в классе или самостоятельно?</div>
@@ -403,7 +443,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">3. What kind of place helps you focus better on tasks?</div>
             <div class="q-ru">Какое место помогает вам лучше сосредоточиться на задачах?</div>
@@ -416,7 +456,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">4. How do you usually feel at the start of a work or study day?</div>
             <div class="q-ru">Как вы обычно себя чувствуете в начале рабочего или учебного дня?</div>
@@ -429,7 +469,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">5. What makes a workplace or school feel comfortable to you?</div>
             <div class="q-ru">Что делает рабочее место или учебное заведение комфортным для вас?</div>
@@ -443,11 +483,11 @@ Ielts speaking hub · HTML
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
     </section>
- 
+
     <!-- TOPIC 3 -->
     <section class="tab-panel" id="tab-topic3">
         <h2 class="section-title">🏙️ Topic 3: Hometown and Area (5 Questions)</h2>
- 
+
         <div class="card">
             <div class="q-en">1. What stands out to you about the place where you live now?</div>
             <div class="q-ru">Что особо выделяется для вас в месте, где вы сейчас живёте?</div>
@@ -460,7 +500,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">2. Do you feel connected to your hometown, or is it just a place?</div>
             <div class="q-ru">Чувствуете ли вы связь со своим родным городом, или это просто место?</div>
@@ -473,7 +513,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">3. What kind of people usually live in your area?</div>
             <div class="q-ru">Какие люди обычно живут в вашем районе?</div>
@@ -486,7 +526,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">4. Is there a place nearby where you like to spend time?</div>
             <div class="q-ru">Есть ли поблизости место, где вам нравится проводить время?</div>
@@ -499,7 +539,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">5. Would you stay in your current area long-term, or do you see yourself moving?</div>
             <div class="q-ru">Останетесь ли вы в текущем районе надолго, или планируете переехать?</div>
@@ -513,11 +553,11 @@ Ielts speaking hub · HTML
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
     </section>
- 
+
     <!-- TOPIC 4: SHOES (NEW) -->
     <section class="tab-panel" id="tab-topic4">
         <h2 class="section-title">👟 Topic 4: Shoes (Part 1 — 7 Questions)</h2>
- 
+
         <div class="card">
             <div class="q-en">1. How often do you buy shoes?</div>
             <div class="q-ru">Как часто вы покупаете обувь?</div>
@@ -531,7 +571,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">2. How much money do you usually spend on shoes?</div>
             <div class="q-ru">Сколько денег вы обычно тратите на обувь?</div>
@@ -545,7 +585,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">3. Have you ever bought shoes online?</div>
             <div class="q-ru">Покупали ли вы когда-нибудь обувь онлайн?</div>
@@ -559,7 +599,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">4. Do you like to wear shoes that are comfortable or good-looking?</div>
             <div class="q-ru">Вам нравится носить удобную или красивую обувь?</div>
@@ -573,7 +613,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">5. Do people like to wear shoes that are comfortable or good-looking?</div>
             <div class="q-ru">Люди предпочитают удобную или красивую обувь?</div>
@@ -587,7 +627,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">6. What is your favourite type of shoes?</div>
             <div class="q-ru">Какой ваш любимый тип обуви?</div>
@@ -601,7 +641,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">7. Why do some people have too many shoes?</div>
             <div class="q-ru">Почему у некоторых людей слишком много обуви?</div>
@@ -615,9 +655,9 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <h3 class="sub-title">Part 2: Individual Long Turn (Cue Card) <small>1-2 Minutes Speech</small></h3>
- 
+
         <div class="cue-card">
             <h3>Describe a course that impressed you</h3>
             <div class="q-ru">Опишите курс/обучение, которое произвело на вас впечатление</div>
@@ -629,7 +669,7 @@ Ielts speaking hub · HTML
                 <li><b>and explain why it impressed you</b> <i>(и объясните, почему он вас впечатлил)</i></li>
             </ul>
         </div>
- 
+
         <div class="card">
             <div class="q-en">Ideal 2-Minute Full Speech / Идеальный полный ответ на 2 минуты</div>
             <div class="action-bar">
@@ -644,11 +684,11 @@ Ielts speaking hub · HTML
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
     </section>
- 
+
     <!-- TOPIC 5: COMPUTERS (NEW) -->
     <section class="tab-panel" id="tab-topic5">
         <h2 class="section-title">💻 Topic 5: Computers (Part 1) &amp; Personal Narrative (Part 2)</h2>
- 
+
         <div class="card">
             <div class="q-en">Q1: Is it difficult for you to use a computer?</div>
             <div class="q-ru">Сложно ли вам пользоваться компьютером?</div>
@@ -662,7 +702,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">Q2: Who taught you how to use a computer?</div>
             <div class="q-ru">Кто научил вас пользоваться компьютером?</div>
@@ -676,7 +716,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">Q3: What do you usually use your computer for?</div>
             <div class="q-ru">Для чего вы обычно используете свой компьютер?</div>
@@ -690,14 +730,14 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <h3 class="sub-title">Part 2: Cue Card Model Answer <small>Personal Narrative</small></h3>
- 
+
         <div class="cue-card">
             <h3>Describe a person you met only once and you want to know more about.</h3>
             <div class="q-ru">Опишите человека, которого вы встретили всего один раз и о котором хотите узнать больше.</div>
         </div>
- 
+
         <div class="card">
             <div class="q-en">Full Response / Полный ответ</div>
             <div class="action-bar">
@@ -710,7 +750,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <h3 class="sub-title">Key Vocabulary &amp; Idioms (Band 7.5+)</h3>
         <div class="card">
             <div class="tbl-wrap">
@@ -731,11 +771,11 @@ Ielts speaking hub · HTML
             </div>
         </div>
     </section>
- 
+
     <!-- TOPIC 6: POLITENESS / TIME / ROUTINE (NEW) -->
     <section class="tab-panel" id="tab-topic6">
         <h2 class="section-title">🤝 Topic 6: Politeness (Part 1) — Day 5 Set</h2>
- 
+
         <div class="card">
             <div class="q-en">1. Who taught you to be polite?</div>
             <div class="q-ru">Кто научил вас быть вежливым?</div>
@@ -749,7 +789,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">2. How do people in your country show politeness?</div>
             <div class="q-ru">Как люди в вашей стране проявляют вежливость?</div>
@@ -763,7 +803,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">3. What rules of politeness have changed in your country since 10 or 20 years ago?</div>
             <div class="q-ru">Какие правила вежливости изменились в вашей стране за последние 10-20 лет?</div>
@@ -777,9 +817,9 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <h3 class="sub-title">Part 2: Individual Long Turn <small>1-2 Minutes Speech</small></h3>
- 
+
         <div class="cue-card">
             <h3>Describe an activity you usually do that wastes your time</h3>
             <div class="q-ru">Опишите занятие, которое обычно отнимает у вас время</div>
@@ -790,7 +830,7 @@ Ielts speaking hub · HTML
                 <li><b>and explain why you think it wastes your time</b> <i>(почему это трата времени)</i></li>
             </ul>
         </div>
- 
+
         <div class="card">
             <div class="q-en">Part 2 Script (2-Minute Full Speech)</div>
             <div class="action-bar">
@@ -803,9 +843,9 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <h3 class="sub-title">Part 3: Time Management &amp; Routine <small>7 Questions</small></h3>
- 
+
         <div class="card">
             <div class="q-en">1. Do you think nowadays people have a better work-life balance than in the past?</div>
             <div class="q-ru">Есть ли у людей сегодня лучший баланс работы и личной жизни, чем в прошлом?</div>
@@ -819,7 +859,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">2. How do people balance life and work?</div>
             <div class="q-ru">Как люди балансируют между жизнью и работой?</div>
@@ -833,7 +873,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">3. Do you agree that having a routine gives people more time to think?</div>
             <div class="q-ru">Согласны ли вы, что рутина дает больше времени на размышления?</div>
@@ -847,7 +887,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">4. How important is it to have a daily routine?</div>
             <div class="q-ru">Насколько важно иметь ежедневную рутину?</div>
@@ -861,7 +901,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">5. Why do some people refuse to abide by rules?</div>
             <div class="q-ru">Почему некоторые люди отказываются подчиняться правилам?</div>
@@ -875,7 +915,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">6. Do you agree that social media increases pressures of modern life?</div>
             <div class="q-ru">Увеличивают ли соцсети давление современной жизни?</div>
@@ -889,7 +929,7 @@ Ielts speaking hub · HTML
             </div>
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
- 
+
         <div class="card">
             <div class="q-en">7. What kinds of things make people feel pressured?</div>
             <div class="q-ru">Что заставляет людей чувствовать давление?</div>
@@ -904,18 +944,18 @@ Ielts speaking hub · HTML
             <textarea placeholder="My Answer & Notes..."></textarea>
         </div>
     </section>
- 
+
     <!-- WRITING TEMPLATES (NEW) -->
     <section class="tab-panel" id="tab-writing">
         <h2 class="section-title">✍️ Writing Task 2: Essay Templates</h2>
- 
+
         <div class="card" style="text-align:center;">
             <button class="btn-big" onclick="toggleAnswer('writingVocabBox')">📚 Writing Vocabulary — Must-Memorize (Show / Hide)</button>
             <div id="writingVocabBox" class="collapsible">
                 <div class="vocab-grid" id="writingVocabGrid" style="text-align:left;"></div>
             </div>
         </div>
- 
+
         <h3 class="sub-title">1. Introduction Templates <small>Введение</small></h3>
         <div class="card"><div class="tbl-wrap"><table class="tpl-table">
             <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
@@ -926,7 +966,7 @@ Ielts speaking hub · HTML
                 <tr><td class="en">While [View A], they fail to offer a complete understanding of [View B]. <button class="btn-mini-audio" data-say="While view A, they fail to offer a complete understanding of view B.">🔊</button></td><td class="ru">Хотя [A], они не дают полного понимания [B].</td><td class="purpose">Thesis Statement</td></tr>
             </tbody>
         </table></div></div>
- 
+
         <h3 class="sub-title">2. Main Body 1: Presenting Your First Stance <small>Первый аргумент</small></h3>
         <div class="card"><div class="tbl-wrap"><table class="tpl-table">
             <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
@@ -937,7 +977,7 @@ Ielts speaking hub · HTML
                 <tr><td class="en">As a result, individuals can learn about foreign traditions directly from... <button class="btn-mini-audio" data-say="As a result, individuals can learn about foreign traditions directly from">🔊</button></td><td class="ru">В результате люди могут узнать о зарубежных традициях напрямую от...</td><td class="purpose">Showing Result</td></tr>
             </tbody>
         </table></div></div>
- 
+
         <h3 class="sub-title">3. Main Body 2: Presenting Limitations &amp; Alternatives <small>Второй аргумент</small></h3>
         <div class="card"><div class="tbl-wrap"><table class="tpl-table">
             <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
@@ -948,7 +988,7 @@ Ielts speaking hub · HTML
                 <tr><td class="en">Personal immersion into daily local life offers a much deeper understanding. <button class="btn-mini-audio" data-say="Personal immersion into daily local life offers a much deeper understanding.">🔊</button></td><td class="ru">Личное погружение в повседневную жизнь дает гораздо более глубокое понимание.</td><td class="purpose">Strong Final Point</td></tr>
             </tbody>
         </table></div></div>
- 
+
         <h3 class="sub-title">4. Conclusion Formulas <small>Заключение</small></h3>
         <div class="card"><div class="tbl-wrap"><table class="tpl-table">
             <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
@@ -958,7 +998,7 @@ Ielts speaking hub · HTML
             </tbody>
         </table></div></div>
     </section>
- 
+
     <!-- SECTION 1: VOCABULARY -->
     <section class="tab-panel" id="tab-vocab">
         <h2 class="section-title">🎓 Section 1: Band 8+ Vocabulary Bank</h2>
@@ -990,7 +1030,7 @@ Ielts speaking hub · HTML
             <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Open to relocating</span><button class="btn-mini-audio" onclick="speak('Open to relocating')">🔊 Audio</button></div><div class="vocab-ipa">[ˈəʊpən tuː ˌriːləʊˈkeɪtɪŋ]</div></div><div class="vocab-ru">открыт к переезду</div></div>
             <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Bustling metropolis</span><button class="btn-mini-audio" onclick="speak('Bustling metropolis')">🔊 Audio</button></div><div class="vocab-ipa">[ˈbʌslɪŋ mɪˈtrɒpəlɪs]</div></div><div class="vocab-ru">бурлящий мегаполис</div></div>
         </div>
- 
+
         <!-- NEW: vocabulary from the new practice sets (rendered by script below) -->
         <h3 class="sub-title">👟 Shoes (Topic 4)</h3>
         <div class="vocab-grid" id="vocShoes"></div>
@@ -1003,24 +1043,43 @@ Ielts speaking hub · HTML
         <h3 class="sub-title">⏱️ Part 3: Time Management &amp; Routine</h3>
         <div class="vocab-grid" id="vocPart3"></div>
     </section>
- 
+
     <!-- SECTION 1B: ELS READING VOCABULARY (NEW) -->
     <section class="tab-panel" id="tab-reading">
         <h2 class="section-title">📖 Section 1B: ELS Reading Master Guide &amp; Vocabulary Bank</h2>
- 
-        <h3 class="sub-title">UNIT: Tea Innovations</h3>
-        <div class="card"><div class="tbl-wrap" id="tblTea"></div></div>
- 
-        <h3 class="sub-title">UNIT: Possessing a Mathematical Mind</h3>
-        <div class="card"><div class="tbl-wrap" id="tblMath"></div></div>
- 
-        <h3 class="sub-title">ELS Vocabulary Master List <small>IPA + Synonyms</small></h3>
-        <div class="card"><div class="tbl-wrap" id="tblMaster"></div></div>
- 
-        <h3 class="sub-title">ELS Reading Word List <small>Weaning, Satellite, Missile...</small></h3>
-        <div class="vocab-grid" id="vocReading"></div>
+
+        <!-- Tap a title to open / close its word list -->
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🍵 UNIT: Tea Innovations</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblTea"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🧮 UNIT: Possessing a Mathematical Mind</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblMath"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📋 ELS Vocabulary Master List (IPA + Synonyms)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblMaster"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📝 ELS Reading Word List (Weaning, Satellite, Missile...)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocReading"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📘 ELS Vocabulary — Part 2 (Cramp, Fatal, Slum...)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblPart2"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🌶️ The Spice Trade (pp. 116–117)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblSpice"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📚 Alexandre Dumas (pp. 118–119)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblDumas"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🧬 Classifying Life Forms (pp. 120–121)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblClassify"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🧊 Ice-Borg (pp. 122–123)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblIce"></div></div></div></div>
+
+        <h3 class="sub-title">ELS Reading Master Guide <small>Units 52–61 · IELTS 7.5+</small></h3>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>👥 The Reasons for Rapid Population Growth (pp. 52–53)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU1"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🕯️ Units 52–61 · Set 2</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU2"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🎉 Units 52–61 · Set 3</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU3"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>💰 Units 52–61 · Set 4</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU4"></div></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🛏️ Units 52–61 · Set 5</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU5"></div></div></div></div>
     </section>
- 
+
     <!-- SECTION 2: SLANG -->
     <section class="tab-panel" id="tab-slang">
         <h2 class="section-title">🔥 Section 2: Real Life Short Phrases & Everyday Slang</h2>
@@ -1093,16 +1152,16 @@ Ielts speaking hub · HTML
         </div>
     </section>
 </div>
- 
+
 <script>
     // ===== PROFILE SETTINGS: вставь свои ссылки и фото между кавычками =====
     const PROFILE = {
-        photo: 'avatar.jpg.jpg',                 // фото профиля, например 'me.jpg' или ссылка на картинку
+        photo: 'https://images6.alphacoders.com/119/thumb-1920-1190271.png',                 // фото профиля, например 'me.jpg' или ссылка на картинку
         instagram: 'https://www.instagram.com/byil.khom?vrfl=MWo5aDN6anVtdmtmeA==',             // например 'https://instagram.com/твой_ник'
         telegram: 'https://t.me/ilkhomvi',              // например 'https://t.me/твой_ник'
-        gallery: ['https://4kwallpapers.com/images/walls/thumbs_3t/27411.jpg', 'https://4kwallpapers.com/images/walls/thumbs_3t/25406.jpg', 'https://4kwallpapers.com/images/walls/thumbs_3t/3672.jpg']      // 3 картинки для блока Photo 1 / 2 / 3
+        gallery: ['https://4kwallpapers.com/images/walls/thumbs_3t/27673.jpg', 'https://4kwallpapers.com/images/walls/thumbs_3t/27784.jpeg', 'https://4kwallpapers.com/images/walls/thumbs_2t/27559.jpg']      // 3 картинки для блока Photo 1 / 2 / 3
     };
- 
+
     // Динамические фоновые обои высокого качества (горы, ночной город, атмосферные виды)
     const wallpapers = [
         'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80',
@@ -1117,11 +1176,11 @@ Ielts speaking hub · HTML
     }
     changeBackground();
     setInterval(changeBackground, 15000); // Смена каждые 15 секунд
- 
+
     function toggleAnswer(id) {
         document.getElementById(id).classList.toggle('active');
     }
- 
+
     // Озвучка с принудительным американским акцентом (en-US)
     let voices = [];
     function loadVoices() {
@@ -1129,24 +1188,24 @@ Ielts speaking hub · HTML
     }
     window.speechSynthesis.onvoiceschanged = loadVoices;
     loadVoices();
- 
+
     function speak(text) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 0.95;
         utterance.lang = 'en-US'; // Американский английский
- 
+
         // Пытаемся найти нативное американское звучание в системе
         const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('US')));
         if (usVoice) {
             utterance.voice = usVoice;
         }
- 
+
         window.speechSynthesis.speak(utterance);
     }
- 
+
     /* ===== NEW SCRIPT (added for the new sections) ===== */
- 
+
     // Универсальный обработчик кнопок: data-say = короткая фраза, data-target = id блока с длинным текстом
     document.addEventListener('click', function (e) {
         const b = e.target.closest('[data-say],[data-target]');
@@ -1158,7 +1217,7 @@ Ielts speaking hub · HTML
             speak(b.dataset.say);
         }
     });
- 
+
     // Формат: [слово/фраза, транскрипция, перевод]
     function renderVocab(id, items) {
         const el = document.getElementById(id);
@@ -1169,7 +1228,7 @@ Ielts speaking hub · HTML
                 '<div class="vocab-ipa">[' + i[1] + ']</div></div><div class="vocab-ru">' + i[2] + '</div></div>';
         }).join('');
     }
- 
+
     renderVocab('vocShoes', [
         ['On a seasonal basis', 'ɒn ə ˈsiːzənl ˈbeɪsɪs', 'по сезону / на сезонной основе'],
         ['Wear and tear', 'weə ənd teə', 'износ, изнашивание'],
@@ -1188,7 +1247,7 @@ Ielts speaking hub · HTML
         ['Impulsive buying', 'ɪmˈpʌlsɪv ˈbaɪɪŋ', 'импульсивные покупки'],
         ['Specialized footwear', 'ˈspeʃəlaɪzd ˈfʊtweə', 'специализированная обувь']
     ]);
- 
+
     renderVocab('vocCourse', [
         ['Digital marketing and content strategy', 'ˈdɪdʒɪtl ˈmɑːkɪtɪŋ ənd ˈkɒntent ˈstrætədʒi', 'цифровой маркетинг и контент-стратегия'],
         ['Interactive e-learning platform', 'ˌɪntərˈæktɪv iː ˈlɜːnɪŋ ˈplætfɔːm', 'интерактивная платформа онлайн-обучения'],
@@ -1198,7 +1257,7 @@ Ielts speaking hub · HTML
         ['Industry expert', 'ˈɪndəstri ˈekspɜːt', 'отраслевой эксперт'],
         ['Directly applicable', 'daɪˈrektli əˈplɪkəbl', 'напрямую применимый на практике']
     ]);
- 
+
     renderVocab('vocIdioms', [
         ['A piece of cake', 'ə piːs ɒv keɪk', 'проще простого'],
         ['Graduate with top marks', 'ˈɡrædʒueɪt wɪð tɒp mɑːks', 'окончить с отличными оценками'],
@@ -1210,7 +1269,7 @@ Ielts speaking hub · HTML
         ['Catch a glimpse of...', 'kætʃ ə ɡlɪmps ɒv', 'увидеть мельком'],
         ['Nowhere to be found', 'ˈnəʊweə tə bi faʊnd', 'нигде не найти / исчез']
     ]);
- 
+
     renderVocab('vocPolite', [
         ['Strong sense of respect', 'strɒŋ sens ɒv rɪˈspekt', 'глубокое уважение'],
         ['Good manners', 'ɡʊd ˈmænəz', 'хорошие манеры'],
@@ -1221,7 +1280,7 @@ Ielts speaking hub · HTML
         ['Major time sink', 'ˈmeɪdʒə taɪm sɪŋk', 'огромный пожиратель времени'],
         ['Disrupts my sleep cycle', 'dɪsˈrʌpts maɪ sliːp ˈsaɪkl', 'нарушает мой режим сна']
     ]);
- 
+
     renderVocab('vocPart3', [
         ['Constant digital connectivity', 'ˈkɒnstənt ˈdɪdʒɪtl ˌkɒnekˈtɪvəti', 'постоянная цифровая связь'],
         ['Dedicated downtime', 'ˈdedɪkeɪtɪd ˈdaʊntaɪm', 'специально выделенное время на отдых'],
@@ -1231,7 +1290,7 @@ Ielts speaking hub · HTML
         ['Unrealistic lifestyles', 'ˌʌnrɪəˈlɪstɪk ˈlaɪflstaɪlz', 'нереалистичный образ жизни'],
         ['Societal expectations', 'səˈsaɪətl ˌekspekˈteɪʃnz', 'ожидания общества']
     ]);
- 
+
     // Vocab из раздела Writing (кнопка «Writing Vocabulary»)
     renderVocab('writingVocabGrid', [
         ['Interact with', 'ˌɪntərˈækt wɪð', 'взаимодействовать с'],
@@ -1242,20 +1301,20 @@ Ielts speaking hub · HTML
         ['Much deeper understanding', 'mʌtʃ ˈdiːpə ˌʌndəˈstændɪŋ', 'гораздо более глубокое понимание'],
         ['Partially agree', 'ˈpɑːʃəli əˈɡriː', 'частично согласен']
     ]);
- 
+
     // Таблицы ELS Reading: [слово, IPA (можно пусто), перевод, синоним IELTS, перевод синонима]
     function renderTable(id, rows, withIpa) {
         const el = document.getElementById(id);
         if (!el) return;
-        el.innerHTML = '<table class="tpl-table"><thead><tr><th>' + (withIpa ? 'Word &amp; IPA' : 'Word') +
+        el.innerHTML = '<table class="tpl-table stack"><thead><tr><th>' + (withIpa ? 'Word &amp; IPA' : 'Word') +
             '</th><th>Translation</th><th>IELTS Synonym</th><th>Synonym Translation</th></tr></thead><tbody>' +
             rows.map(function (r) {
-                return '<tr><td class="en">' + r[0] + ' <button class="btn-mini-audio" data-say="' + r[0] + '">🔊</button>' +
+                return '<tr><td class="en" data-label="">' + r[0] + ' <button class="btn-mini-audio" data-say="' + r[0] + '">🔊</button>' +
                     (r[1] ? '<br><small style="color:var(--accent-purple);font-weight:400;">/' + r[1] + '/</small>' : '') +
-                    '</td><td class="ru">' + r[2] + '</td><td class="syn">' + r[3] + '</td><td class="ru">' + r[4] + '</td></tr>';
+                    '</td><td class="ru" data-label="Translation">' + r[2] + '</td><td class="syn" data-label="Synonym">' + r[3] + '</td><td class="ru" data-label="Synonym meaning">' + r[4] + '</td></tr>';
             }).join('') + '</tbody></table>';
     }
- 
+
     renderTable('tblTea', [
         ['Innovation', '', 'Новшество, инновация', 'Breakthrough / Novelty', 'Прорыв / Новинка'],
         ['Exposition', '', 'Выставка', 'Exhibition / Fair', 'Экспозиция / Ярмарка'],
@@ -1268,7 +1327,7 @@ Ielts speaking hub · HTML
         ['Convenience', '', 'Удобство', 'Usability / Handiness', 'Удобство использования'],
         ['Sediment', '', 'Осадок, гуща', 'Residue / Deposit', 'Остаток / Отложение']
     ], false);
- 
+
     renderTable('tblMath', [
         ['Discipline', '', 'Отрасль знаний, дисциплина', 'Branch of knowledge / Field', 'Область науки / Сфера'],
         ['Illustrate', '', 'Наглядно объяснять', 'Demonstrate / Exemplify', 'Демонстрировать / Показывать'],
@@ -1279,7 +1338,7 @@ Ielts speaking hub · HTML
         ['Glance', '', 'Бегло взглянуть', 'Peek / Brief look', 'Быстрый взгляд / Взгляд мельком'],
         ['Contented', '', 'Довольный, удовлетворенный', 'Satisfied / Gratified', 'Удовлетворенный']
     ], false);
- 
+
     renderTable('tblMaster', [
         ['Joke', 'dʒəʊk', 'Шутка, анекдот', 'Jest / Anecdote', 'Шутка / Историческая быль'],
         ['Among', 'əˈmʌŋ', 'Среди, между', 'Amidst / In the midst of', 'Посреди / В окружении'],
@@ -1344,7 +1403,7 @@ Ielts speaking hub · HTML
         ['Wordy report', 'ˈwɜːdi rɪˈpɔːt', 'Многословный отчет', 'Verbose document', 'Избыточно подробный документ'],
         ['Equipment', 'ɪˈkwɪpmənt', 'Оборудование, оснащение', 'Apparatus / Gear', 'Аппаратура / Оснащение']
     ], true);
- 
+
     renderVocab('vocReading', [
         ['Weaning', 'ˈwiːnɪŋ', 'отлучение от груди'],
         ['Nourishment', 'ˈnʌrɪʃmənt', 'питание'],
@@ -1376,7 +1435,7 @@ Ielts speaking hub · HTML
         ['Missile', 'ˈmɪsaɪl', 'ракета'],
         ['Capability', 'ˌkeɪpəˈbɪləti', 'возможность']
     ]);
- 
+
     // ===== Главное меню: показать / скрыть раздел по нажатию кнопки =====
     function showTab(id) {
         window.speechSynthesis.cancel();
@@ -1392,7 +1451,7 @@ Ielts speaking hub · HTML
         }
         document.getElementById('tabHint').style.display = wasOpen ? 'block' : 'none';
     }
- 
+
     // ===== Фото профиля, ссылки и картинки =====
     (function initProfile() {
         if (PROFILE.photo) {
@@ -1410,8 +1469,207 @@ Ielts speaking hub · HTML
             }
         });
     })();
+
+    // ===== Раскрывающиеся блоки (нажми на заголовок — откроются слова) =====
+    function toggleAcc(btn) {
+        btn.parentElement.classList.toggle('open');
+    }
+
+    // Таблица из 3 колонок: [слово, IPA, перевод, синоним]
+    function renderTable3(id, rows) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = '<table class="tpl-table stack"><thead><tr><th>Word &amp; IPA</th><th>Translation</th><th>IELTS Synonym</th></tr></thead><tbody>' +
+            rows.map(function (r) {
+                return '<tr><td class="en" data-label="">' + r[0] + ' <button class="btn-mini-audio" data-say="' + r[0] + '">🔊</button>' +
+                    '<br><small style="color:var(--accent-purple);font-weight:400;">/' + r[1] + '/</small></td>' +
+                    '<td class="ru" data-label="Translation">' + r[2] + '</td><td class="syn" data-label="Synonym">' + r[3] + '</td></tr>';
+            }).join('') + '</tbody></table>';
+    }
+
+    // ---- ELS Vocabulary Part 2 ----
+    renderTable('tblPart2', [
+        ['Cramp', 'kræmp', 'Судорога', 'Muscle spasm', 'Мышечный спазм'],
+        ['Conceive', 'kənˈsiːv', 'Постигать, осознавать', 'Comprehend / Realize', 'Понимать, осмысливать'],
+        ['Fatal', 'ˈfeɪtl', 'Смертельный, фатальный', 'Deadly / Lethal', 'Смертоносный, гибельный'],
+        ['Instantly', 'ˈɪnstəntli', 'Мгновенно, сразу', 'Immediately / Promptly', 'Немедленно, тотчас'],
+        ['Presence of mind', 'ˈprezns əv maɪnd', 'Самообладание', 'Composure / Cool-headedness', 'Хладнокровие, выдержка'],
+        ['Calf (of the leg)', 'kɑːf', 'Икра (ноги)', 'Lower leg muscle', 'Икроножная мышца'],
+        ['Disregard', 'ˌdɪsrɪˈɡɑːd', 'Игнорировать', 'Ignore / Neglect', 'Пренебрегать, не замечать'],
+        ['Deprive (of)', 'dɪˈpraɪv', 'Лишать (чего-либо)', 'Strip of / Bereave', 'Отнимать, лишать'],
+        ['Instinctively', 'ɪnˈstɪŋktɪvli', 'Инстинктивно', 'Automatically / Unconsciously', 'Машинально, непроизвольно'],
+        ['Precaution', 'prɪˈkɔːʃn', 'Мера предосторожности', 'Safeguard / Preventive measure', 'Защитная мера'],
+        ['Encourage', 'ɪnˈkʌrɪdʒ', 'Поощрять, поддерживать', 'Foster / Promote', 'Способствовать, стимулировать'],
+        ['Ridicule', 'ˈrɪdɪkjuːl', 'Высмеивать, насмешка', 'Mock / Deride', 'Осмеивать, издеваться'],
+        ['Boisterous', 'ˈbɔɪstərəs', 'Буйный, шумный, резвый', 'Rowdy / Tumultuous', 'Шумный, необузданный'],
+        ['Conform', 'kənˈfɔːm', 'Соответствовать нормам', 'Comply / Fit in', 'Подчиняться правилам'],
+        ['Abstain (from)', 'əbˈsteɪn', 'Воздерживаться (от)', 'Refrain / Desist', 'Удерживаться, избегать'],
+        ['Remonstrance', 'rɪˈmɒnstrəns', 'Протест, упрек', 'Protest / Objection', 'Возражение, порицание'],
+        ['Stuffed animal', 'stʌft ˈænɪml', 'Мягкая игрушка', 'Plush toy', 'Плюшевая игрушка'],
+        ['Aggressive', 'əˈɡresɪv', 'Агрессивный', 'Hostile / Combative', 'Враждебный, воинственный'],
+        ['Tendency', 'ˈtendənsi', 'Тенденция, склонность', 'Inclination / Propensity', 'Предрасположенность'],
+        ['Prohibition', 'ˌprəʊɪˈbɪʃn', 'Запрет', 'Ban / Interdiction', 'Запрещение, вето'],
+        ['Stricken by poverty', 'ˈstrɪkən baɪ ˈpɒvəti', 'Пораженный нищетой', 'Afflicted by destitution', 'Страдающий от бедности'],
+        ['Torn by conflict', 'tɔːn baɪ ˈkɒnflɪkt', 'Раздираемый войной', 'War-ravaged / Divided by strife', 'Разоренный войной'],
+        ['Physical deformity', 'ˈfɪzɪkl dɪˈfɔːməti', 'Физический изъян', 'Anatomical defect / Malformation', 'Анатомический дефект'],
+        ['After-effects of injuries', 'ˈɑːftər ɪˈfekts əv ˈɪndʒəriz', 'Последствия травм', 'Repercussions / Aftermath', 'Последствия, эхо событий'],
+        ['No prospect of', 'nəʊ ˈprɒspekt ɒv', 'Нет перспектив / шансов', 'Little likelihood of / Unlikely', 'Малая вероятность'],
+        ['Take root', 'teɪk ruːt', 'Укорениться, прижиться', 'Become established / Settle', 'Закрепиться, укорениться'],
+        ['Specialized expertise', 'ˈspeʃəlaɪzd ˌekspɜːˈtiːz', 'Специализированные знания', 'Advanced mastery / Skill set', 'Продвинутое мастерство'],
+        ['Bring into action', 'brɪŋ ˈɪntu ˈækʃn', 'Запустить, ввести в действие', 'Implement / Deploy / Execute', 'Внедрить, задействовать'],
+        ['Operate free of charge', 'ˈɒpəreɪt friː əv tʃɑːdʒ', 'Оперировать бесплатно', 'Perform pro bono / Gratuitously', 'Выполнять безвозмездно'],
+        ['Complimentary tickets', 'ˌkɒmplɪˈmentəri ˈtɪkɪts', 'Бесплатные билеты', 'Free passes / Cost-free entry', 'Подарочные билеты'],
+        ['Penniless', 'ˈpeniləs', 'Нищий, без гроша', 'Destitute / Impoverished', 'Обедневший, неимущий'],
+        ['Uncertain', 'ʌnˈsɜːtn', 'Неопределенный', 'Unpredictable / Ambiguous', 'Непредсказуемый'],
+        ['Slum', 'slʌm', 'Трущобы', 'Impoverished district', 'Бедный район'],
+        ['Gradually', 'ˈɡrædʒuəli', 'Постепенно', 'Steadily / Progressively', 'Последовательно, плавно'],
+        ['Mannerism', 'ˈmænərɪzəm', 'Манера, характерный жест', 'Idiosyncrasy / Trait', 'Особенность поведения'],
+        ['Confusion', 'kənˈfjuːʒn', 'Путаница, замешательство', 'Bewilderment / Disarray', 'Растерянность, хаос'],
+        ['Slapstick', 'ˈslæpstɪk', 'Эксцентричная комедия, фарс', 'Physical comedy / Farce', 'Буффонада, комедия положений'],
+        ['Bowler hat', 'ˈbəʊlə hæt', 'Шляпа-котелок', 'Hard rounded felt hat', 'Жесткая круглая шляпа'],
+        ['Flat-footed', 'flæt ˈfʊtɪd', 'Плоскостопый', 'Having fallen arches', 'С плоской стопой'],
+        ['Adapt', 'əˈdæpt', 'Адаптировать, приспосабливать', 'Adjust / Tailor / Modify', 'Видоизменять, настраивать'],
+        ['Combative', 'ˈkɒmbətɪv', 'Воинственный, драчливый', 'Belligerent / Pugnacious', 'Агрессивный, задиристый'],
+        ['Permanent', 'ˈpɜːmənənt', 'Постоянный, неизменный', 'Enduring / Perpetual', 'Длительный, непреходящий'],
+        ['Repress', 'rɪˈpres', 'Подавлять (эмоции, инстинкты)', 'Suppress / Restrain', 'Сдерживать, заглушать'],
+        ['Sympathetic', 'ˌsɪmpəˈθetɪk', 'Сочувствующий, участливый', 'Compassionate / Empathetic', 'Сострадательный, чуткий'],
+        ['Aggressiveness', 'əˈɡresɪvnəs', 'Агрессивность', 'Hostility / Belligerence', 'Враждебность, агрессия'],
+        ['Authority', 'ɔːˈθɒrəti', 'Авторитет, власть', 'Control / Jurisdiction', 'Влияние, полномочия'],
+        ['Sympathetic treatment', 'ˌsɪmpəˈθetɪk ˈtriːtmənt', 'Чуткое отношение', 'Caring approach', 'Заботливый подход'],
+        ['Self-confidence', 'ˌself ˈkɒnfɪdəns', 'Уверенность в себе', 'Self-assurance / Poise', 'Убежденность в своих силах'],
+        ['Instinct', 'ˈɪnstɪŋkt', 'Инстинкт', 'Innate urge / Impulse', 'Врожденный позыв'],
+        ['Eliminate', 'ɪˈlɪmɪneɪt', 'Устранять, ликвидировать', 'Eradicate / Abolish', 'Искоренять, убирать'],
+        ['Hearing loss', 'ˈhɪərɪŋ lɒs', 'Потеря слуха', 'Impaired hearing / Deafness', 'Нарушение слуха, глухота'],
+        ['Decibel', 'ˈdesɪbel', 'Децибел', 'Unit of sound intensity', 'Единица громкости звука'],
+        ['Accumulate', 'əˈkjuːmjəleɪt', 'Накапливаться, скапливаться', 'Amass / Build up', 'Набирать, аккумулировать'],
+        ['Irreplaceable', 'ˌɪrɪˈpleɪsəbl', 'Незаменимый, невосполнимый', 'Irreparable / Permanent', 'Невосстановимый'],
+        ['Accelerate', 'əkˈseləreɪt', 'Ускорять', 'Speed up / Hasten / Expedite', 'Убыстрять, форсировать'],
+        ['Insidious', 'ɪnˈsɪdiəs', 'Скрытный, коварный (о вреде)', 'Treacherous / Subtle', 'Незаметно разрушающий'],
+        ['Apparent', 'əˈpærənt', 'Очевидный, видимый', 'Obvious / Evident / Manifest', 'Явный, отчетливый'],
+        ['Privately', 'ˈpraɪvətli', 'Приватно, индивидуально', 'Individually / In solitude', 'Лично, обособленно'],
+        ['Intensity', 'ɪnˈtensəti', 'Интенсивность, сила', 'Strength / Magnitude', 'Мощность, величина'],
+        ['Expose (to)', 'ɪkˈspəʊz', 'Подвергать воздействию', 'Subject to / Make vulnerable', 'Ставить под удар']
+    ], true);
+
+    // ---- Units with page numbers ----
+    renderTable3('tblSpice', [
+        ['Artfully', 'ˈɑːtfəli', 'искусно, хитро, ловко', 'Cunningly / Craftily'],
+        ['Withhold', 'wɪðˈhəʊld', 'утаивать, скрывать, не давать', 'Conceal / Retain'],
+        ['Commerce', 'ˈkɒmɜːs', 'торговля, коммерция', 'Trade / Merchandising'],
+        ['Notable', 'ˈnəʊtəbl', 'примечательный, важный', 'Remarkable / Significant'],
+        ['Filter down', 'ˈfɪltə daʊn', 'постепенно распространяться, просачиваться', 'Trickle down / Spread gradually'],
+        ['In a moderated form', 'ɪn ə ˈmɒdəreɪtɪd fɔːm', 'в смягченной, умеренной форме', 'In a toned-down version'],
+        ['Beverage', 'ˈbevərɪdʒ', 'напиток', 'Drink / Refreshment'],
+        ['Preserve', 'prɪˈzɜːv', 'сохранять, консервировать', 'Conserve / Maintain'],
+        ['Partially', 'ˈpɑːʃəli', 'частично, не полностью', 'Partly / Incompletely'],
+        ['Venture abroad', 'ˈventʃər əˈbrɔːd', 'отважиться отправиться за границу', 'Embark on a foreign journey']
+    ]);
+
+    renderTable3('tblDumas', [
+        ['Inaccurate', 'ɪnˈækjərət', 'неточный, ошибочный', 'Imprecise / Erroneous'],
+        ['Playwright', 'ˈpleɪraɪt', 'драматург', 'Dramatist'],
+        ['Prominent', 'ˈprɒmɪnənt', 'выдающийся, известный', 'Renowned / Distinguished'],
+        ['Vivid', 'ˈvɪvɪd', 'яркий, живой, образный', 'Graphic / Evocative'],
+        ['Collaborator', 'kəˈlæbəreɪtə', 'соавтор, сотрудник', 'Co-author / Associate'],
+        ['Here and there', 'hɪər ənd ðeə', 'тут и там, местами', 'Sporadically / In places'],
+        ['Plot', 'plɒt', 'сюжет', 'Storyline / Narrative'],
+        ['Omission', 'əˈmɪʃn', 'пропуск, упущение, невключение', 'Exclusion / Oversight'],
+        ['Practice of the day', 'ˈpræktɪs əv ðə deɪ', 'обычай того времени', 'Prevailing custom'],
+        ['Fulfil', 'fʊlˈfɪl', 'исполнять, осуществлять (мечту/желание)', 'Accomplish / Realize']
+    ]);
+
+    renderTable3('tblClassify', [
+        ['Initially', 'ɪˈnɪʃəli', 'первоначально, вначале', 'At the outset / Originally'],
+        ['Precise', 'prɪˈsaɪs', 'точный, четкий', 'Exact / Accurate'],
+        ['A matter of debate', 'ə ˈmætər əv dɪˈbeɪt', 'предмет споров/дискуссий', 'A subject of contention'],
+        ['Be composed of', 'bi kəmˈpəʊzd ɒv', 'состоять из', 'Consist of / Comprise'],
+        ['Classify', 'ˈklæsɪfaɪ', 'классифицировать, распределять', 'Categorize / Group'],
+        ['Synthesize', 'ˈsɪnθəsaɪz', 'синтезировать, вырабатывать', 'Produce chemically / Combine'],
+        ['Lack', 'læk', 'не хватать, испытывать недостаток в чем-либо', 'Be devoid of / Be deficient in'],
+        ['Pigment', 'ˈpɪɡmənt', 'пигмент, красящее вещество', 'Natural colouring'],
+        ['Comprise', 'kəmˈpraɪz', 'включать в себя, охватывать', 'Encompass / Contain'],
+        ['Distinguish', 'dɪˈstɪŋɡwɪʃ', 'различать, проводить границу', 'Differentiate / Discern']
+    ]);
+
+    renderTable3('tblIce', [
+        ['Imperturbable', 'ˌɪmpəˈtɜːbəbl', 'невозмутимый, хладнокровный', 'Unflappable / Composed'],
+        ['Relentless', 'rɪˈlentləs', 'неустанный, беспощадный, упорный', 'Unyielding / Persistent'],
+        ['Be dubbed', 'bi dʌbd', 'получить прозвище, быть прозванным', 'Be nicknamed / Be labelled'],
+        ['Circuit', 'ˈsɜːkɪt', 'серия соревнований, турне', 'Tour / Tournament series'],
+        ['Drop out of', 'drɒp aʊt ɒv', 'бросить учебу, выбыть', 'Withdraw from / Quit'],
+        ['Qualify for', 'ˈkwɒlɪfaɪ fɔː', 'пройти отбор, квалифицироваться', 'Earn a place in'],
+        ['Encounter', 'ɪnˈkaʊntə', 'встреча, столкновение', 'Meeting / Confrontation'],
+        ['Break a record', 'breɪk ə ˈrekɔːd', 'побить рекорд', 'Surpass a benchmark'],
+        ['Make a comeback', 'meɪk ə ˈkʌmbæk', 'вернуться в большой спорт/на сцену', 'Return to prominence'],
+        ['Obsolete', 'ˌɒbsəˈliːt', 'устаревший, вышедший из употребления', 'Outdated / Antiquated']
+    ]);
+
+    // ---- ELS Reading Master Guide (Units 52–61) ----
+    renderTable('tblU1', [
+        ['Old age pensions', 'əʊld eɪdʒ ˈpenʃnz', 'Пенсии по старости', 'Retirement benefits', 'Пенсионные выплаты'],
+        ['Income', 'ˈɪnkʌm', 'Доход, заработок', 'Earnings / Revenue', 'Поступления, зарплата'],
+        ['Savings', 'ˈseɪvɪŋz', 'Сбережения, накопления', 'Nest egg / Reserves', 'Финансовый резерв'],
+        ['Look to (someone)', 'lʊk tuː', 'Полагаться на кого-либо', 'Rely on / Count on', 'Рассчитывать на помощь'],
+        ['Acceptance', 'əkˈseptəns', 'Принятие, одобрение', 'Adoption / Embracing', 'Признание, внедрение'],
+        ['In turn', 'ɪn tɜːn', 'В свою очередь', 'Consequently / Subsequently', 'Как следствие, далее'],
+        ['Basic', 'ˈbeɪsɪk', 'Основной, коренной', 'Fundamental / Core', 'Фундаментальный, базовый'],
+        ['Attitude', 'ˈætɪtjuːd', 'Отношение, позиция', 'Mindset / Outlook', 'Мировоззрение, подход'],
+        ['Living standards', 'ˈlɪvɪŋ ˈstændədz', 'Уровень жизни', 'Standard of living / Prosperity', 'Благосостояние граждан'],
+        ['Birth rate', 'bɜːθ reɪt', 'Уровень рождаемости', 'Fertility rate / Natality', 'Показатель рождаемости']
+    ], true);
+
+    renderTable('tblU2', [
+        ['Funeral', 'ˈfjuːnərəl', 'Похороны', 'Burial ceremony / Obsequies', 'Погребальный обряд'],
+        ['Passage', 'ˈpæsɪdʒ', 'Переход, путь', 'Transition / Crossing', 'Перемещение из одного состояния'],
+        ['Cremation', 'krəˈmeɪʃn', 'Кремация, сожжение', 'Incineration of remains', 'Ритуальное сожжение'],
+        ["Pay one's last respects", 'peɪ wʌnz lɑːst rɪˈspekts', 'Отдать последний долг', 'Honour the deceased', 'Проститься с усопшим'],
+        ['Procession', 'prəˈseʃn', 'Процессия, шествие', 'Parade / Cavalcade', 'Торжественное шествие'],
+        ['Corpse', 'kɔːps', 'Тело умершего, труп', 'Cadaver / Remains', 'Останки, тело'],
+        ['Transfer', 'trænsˈfɜː', 'Переносить, переводить', 'Relocate / Convey', 'Перемещать в другое место'],
+        ['Scatter', 'ˈskætə', 'Развеивать, разбрасывать', 'Disperse / Strew', 'Рассыпать по поверхности'],
+        ['Cleansing', 'ˈklenzɪŋ', 'Очищение', 'Purging / Ablution', 'Освобождение от скверны'],
+        ['Purification', 'ˌpjʊərɪfɪˈkeɪʃn', 'Духовное очищение', 'Sanctification / Refinement', 'Очищение от грехов']
+    ], true);
+
+    renderTable('tblU3', [
+        ['Bank holiday', 'bæŋk ˈhɒlədeɪ', 'Государственный выходной', 'Public / Statutory holiday', 'Официальный нерабочий день'],
+        ['Emigrate', 'ˈemɪɡreɪt', 'Эмигрировать, переселяться', 'Relocate abroad / Migrate', 'Переехать в другую страну'],
+        ['Beforehand', 'bɪˈfɔːhænd', 'Заранее, заблаговременно', 'In advance / Ahead of time', 'Предварительно'],
+        ['Float', 'fləʊt', 'Карнавальная платформа', 'Decorated parade vehicle', 'Украшенная платформа'],
+        ['Streamer', 'ˈstriːmə', 'Бумажная лента, серпантин', 'Festive ribbon / Pennant', 'Декоративная лента'],
+        ['Amplifier', 'ˈæmplɪfaɪə', 'Усилитель звука', 'Sound booster / Loudhailer', 'Акустический усилитель'],
+        ['Roar', 'rɔː', 'Рев, гул (транспорта)', 'Rumbling / Din / Clamour', 'Громкий низкий шум'],
+        ['Exotic', 'ɪɡˈzɒtɪk', 'Экзотический, необычный', 'Striking / Outlandish', 'Диковинный, яркий'],
+        ["Make one's way", 'meɪk wʌnz weɪ', 'Направляться, пробираться', 'Proceed / Navigate through', 'Двигаться вперед'],
+        ['Stall', 'stɔːl', 'Уличный прилавок, лоток', 'Booth / Kiosk / Stand', 'Торговая палатка']
+    ], true);
+
+    renderTable('tblU4', [
+        ['Contrast', 'ˈkɒntrɑːst', 'Контраст, противоположность', 'Disparity / Contradiction', 'Резкое различие'],
+        ['Make a fortune', 'meɪk ə ˈfɔːtʃuːn', 'Разбогатеть, сколотить состояние', 'Amass wealth / Prosper', 'Накопить капитал'],
+        ['In company', 'ɪn ˈkʌmpəni', 'На людях, в обществе', 'In public / Socially', 'В присутствии других'],
+        ['In private', 'ɪn ˈpraɪvət', 'Наедине, в уединении', 'In solitude / Behind closed doors', 'Без посторонних'],
+        ['Patriotic', 'ˌpætriˈɒtɪk', 'Патриотичный', "Devoted to one's homeland", 'Преданный родине'],
+        ['Explosive', 'ɪkˈspləʊsɪv', 'Взрывчатое вещество', 'Detonating substance / Ordnance', 'Взрывчатка'],
+        ['Publicity', 'pʌbˈlɪsəti', 'Публичность, известность', 'Media attention / Exposure', 'Внимание общественности'],
+        ['Have a taste for', 'hæv ə teɪst fɔː', 'Иметь склонность / вкус к', 'Have a penchant for / Relish', 'Испытывать пристрастие'],
+        ['Will', 'wɪl', 'Завещание', 'Testament / Legal bequest', 'Распоряжение на случай смерти'],
+        ['Outstanding', 'aʊtˈstændɪŋ', 'Выдающийся, блестящий', 'Exceptional / Exemplary', 'Превосходный, незаурядный']
+    ], true);
+
+    renderTable('tblU5', [
+        ['Be obsessed with', 'bi əbˈsest wɪð', 'Быть одержимым чем-либо', 'Be preoccupied with / Fixated on', 'Быть зацикленным'],
+        ['Accumulate', 'əˈkjuːmjəleɪt', 'Накапливать, собирать', 'Amass / Hoard / Gather', 'Копить со временем'],
+        ['Mattress', 'ˈmætrəs', 'Матрас', 'Bed pad / Cushioning', 'Тюфяк, матрац'],
+        ['Deprive oneself of', 'dɪˈpraɪv wʌnˈself ɒv', 'Отказывать себе в чем-либо', 'Deny oneself / Forgo', 'Лишать себя удовольствий'],
+        ['Elaborate', 'ɪˈlæbərət', 'Роскошный, изысканный', 'Extravagant / Lavish', 'Пышный, дорогой'],
+        ['Make use of', 'meɪk juːs ɒv', 'Использовать, применять', 'Utilize / Employ / Leverage', 'Пускать в ход'],
+        ['Utilization', 'ˌjuːtəlaɪˈzeɪʃn', 'Рациональное использование', 'Deployment / Application', 'Практическое применение'],
+        ['In moderation', 'ɪn ˌmɒdəˈreɪʃn', 'В меру, умеренно', 'With restraint / Temperately', 'Без излишеств'],
+        ['Acute', 'əˈkjuːt', 'Острый, серьезный (о проблеме)', 'Severe / Critical / Pressing', 'Крайне напряженный'],
+        ['Modify', 'ˈmɒdɪfaɪ', 'Видоизменять, корректировать', 'Alter / Adjust / Amend', 'Вносить изменения']
+    ], true);
 </script>
- 
+
 </body>
 </html>
- 
