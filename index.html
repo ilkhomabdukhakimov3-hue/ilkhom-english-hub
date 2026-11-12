@@ -1,0 +1,1417 @@
+Claude
+
+
+Ielts speaking hub · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Speaking & Slang Hub</title>
+    <style>
+        :root {
+            --card-bg: rgba(15, 23, 42, 0.72); /* Чуть прозрачнее, чтобы фон лучше просвечивал */
+            --card-border: rgba(255, 255, 255, 0.18);
+            --accent-blue: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-purple: #c084fc;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+ 
+            /* Highlighters */
+            --hl-yellow: #fef08a;
+            --hl-yellow-text: #854d0e;
+            --hl-green: #bbf7d0;
+            --hl-green-text: #166534;
+            --hl-blue: #bae6fd;
+            --hl-blue-text: #075985;
+        }
+ 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+ 
+        body {
+            color: var(--text-main);
+            padding: 24px 12px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background-image 1.5s ease-in-out;
+            position: relative;
+        }
+ 
+        /* Уменьшили затемнение и блюр, чтобы обои было отлично видно! */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(11, 15, 25, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 0;
+        }
+ 
+        .container {
+            max-width: 950px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            z-index: 1;
+        }
+ 
+        header {
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 16px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+ 
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            text-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+        }
+ 
+        header p {
+            color: var(--text-sub);
+            margin-top: 6px;
+        }
+ 
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+ 
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+        }
+ 
+        .q-en { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .q-ru { font-size: 0.95rem; color: var(--text-sub); margin-top: 4px; font-style: italic; }
+ 
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+ 
+        .btn {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+ 
+        .btn:hover { background: rgba(255, 255, 255, 0.25); }
+        .btn-audio { background: rgba(56, 189, 248, 0.25); color: var(--accent-blue); border-color: var(--accent-blue); }
+        .btn-audio:hover { background: var(--accent-blue); color: #0f172a; }
+        .btn-toggle { background: rgba(192, 132, 252, 0.25); color: var(--accent-purple); border-color: var(--accent-purple); }
+        .btn-toggle:hover { background: var(--accent-purple); color: #0f172a; }
+ 
+        .sample-box {
+            display: none;
+            background: rgba(11, 15, 25, 0.85);
+            border: 1px dashed var(--card-border);
+            padding: 16px;
+            margin-top: 14px;
+            border-radius: 10px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+        .sample-box.active { display: block; }
+ 
+        .hl-y { background-color: var(--hl-yellow); color: var(--hl-yellow-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-g { background-color: var(--hl-green); color: var(--hl-green-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-b { background-color: var(--hl-blue); color: var(--hl-blue-text); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+ 
+        textarea {
+            width: 100%;
+            height: 70px;
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            padding: 10px;
+            margin-top: 12px;
+            resize: vertical;
+        }
+ 
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+        }
+ 
+        .vocab-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+ 
+        .vocab-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+        .vocab-word { font-weight: 700; color: var(--accent-blue); }
+        .vocab-ipa { font-size: 0.8rem; color: var(--accent-purple); }
+        .vocab-ru { font-size: 0.85rem; color: var(--text-sub); margin-top: 6px; }
+ 
+        .btn-mini-audio {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        .btn-mini-audio:hover { background: var(--accent-blue); color: #000; }
+ 
+        /* ===== NEW STYLES (added for the new sections) ===== */
+        .sub-title {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            margin: 24px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .sub-title small { font-size: 0.8rem; color: var(--text-sub); font-weight: 400; }
+ 
+        .ru-line { font-size: 0.88rem; color: var(--text-sub); font-style: italic; margin-top: 8px; line-height: 1.55; }
+ 
+        .cue-card {
+            background: rgba(6, 78, 59, 0.6);
+            border: 2px solid #34d399;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .cue-card h3 { color: #6ee7b7; font-size: 1.2rem; }
+        .cue-card .cue-say { font-weight: 700; margin-top: 12px; }
+        .cue-card ul { margin: 6px 0 0 22px; line-height: 1.7; }
+        .cue-card ul li i { color: var(--text-sub); }
+ 
+        .tip-box {
+            background: rgba(120, 53, 15, 0.6);
+            border: 1px solid #fb923c;
+            color: #fed7aa;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 14px;
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+ 
+        .collapsible { display: none; margin-top: 14px; }
+        .collapsible.active { display: block; }
+ 
+        .tbl-wrap { overflow-x: auto; }
+        .tpl-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+        .tpl-table th { text-align: left; color: var(--accent-purple); padding: 8px 10px; border-bottom: 2px solid var(--card-border); }
+        .tpl-table td { padding: 10px; border-bottom: 1px solid var(--card-border); vertical-align: top; line-height: 1.5; }
+        .tpl-table td.en { font-weight: 600; color: var(--accent-blue); }
+        .tpl-table td.ru { color: var(--text-sub); }
+        .tpl-table td.purpose { color: var(--hl-yellow); font-style: italic; white-space: nowrap; }
+ 
+        .btn-big {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+            color: #052e16;
+            border: none;
+            padding: 14px 26px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .btn-big:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(34, 197, 94, 0.6); }
+        .tpl-table td.syn { color: var(--hl-blue); font-weight: 600; }
+ 
+        /* ===== HOME PAGE: welcome, profile, links, menu buttons ===== */
+        .welcome { display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--card-border); }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent-blue); background: rgba(255, 255, 255, 0.08) center/cover no-repeat; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-align: center; color: var(--text-sub); box-shadow: 0 0 24px rgba(56, 189, 248, 0.4); flex-shrink: 0; line-height: 1.1; }
+        .avatar small { font-size: 0.65rem; display: block; }
+        .welcome-text { text-align: left; }
+        .welcome-small { font-size: 1rem; color: var(--text-sub); letter-spacing: 0.5px; }
+        .welcome-name { font-size: 2rem; color: var(--text-main); margin: 2px 0 10px; }
+        .socials { display: flex; gap: 10px; flex-wrap: wrap; }
+        .social-btn { padding: 8px 16px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; text-decoration: none; color: #fff; border: 1px solid var(--card-border); transition: transform 0.15s ease; }
+        .social-btn:hover { transform: translateY(-2px); }
+        .social-btn.insta { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+        .social-btn.tg { background: linear-gradient(135deg, #2aabee, #229ed9); }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+        .gallery-slot { aspect-ratio: 4 / 3; border-radius: 10px; border: 2px dashed var(--card-border); background: rgba(255, 255, 255, 0.06) center/cover no-repeat; display: flex; align-items: center; justify-content: center; color: var(--text-sub); font-size: 0.8rem; }
+ 
+        .main-nav { background: rgba(15, 23, 42, 0.72); border: 1px solid var(--card-border); border-radius: 14px; padding: 16px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+        .nav-group { margin-bottom: 14px; }
+        .nav-group:last-child { margin-bottom: 0; }
+        .nav-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-sub); margin-bottom: 8px; }
+        .nav-row { display: flex; flex-wrap: wrap; gap: 8px; }
+        .nav-btn { background: rgba(255, 255, 255, 0.1); color: var(--text-main); border: 1px solid var(--card-border); padding: 9px 16px; border-radius: 10px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s ease; }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.22); }
+        .nav-btn.active { background: var(--accent-blue); color: #0f172a; border-color: var(--accent-blue); box-shadow: 0 4px 16px rgba(56, 189, 248, 0.45); }
+ 
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+    </style>
+</head>
+<body>
+ 
+<div class="container">
+    <header>
+        <!-- Welcome + profile photo + social links (set photo and links in PROFILE at the top of the script) -->
+        <div class="welcome">
+            <div class="avatar" id="avatarBox"><span id="avatarPh">📷<small>Your photo</small></span></div>
+            <div class="welcome-text">
+                <p class="welcome-small">Welcome to my web site</p>
+                <h2 class="welcome-name">I'm Ilkhom 👋</h2>
+                <div class="socials">
+                    <a id="linkInstagram" class="social-btn insta" href="#" target="_blank" rel="noopener">📸 Instagram</a>
+                    <a id="linkTelegram" class="social-btn tg" href="#" target="_blank" rel="noopener">✈️ Telegram</a>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Picture slots -->
+        <div class="gallery" id="galleryBox">
+            <div class="gallery-slot">🖼️ Photo 1</div>
+            <div class="gallery-slot">🖼️ Photo 2</div>
+            <div class="gallery-slot">🖼️ Photo 3</div>
+        </div>
+ 
+        <h1>🎙️ IELTS Speaking & Slang Hub</h1>
+        <p>Complete 10 Questions, Band 8+ Vocabulary Bank & 65+ Spoken Phrases</p>
+    </header>
+ 
+    <!-- MAIN MENU: tap a button to show its words / questions -->
+    <nav class="main-nav" id="mainNav">
+        <div class="nav-group">
+            <div class="nav-label">🎤 Speaking</div>
+            <div class="nav-row">
+                <button class="nav-btn" data-tab="tab-fillers" onclick="showTab('tab-fillers')">⏳ Starters</button>
+                <button class="nav-btn" data-tab="tab-topic2" onclick="showTab('tab-topic2')">💼 Work &amp; Studies</button>
+                <button class="nav-btn" data-tab="tab-topic3" onclick="showTab('tab-topic3')">🏙️ Hometown</button>
+                <button class="nav-btn" data-tab="tab-topic4" onclick="showTab('tab-topic4')">👟 Shoes</button>
+                <button class="nav-btn" data-tab="tab-topic5" onclick="showTab('tab-topic5')">💻 Computers</button>
+                <button class="nav-btn" data-tab="tab-topic6" onclick="showTab('tab-topic6')">🤝 Politeness &amp; Time</button>
+            </div>
+        </div>
+        <div class="nav-group">
+            <div class="nav-label">✍️ Writing</div>
+            <div class="nav-row">
+                <button class="nav-btn" data-tab="tab-writing" onclick="showTab('tab-writing')">✍️ Essay Templates</button>
+            </div>
+        </div>
+        <div class="nav-group">
+            <div class="nav-label">📚 Vocabulary</div>
+            <div class="nav-row">
+                <button class="nav-btn" data-tab="tab-vocab" onclick="showTab('tab-vocab')">🎓 Vocabulary Bank</button>
+                <button class="nav-btn" data-tab="tab-reading" onclick="showTab('tab-reading')">📖 Reading Vocab</button>
+                <button class="nav-btn" data-tab="tab-slang" onclick="showTab('tab-slang')">🔥 Slang</button>
+            </div>
+        </div>
+    </nav>
+ 
+    <div class="card" id="tabHint" style="text-align:center; color:var(--text-sub);">👆 Choose a section above — tap a button to open it. Tap it again to close.</div>
+ 
+    <!-- SPEAKING FILLERS (NEW) -->
+    <section class="tab-panel" id="tab-fillers">
+        <h2 class="section-title">⏳ Speaking Starters: Buy Yourself Time</h2>
+        <div class="vocab-grid">
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">To be honest, I've never really thought about that before, but...</span><button class="btn-mini-audio" onclick="speak('To be honest, I\'ve never really thought about that before, but...')">🔊 Audio</button></div><div class="vocab-ipa">[tə bi ˈɒnɪst aɪv ˈnevə ˈrɪəli ˈθɔːtɪd əˈbaʊt ðæt bɪˈfɔː bʌt]</div></div><div class="vocab-ru">Честно говоря, я никогда особо об этом не задумывался, но...</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Let me see...</span><button class="btn-mini-audio" onclick="speak('Let me see...')">🔊 Audio</button></div><div class="vocab-ipa">[let mi siː]</div></div><div class="vocab-ru">Дайте-ка подумать...</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Let me think about that for a second</span><button class="btn-mini-audio" onclick="speak('Let me think about that for a second')">🔊 Audio</button></div><div class="vocab-ipa">[let mi θɪŋk əˈbaʊt ðæt fər ə ˈsekənd]</div></div><div class="vocab-ru">Дайте мне секунду, чтобы подумать об этом</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">How should I put this?</span><button class="btn-mini-audio" onclick="speak('How should I put this?')">🔊 Audio</button></div><div class="vocab-ipa">[haʊ ʃʊd aɪ pʊt ðɪs]</div></div><div class="vocab-ru">Как бы это сказать?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">How can I put it?</span><button class="btn-mini-audio" onclick="speak('How can I put it?')">🔊 Audio</button></div><div class="vocab-ipa">[haʊ kæn aɪ pʊt ɪt]</div></div><div class="vocab-ru">Как бы мне это выразить?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">That's a tough one, but if I had to say, I'd guess...</span><button class="btn-mini-audio" onclick="speak('That\'s a tough one, but if I had to say, I\'d guess...')">🔊 Audio</button></div><div class="vocab-ipa">[ðæts ə tʌf wʌn bʌt ɪf aɪ hæd tə seɪ aɪd ɡes]</div></div><div class="vocab-ru">Это непростой вопрос, но если бы мне пришлось ответить, я бы предположил...</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">That's a really interesting question...</span><button class="btn-mini-audio" onclick="speak('That\'s a really interesting question...')">🔊 Audio</button></div><div class="vocab-ipa">[ðæts ə ˈrɪəli ˈɪntrəstɪŋ ˈkwestʃən]</div></div><div class="vocab-ru">Это действительно интересный вопрос...</div></div>
+        </div>
+    </section>
+ 
+    <!-- TOPIC 2 -->
+    <section class="tab-panel" id="tab-topic2">
+        <h2 class="section-title">📘 Topic 2: Work and Studies (5 Questions)</h2>
+ 
+        <div class="card">
+            <div class="q-en">1. What usually fills most of your time during the week?</div>
+            <div class="q-ru">Что обычно занимает большую часть вашего времени в течение недели?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What usually fills most of your time during the week?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans1')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans1" class="sample-box">
+                "Most of my schedule is <span class="hl-y">dominated by my studies</span>. I spend hours <span class="hl-g">attending lectures</span> and tackling <span class="hl-b">demanding deadlines</span>, though I try to find time to unwind."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">2. Do you prefer learning in a classroom or on your own?</div>
+            <div class="q-ru">Вы предпочитаете учиться в классе или самостоятельно?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you prefer learning in a classroom or on your own?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans2')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans2" class="sample-box">
+                "I lean towards <span class="hl-y">self-paced learning</span> because it offers flexibility. However, classroom settings are great for <span class="hl-g">interactive discussions</span> and <span class="hl-b">collaborative projects</span>."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">3. What kind of place helps you focus better on tasks?</div>
+            <div class="q-ru">Какое место помогает вам лучше сосредоточиться на задачах?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What kind of place helps you focus better on tasks?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans3')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans3" class="sample-box">
+                "I thrive in a <span class="hl-y">quiet, minimalist environment</span> like a silent library section. Minimizing <span class="hl-g">visual distractions</span> is crucial for me to <span class="hl-b">maintain deep concentration</span>."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">4. How do you usually feel at the start of a work or study day?</div>
+            <div class="q-ru">Как вы обычно себя чувствуете в начале рабочего или учебного дня?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How do you usually feel at the start of a work or study day?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans4')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans4" class="sample-box">
+                "To be honest, I often feel a bit <span class="hl-y">sluggish initially</span>. But once I get my morning coffee and review my <span class="hl-g">to-do list</span>, I feel <span class="hl-b">energized and productive</span>."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">5. What makes a workplace or school feel comfortable to you?</div>
+            <div class="q-ru">Что делает рабочее место или учебное заведение комфортным для вас?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What makes a workplace or school feel comfortable to you?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans5')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans5" class="sample-box">
+                "For me, a <span class="hl-y">supportive atmosphere</span> and friendly peers are essential. Having <span class="hl-g">ergonomic seating</span> and good lighting also makes a huge difference in <span class="hl-b">overall well-being</span>."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+    </section>
+ 
+    <!-- TOPIC 3 -->
+    <section class="tab-panel" id="tab-topic3">
+        <h2 class="section-title">🏙️ Topic 3: Hometown and Area (5 Questions)</h2>
+ 
+        <div class="card">
+            <div class="q-en">1. What stands out to you about the place where you live now?</div>
+            <div class="q-ru">Что особо выделяется для вас в месте, где вы сейчас живёте?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What stands out to you about the place where you live now?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans6')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans6" class="sample-box">
+                "What truly stands out is the <span class="hl-y">vibrant local culture</span> and the seamless blend of modern high-rises with <span class="hl-g">historic landmarks</span>. It has a very <span class="hl-b">dynamic vibe</span>."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">2. Do you feel connected to your hometown, or is it just a place?</div>
+            <div class="q-ru">Чувствуете ли вы связь со своим родным городом, или это просто место?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you feel connected to your hometown, or is it just a place?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans7')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans7" class="sample-box">
+                "I definitely feel a <span class="hl-y">strong sense of belonging</span>. Having grown up here, every corner holds <span class="hl-g">fond childhood memories</span>, so it is much more than just a place to live."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">3. What kind of people usually live in your area?</div>
+            <div class="q-ru">Какие люди обычно живут в вашем районе?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What kind of people usually live in your area?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans8')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans8" class="sample-box">
+                "My neighborhood is very <span class="hl-y">diverse and welcoming</span>. It's mainly home to <span class="hl-g">young professionals</span> and close-knit families who take pride in maintaining a safe environment."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">4. Is there a place nearby where you like to spend time?</div>
+            <div class="q-ru">Есть ли поблизости место, где вам нравится проводить время?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Is there a place nearby where you like to spend time?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans9')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans9" class="sample-box">
+                "Yes, there's a <span class="hl-y">picturesque local park</span> just a short walk away. It’s my go-to spot whenever I need to <span class="hl-g">escape the hustle and bustle</span> of the city and clear my head."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">5. Would you stay in your current area long-term, or do you see yourself moving?</div>
+            <div class="q-ru">Останетесь ли вы в текущем районе надолго, или планируете переехать?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Would you stay in your current area long-term, or do you see yourself moving?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans10')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans10" class="sample-box">
+                "While I enjoy living here now, I am <span class="hl-y">open to relocating</span> in the future for <span class="hl-g">career opportunities</span> or to experience living in a <span class="hl-b">bustling metropolis</span> abroad."
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+    </section>
+ 
+    <!-- TOPIC 4: SHOES (NEW) -->
+    <section class="tab-panel" id="tab-topic4">
+        <h2 class="section-title">👟 Topic 4: Shoes (Part 1 — 7 Questions)</h2>
+ 
+        <div class="card">
+            <div class="q-en">1. How often do you buy shoes?</div>
+            <div class="q-ru">Как часто вы покупаете обувь?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How often do you buy shoes?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans11')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans11" class="sample-box">
+                "I only buy shoes <span class="hl-y">on a seasonal basis</span> or when my current pairs start showing <span class="hl-g">wear and tear</span>. I prefer quality over quantity, so I don't go on frequent <span class="hl-b">shopping sprees</span>."
+                <div class="ru-line">(Я покупаю обувь только <span class="hl-y">по сезону</span> или когда старая <span class="hl-g">изнашивается</span>. Я не делаю частых <span class="hl-b">загулов по магазинам</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">2. How much money do you usually spend on shoes?</div>
+            <div class="q-ru">Сколько денег вы обычно тратите на обувь?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How much money do you usually spend on shoes?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans12')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans12" class="sample-box">
+                "I try to strike a balance; I usually spend a <span class="hl-y">moderate amount</span>, but I am willing to <span class="hl-g">splurge on durable footwear</span> that offers good <span class="hl-b">arch support</span>."
+                <div class="ru-line">(Я пытаюсь найти баланс; я трачу <span class="hl-y">умеренную сумму</span>, но готов <span class="hl-g">раскошелиться на долговечную обувь</span> с хорошей <span class="hl-b">поддержкой стопы</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">3. Have you ever bought shoes online?</div>
+            <div class="q-ru">Покупали ли вы когда-нибудь обувь онлайн?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Have you ever bought shoes online?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans13')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans13" class="sample-box">
+                "Yes, quite frequently. While there is a risk of <span class="hl-y">getting the sizing wrong</span>, the convenience and wider range of options online make it <span class="hl-g">worth taking the gamble</span>."
+                <div class="ru-line">(Да, часто. Хотя есть риск <span class="hl-y">ошибиться с размером</span>, удобство делает это <span class="hl-g">стоящим риска</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">4. Do you like to wear shoes that are comfortable or good-looking?</div>
+            <div class="q-ru">Вам нравится носить удобную или красивую обувь?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you like to wear shoes that are comfortable or good-looking?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans14')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans14" class="sample-box">
+                "For me, <span class="hl-y">comfort is paramount</span>. While stylish shoes look appealing, wearing uncomfortable shoes can ruin your day, so I always <span class="hl-g">prioritize ergonomics</span> over aesthetics."
+                <div class="ru-line">(Для меня <span class="hl-y">комфорт первостепенен</span>. Я всегда <span class="hl-g">отдаю приоритет эргономике</span>, а не внешнему виду.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">5. Do people like to wear shoes that are comfortable or good-looking?</div>
+            <div class="q-ru">Люди предпочитают удобную или красивую обувь?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do people like to wear shoes that are comfortable or good-looking?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans15')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans15" class="sample-box">
+                "It largely depends on the generation. Younger people often <span class="hl-y">sacrifice comfort for fashion</span> to follow trends, whereas older individuals tend to favor <span class="hl-b">practicality and ease</span>."
+                <div class="ru-line">(Молодежь часто <span class="hl-y">жертвовать комфортом ради моды</span>, в то время как старшие предпочитают <span class="hl-b">практичность</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">6. What is your favourite type of shoes?</div>
+            <div class="q-ru">Какой ваш любимый тип обуви?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What is your favourite type of shoes?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans16')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans16" class="sample-box">
+                "Without a doubt, <span class="hl-y">versatile sneakers</span>. They are suitable for daily commutes, offer great cushioning, and go well with almost any <span class="hl-g">casual outfit</span>."
+                <div class="ru-line">(Без сомнения, <span class="hl-y">универсальные кроссовки</span>. Они подходят для прогулок и сочетаются с <span class="hl-g">повседневной одеждой</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">7. Why do some people have too many shoes?</div>
+            <div class="q-ru">Почему у некоторых людей слишком много обуви?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do some people have too many shoes?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans17')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans17" class="sample-box">
+                "Some view footwear as a status symbol or a fashion statement, leading to <span class="hl-y">impulsive buying</span>. Others simply like having <span class="hl-b">specialized footwear</span> for different occasions."
+                <div class="ru-line">(Некоторые совершают <span class="hl-y">импульсивные покупки</span>, другие любят иметь <span class="hl-b">специализированную обувь</span> под разный случай.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <h3 class="sub-title">Part 2: Individual Long Turn (Cue Card) <small>1-2 Minutes Speech</small></h3>
+ 
+        <div class="cue-card">
+            <h3>Describe a course that impressed you</h3>
+            <div class="q-ru">Опишите курс/обучение, которое произвело на вас впечатление</div>
+            <div class="cue-say">You should say:</div>
+            <ul>
+                <li>what the course was about <i>(о чём был курс)</i></li>
+                <li>where you took the course <i>(где вы его проходили)</i></li>
+                <li>what you did during the course <i>(что вы делали во время курса)</i></li>
+                <li><b>and explain why it impressed you</b> <i>(и объясните, почему он вас впечатлил)</i></li>
+            </ul>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">Ideal 2-Minute Full Speech / Идеальный полный ответ на 2 минуты</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" data-target="speechCourse">🔊 Listen to Speech</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('sp1')">💡 Show Full Speech</button>
+            </div>
+            <div id="sp1" class="sample-box">
+                <div id="speechCourse">"I'd like to talk about a course on <span class="hl-y">Digital Marketing and Content Strategy</span> that I completed a few months ago. I took this course online through an <span class="hl-g">interactive e-learning platform</span> called Coursera.<br><br>During the course, we didn't just study theory; we worked on <span class="hl-b">real-world case studies</span>, created our own marketing campaigns, and analyzed consumer behavior data. Every week, we had to submit practical assignments and participate in <span class="hl-y">peer-review discussions</span>.<br><br>What impressed me the most was how <span class="hl-g">engaging and well-structured</span> the curriculum was. The instructor was an <span class="hl-b">industry expert</span> who explained complex concepts with extreme clarity. Moreover, the skills I gained were <span class="hl-y">directly applicable</span> to my goals, which gave me a huge boost in confidence."</div>
+                <div class="ru-line"><b>Перевод:</b> «Я бы хотел рассказать о курсе по <span class="hl-y">цифровому маркетингу и контент-стратегии</span>, который я прошёл несколько месяцев назад. Я проходил его онлайн на <span class="hl-g">интерактивной платформе</span> Coursera.<br>Во время курса мы не просто изучали теорию, а работали над <span class="hl-b">реальными кейсами</span>, создавали собственные маркетинговые кампании и анализировали поведение потребителей. Каждую неделю мы сдавали практические задания...<br>Больше всего меня впечатлило, то насколько <span class="hl-g">увлекательной и структурированной</span> была программа. Преподаватель был <span class="hl-b">отраслевым экспертом</span>, который объяснял сложные вещи максимально понятно. Более того, полученные навыки были <span class="hl-y">применимы на практике</span>, что придало мне огромную уверенность.»</div>
+            </div>
+            <div class="tip-box">💡 <b>Как выдать такой ответ без остановок:</b><br>Используйте формулу: <b>Введение (Что за курс) ➔ Где и Как проходил ➔ Практические детали ➔ Почему впечатлило (Эмоции/Результат)</b>. Если вы расскажете по этой структуре, 2 минуты пролетят незаметно!</div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+    </section>
+ 
+    <!-- TOPIC 5: COMPUTERS (NEW) -->
+    <section class="tab-panel" id="tab-topic5">
+        <h2 class="section-title">💻 Topic 5: Computers (Part 1) &amp; Personal Narrative (Part 2)</h2>
+ 
+        <div class="card">
+            <div class="q-en">Q1: Is it difficult for you to use a computer?</div>
+            <div class="q-ru">Сложно ли вам пользоваться компьютером?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Is it difficult for you to use a computer?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans18')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans18" class="sample-box">
+                "Honestly, not at all! We live in the 21st century, so I believe everyone should know how to use a computer. Personally, it's <span class="hl-y">a piece of cake</span> for me. I'm completely used to it because I studied computer science at college for two years, <span class="hl-g">graduated with top marks</span>, and now I'm continuing my studies at university."
+                <div class="ru-line"><b>Перевод:</b> Честно говоря, нисколько! Мы живем в 21 веке, поэтому я считаю, что каждый должен уметь пользоваться компьютером. Лично для меня это <span class="hl-y">проще простого</span>. Я полностью к этому привык, так как два года изучал компьютерные науки в колледже, <span class="hl-g">окончил его с отличными оценками</span> и сейчас продолжаю учебу в университете.</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">Q2: Who taught you how to use a computer?</div>
+            <div class="q-ru">Кто научил вас пользоваться компьютером?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Who taught you how to use a computer?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans19')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans19" class="sample-box">
+                "Haha, it's actually a funny story! My older sister was the one who taught me how to use the computer. However, she <span class="hl-y">didn't cut me any slack</span>: if I didn't tidy up my room, she wouldn't let me play games and would make me wash the dishes instead! For me, it's a story that's both hilarious and a bit of a childhood trauma. But honestly, it was thanks to her that I <span class="hl-g">developed a strong interest in</span> technology."
+                <div class="ru-line"><b>Перевод:</b> Ха-ха, вообще это смешная история! Моя старшая сестра была той, кто научил меня пользоваться компьютером. Правда, она <span class="hl-y">не давала мне никаких поблажек</span>: если я не убирался в своей комнате, она не разрешала мне играть и заставляла мыть посуду! Для меня это история и уморительная, и немного напоминает детскую травму. Но именно благодаря ей у меня <span class="hl-g">появился интерес</span> к технологиям.</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">Q3: What do you usually use your computer for?</div>
+            <div class="q-ru">Для чего вы обычно используете свой компьютер?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What do you usually use your computer for?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans20')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans20" class="sample-box">
+                "Mostly, I use my computer for my university studies. I usually create presentations, write code, and prepare assignments. Apart from that, I also use it for learning English — I listen to podcasts and practice my speaking skills. So, it's an <span class="hl-y">essential tool</span> for my daily routine."
+                <div class="ru-line"><b>Перевод:</b> В основном я использую компьютер для учебы в университете. Обычно я делаю презентации, пишу код и готовлю задания. Кроме того, я использую его для изучения английского — слушаю подкасты и тренирую разговорную речь. Так что это <span class="hl-y">незаменимая вещь</span> в моей повседневной рутине.</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <h3 class="sub-title">Part 2: Cue Card Model Answer <small>Personal Narrative</small></h3>
+ 
+        <div class="cue-card">
+            <h3>Describe a person you met only once and you want to know more about.</h3>
+            <div class="q-ru">Опишите человека, которого вы встретили всего один раз и о котором хотите узнать больше.</div>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">Full Response / Полный ответ</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" data-target="speechPerson">🔊 Listen to Speech</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('sp2')">💡 Show Full Response</button>
+            </div>
+            <div id="sp2" class="sample-box">
+                <div id="speechPerson">This morning, I met a remarkably beautiful girl in the subway. I was heading to university, and we <span class="hl-y">made eye contact</span> for a moment — it was such a cool moment. She was wearing an elegant dress, looking almost like a queen. I suddenly wondered: could this be <span class="hl-g">love at first sight</span>?<br><br>Unfortunately, it seemed like she already had a boyfriend, damn it! After attending two classes at university, I went back to the subway station hoping to <span class="hl-b">catch a glimpse of</span> her again, but she was <span class="hl-y">nowhere to be found</span>. So I just returned home to get some rest, but I would honestly love to see her again someday.</div>
+                <div class="ru-line"><b>Перевод:</b> Сегодня утром я встретил в метро невероятно красивую девушку. Я ехал в университет, и мы <span class="hl-y">переглянулись</span> — это был очень крутой момент. На ней было элегантное платье, и она выглядела буквально как королева. Я вдруг подумал: может, это <span class="hl-g">любовь с первого взгляда</span>?<br><br>К сожалению, похоже, у нее уже был парень, черт возьми! Посетив две пары в университете, я вернулся на станцию метро в надежде <span class="hl-b">хотя бы мельком ее увидеть</span>, но ее <span class="hl-y">нигде не было</span>. Так что я просто вернулся домой отдохнуть, но, честно говоря, я бы очень хотел встретить ее снова.</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <h3 class="sub-title">Key Vocabulary &amp; Idioms (Band 7.5+)</h3>
+        <div class="card">
+            <div class="tbl-wrap">
+                <table class="tpl-table">
+                    <thead><tr><th>№</th><th>Expression / Idiom</th><th>Meaning (Russian)</th><th>IELTS Context</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td class="en">A piece of cake</td><td class="ru">Проще простого</td><td class="purpose">Replacing "easy"</td></tr>
+                        <tr><td>2</td><td class="en">Graduate with top marks</td><td class="ru">Окончить с отличными оценками</td><td class="purpose">Education topic</td></tr>
+                        <tr><td>3</td><td class="en">Didn't cut me any slack</td><td class="ru">Не давал(а) поблажек</td><td class="purpose">Childhood stories</td></tr>
+                        <tr><td>4</td><td class="en">Develop an interest in...</td><td class="ru">Развить интерес к...</td><td class="purpose">Replacing "like"</td></tr>
+                        <tr><td>5</td><td class="en">Essential tool</td><td class="ru">Незаменимый инструмент</td><td class="purpose">Technology / Study</td></tr>
+                        <tr><td>6</td><td class="en">Make eye contact</td><td class="ru">Встретиться взглядами</td><td class="purpose">Meeting people</td></tr>
+                        <tr><td>7</td><td class="en">Love at first sight</td><td class="ru">Любовь с первого взгляда</td><td class="purpose">Relationships</td></tr>
+                        <tr><td>8</td><td class="en">Catch a glimpse of...</td><td class="ru">Увидеть мельком</td><td class="purpose">Describing events</td></tr>
+                        <tr><td>9</td><td class="en">Nowhere to be found</td><td class="ru">Нигде не было / исчез</td><td class="purpose">Storytelling</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- TOPIC 6: POLITENESS / TIME / ROUTINE (NEW) -->
+    <section class="tab-panel" id="tab-topic6">
+        <h2 class="section-title">🤝 Topic 6: Politeness (Part 1) — Day 5 Set</h2>
+ 
+        <div class="card">
+            <div class="q-en">1. Who taught you to be polite?</div>
+            <div class="q-ru">Кто научил вас быть вежливым?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Who taught you to be polite?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans21')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans21" class="sample-box">
+                "Primarily my parents and grandparents. They instilled in me a <span class="hl-y">strong sense of respect</span> for elders and taught me to always use <span class="hl-g">good manners</span> in everyday interactions."
+                <div class="ru-line">(В первую очередь родители и бабушка с дедушкой. Они привили мне <span class="hl-y">глубокое уважение</span> и хорошие манеры.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">2. How do people in your country show politeness?</div>
+            <div class="q-ru">Как люди в вашей стране проявляют вежливость?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How do people in your country show politeness?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans22')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans22" class="sample-box">
+                "We show politeness by offering seats to elderly people on public transport, greeting neighbors warmly, and being <span class="hl-y">hospitable to guests</span>."
+                <div class="ru-line">(Мы уступаем места пожилым в транспорте, тепло приветствуем соседей и <span class="hl-y">гостеприимны к гостям</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">3. What rules of politeness have changed in your country since 10 or 20 years ago?</div>
+            <div class="q-ru">Какие правила вежливости изменились в вашей стране за последние 10-20 лет?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What rules of politeness have changed in your country since 10 or 20 years ago?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans23')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans23" class="sample-box">
+                "Digital etiquette has become crucial. Nowadays, ignoring someone while staring at a smartphone is considered <span class="hl-y">rather impolite</span>, whereas older generations focused more on formal greetings."
+                <div class="ru-line">(Цифровой этикет стал важнейшим. Игнорирование кого-то из-за смартфона считается <span class="hl-y">невежливым</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <h3 class="sub-title">Part 2: Individual Long Turn <small>1-2 Minutes Speech</small></h3>
+ 
+        <div class="cue-card">
+            <h3>Describe an activity you usually do that wastes your time</h3>
+            <div class="q-ru">Опишите занятие, которое обычно отнимает у вас время</div>
+            <div class="cue-say">You should say:</div>
+            <ul>
+                <li>what it is &amp; when you do it <i>(что это и когда делаете)</i></li>
+                <li>why you do it <i>(почему вы это делаете)</i></li>
+                <li><b>and explain why you think it wastes your time</b> <i>(почему это трата времени)</i></li>
+            </ul>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">Part 2 Script (2-Minute Full Speech)</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" data-target="speechWaste">🔊 Listen to Speech</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('sp3')">💡 Show Full Speech</button>
+            </div>
+            <div id="sp3" class="sample-box">
+                <div id="speechWaste">"I'd like to talk about <span class="hl-y">mindlessly scrolling through social media</span> feeds, which I typically do late at night before going to bed. I do it as a way to <span class="hl-g">unwind and disconnect</span> after a hectic day of studying.<br><br>However, I realize it's a <span class="hl-b">major time sink</span> because what starts as a quick 5-minute check often turns into an hour of absorbing useless content. It <span class="hl-y">disrupts my sleep cycle</span> and leaves me feeling fatigued the next morning, meaning I achieve far less than I planned."</div>
+                <div class="ru-line"><b>Перевод:</b> «Я бы хотел рассказать о том, как я <span class="hl-y">бездумно листаю ленты соцсетей</span>, обычно поздно ночью перед сном. Я делаю это, чтобы <span class="hl-g">расслабиться и отключиться</span> после напряжённого учебного дня.<br><br>Однако я понимаю, что это <span class="hl-b">огромная пустая трата времени</span>: то, что начинается как быстрая 5-минутная проверка, часто превращается в час поглощения бесполезного контента. Это <span class="hl-y">нарушает мой режим сна</span> и наутро я чувствую усталость, а значит, делаю гораздо меньше, чем планировал.»</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <h3 class="sub-title">Part 3: Time Management &amp; Routine <small>7 Questions</small></h3>
+ 
+        <div class="card">
+            <div class="q-en">1. Do you think nowadays people have a better work-life balance than in the past?</div>
+            <div class="q-ru">Есть ли у людей сегодня лучший баланс работы и личной жизни, чем в прошлом?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you think nowadays people have a better work-life balance than in the past?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans24')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans24" class="sample-box">
+                "Not necessarily. While remote work offers flexibility, <span class="hl-y">constant digital connectivity</span> often blurs boundaries, making people work longer hours."
+                <div class="ru-line">(Не обязательно. <span class="hl-y">Постоянная цифровая связь</span> стирает границы и заставляет работать больше.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">2. How do people balance life and work?</div>
+            <div class="q-ru">Как люди балансируют между жизнью и работой?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How do people balance life and work?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans25')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans25" class="sample-box">
+                "By setting strict boundaries, prioritizing tasks effectively, and scheduling <span class="hl-y">dedicated downtime</span> for hobbies and family."
+                <div class="ru-line">(Путем установки границ и выделения <span class="hl-y">времени на отдых</span> и семью.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">3. Do you agree that having a routine gives people more time to think?</div>
+            <div class="q-ru">Согласны ли вы, что рутина дает больше времени на размышления?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you agree that having a routine gives people more time to think?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans26')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans26" class="sample-box">
+                "Yes, because predictable habits <span class="hl-y">automate daily decisions</span>, freeing up mental energy for creative thinking."
+                <div class="ru-line">(Да, так как привычки <span class="hl-y">автоматизируют решения</span>, освобождая умственную энергию.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">4. How important is it to have a daily routine?</div>
+            <div class="q-ru">Насколько важно иметь ежедневную рутину?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How important is it to have a daily routine?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans27')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans27" class="sample-box">
+                "It is <span class="hl-y">paramount for productivity</span> and reducing stress, as structure helps individuals stay organized amidst chaos."
+                <div class="ru-line">(Это <span class="hl-y">крайне важно для продуктивности</span> и снижения стресса.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">5. Why do some people refuse to abide by rules?</div>
+            <div class="q-ru">Почему некоторые люди отказываются подчиняться правилам?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do some people refuse to abide by rules?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans28')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans28" class="sample-box">
+                "Some individuals possess a <span class="hl-y">strong rebellious streak</span> or feel that strict regulations restrict their personal freedom."
+                <div class="ru-line">(Некоторые имеют <span class="hl-y">бунтарский дух</span> или считают правила ограничением свободы.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">6. Do you agree that social media increases pressures of modern life?</div>
+            <div class="q-ru">Увеличивают ли соцсети давление современной жизни?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you agree that social media increases pressures of modern life?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans29')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans29" class="sample-box">
+                "Absolutely. Constant exposure to <span class="hl-y">unrealistic lifestyles</span> fosters intense peer pressure and anxiety."
+                <div class="ru-line">(Безусловно. Постоянное воздействие <span class="hl-y">нереалистичной жизни</span> порождает давление.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+ 
+        <div class="card">
+            <div class="q-en">7. What kinds of things make people feel pressured?</div>
+            <div class="q-ru">Что заставляет людей чувствовать давление?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What kinds of things make people feel pressured?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans30')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans30" class="sample-box">
+                "Financial instability, heavy workloads, and the relentless pursuit of <span class="hl-y">societal expectations</span>."
+                <div class="ru-line">(Финансовая нестабильность, нагрузка и погоня за <span class="hl-y">ожиданиями общества</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer & Notes..."></textarea>
+        </div>
+    </section>
+ 
+    <!-- WRITING TEMPLATES (NEW) -->
+    <section class="tab-panel" id="tab-writing">
+        <h2 class="section-title">✍️ Writing Task 2: Essay Templates</h2>
+ 
+        <div class="card" style="text-align:center;">
+            <button class="btn-big" onclick="toggleAnswer('writingVocabBox')">📚 Writing Vocabulary — Must-Memorize (Show / Hide)</button>
+            <div id="writingVocabBox" class="collapsible">
+                <div class="vocab-grid" id="writingVocabGrid" style="text-align:left;"></div>
+            </div>
+        </div>
+ 
+        <h3 class="sub-title">1. Introduction Templates <small>Введение</small></h3>
+        <div class="card"><div class="tbl-wrap"><table class="tpl-table">
+            <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
+            <tbody>
+                <tr><td class="en">Many people believe that [Topic] is... <button class="btn-mini-audio" data-say="Many people believe that the topic is">🔊</button></td><td class="ru">Многие люди считают, что...</td><td class="purpose">Rephrasing prompt</td></tr>
+                <tr><td class="en">It is widely argued that [Topic] plays a crucial role in... <button class="btn-mini-audio" data-say="It is widely argued that the topic plays a crucial role in">🔊</button></td><td class="ru">Широко утверждается, что [тема] играет ключевую роль в...</td><td class="purpose">High-score Opening</td></tr>
+                <tr><td class="en">Personally, I partially agree with this statement. <button class="btn-mini-audio" data-say="Personally, I partially agree with this statement.">🔊</button></td><td class="ru">Лично я частично согласен с этим утверждением.</td><td class="purpose">Balanced Opinion</td></tr>
+                <tr><td class="en">While [View A], they fail to offer a complete understanding of [View B]. <button class="btn-mini-audio" data-say="While view A, they fail to offer a complete understanding of view B.">🔊</button></td><td class="ru">Хотя [A], они не дают полного понимания [B].</td><td class="purpose">Thesis Statement</td></tr>
+            </tbody>
+        </table></div></div>
+ 
+        <h3 class="sub-title">2. Main Body 1: Presenting Your First Stance <small>Первый аргумент</small></h3>
+        <div class="card"><div class="tbl-wrap"><table class="tpl-table">
+            <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
+            <tbody>
+                <tr><td class="en">On the one hand, [Action] allows [People] to interact with... <button class="btn-mini-audio" data-say="On the one hand, this action allows people to interact with">🔊</button></td><td class="ru">С одной стороны, [действие] позволяет [людям] взаимодействовать с...</td><td class="purpose">Topic Sentence</td></tr>
+                <tr><td class="en">One major benefit of [Topic] is providing valuable exposure to... <button class="btn-mini-audio" data-say="One major benefit of the topic is providing valuable exposure to">🔊</button></td><td class="ru">Одно из главных преимуществ — возможность получить ценный опыт в...</td><td class="purpose">Highlighting Advantage</td></tr>
+                <tr><td class="en">For instance, during [Activity], workers can share their opinions. <button class="btn-mini-audio" data-say="For instance, during an activity, workers can share their opinions.">🔊</button></td><td class="ru">Например, во время [занятия], работники могут делиться мнением.</td><td class="purpose">Giving Examples</td></tr>
+                <tr><td class="en">As a result, individuals can learn about foreign traditions directly from... <button class="btn-mini-audio" data-say="As a result, individuals can learn about foreign traditions directly from">🔊</button></td><td class="ru">В результате люди могут узнать о зарубежных традициях напрямую от...</td><td class="purpose">Showing Result</td></tr>
+            </tbody>
+        </table></div></div>
+ 
+        <h3 class="sub-title">3. Main Body 2: Presenting Limitations &amp; Alternatives <small>Второй аргумент</small></h3>
+        <div class="card"><div class="tbl-wrap"><table class="tpl-table">
+            <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
+            <tbody>
+                <tr><td class="en">On the other hand, [Topic] has certain limitations. <button class="btn-mini-audio" data-say="On the other hand, the topic has certain limitations.">🔊</button></td><td class="ru">С другой стороны, у [темы] есть определенные ограничения.</td><td class="purpose">Topic Sentence</td></tr>
+                <tr><td class="en">In the workplace, employees follow strict rules and display only their professional behavior. <button class="btn-mini-audio" data-say="In the workplace, employees follow strict rules and display only their professional behavior.">🔊</button></td><td class="ru">На работе сотрудники следуют строгим правилам и показывают только профессиональную сторону.</td><td class="purpose">Explanation</td></tr>
+                <tr><td class="en">In contrast, a more effective way to [Goal] is to... <button class="btn-mini-audio" data-say="In contrast, a more effective way to reach the goal is to">🔊</button></td><td class="ru">Напротив, более эффективный способ достичь [цели] — это...</td><td class="purpose">Alternative Argument</td></tr>
+                <tr><td class="en">Personal immersion into daily local life offers a much deeper understanding. <button class="btn-mini-audio" data-say="Personal immersion into daily local life offers a much deeper understanding.">🔊</button></td><td class="ru">Личное погружение в повседневную жизнь дает гораздо более глубокое понимание.</td><td class="purpose">Strong Final Point</td></tr>
+            </tbody>
+        </table></div></div>
+ 
+        <h3 class="sub-title">4. Conclusion Formulas <small>Заключение</small></h3>
+        <div class="card"><div class="tbl-wrap"><table class="tpl-table">
+            <thead><tr><th>English Phrase</th><th>Russian Translation</th><th>Purpose</th></tr></thead>
+            <tbody>
+                <tr><td class="en">In conclusion, I agree that [View A] is a good way to meet foreign colleagues. <button class="btn-mini-audio" data-say="In conclusion, I agree that this view is a good way to meet foreign colleagues.">🔊</button></td><td class="ru">В заключение, я согласен, что [A] — хороший способ познакомиться с коллегами.</td><td class="purpose">Restating Stance</td></tr>
+                <tr><td class="en">However, I believe that [View B] is a much better way to understand real culture. <button class="btn-mini-audio" data-say="However, I believe that this view is a much better way to understand real culture.">🔊</button></td><td class="ru">Однако я считаю, что [B] — гораздо лучший способ понять настоящую культуру.</td><td class="purpose">Final Conclusion</td></tr>
+            </tbody>
+        </table></div></div>
+    </section>
+ 
+    <!-- SECTION 1: VOCABULARY -->
+    <section class="tab-panel" id="tab-vocab">
+        <h2 class="section-title">🎓 Section 1: Band 8+ Vocabulary Bank</h2>
+        <div class="vocab-grid">
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Dominated by my studies</span><button class="btn-mini-audio" onclick="speak('Dominated by my studies')">🔊 Audio</button></div><div class="vocab-ipa">[ˈdɒmɪneɪtɪd baɪ maɪ ˈstʌdiz]</div></div><div class="vocab-ru">занято учёбой</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Attending lectures</span><button class="btn-mini-audio" onclick="speak('Attending lectures')">🔊 Audio</button></div><div class="vocab-ipa">[əˈtendɪŋ ˈlektʃəz]</div></div><div class="vocab-ru">посещение лекций</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Demanding deadlines</span><button class="btn-mini-audio" onclick="speak('Demanding deadlines')">🔊 Audio</button></div><div class="vocab-ipa">[dɪˈmɑːndɪŋ ˈdedlaɪnz]</div></div><div class="vocab-ru">сложные дедлайны</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Self-paced learning</span><button class="btn-mini-audio" onclick="speak('Self-paced learning')">🔊 Audio</button></div><div class="vocab-ipa">[self peɪst ˈlɜːnɪŋ]</div></div><div class="vocab-ru">обучение в своём темпе</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Interactive discussions</span><button class="btn-mini-audio" onclick="speak('Interactive discussions')">🔊 Audio</button></div><div class="vocab-ipa">[ˌɪntərˈæktɪv dɪˈskʌʃnz]</div></div><div class="vocab-ru">интерактивные обсуждения</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Collaborative projects</span><button class="btn-mini-audio" onclick="speak('Collaborative projects')">🔊 Audio</button></div><div class="vocab-ipa">[kəˈlæbərətɪv ˈprɒdʒekts]</div></div><div class="vocab-ru">совместные проекты</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Quiet, minimalist environment</span><button class="btn-mini-audio" onclick="speak('Quiet, minimalist environment')">🔊 Audio</button></div><div class="vocab-ipa">[ˈkwaɪət ˈmɪnɪməlɪst ɪnˈvaɪrənmənt]</div></div><div class="vocab-ru">тихая минималистичная обстановка</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Visual distractions</span><button class="btn-mini-audio" onclick="speak('Visual distractions')">🔊 Audio</button></div><div class="vocab-ipa">[ˈvɪʒuəl dɪˈstrækʃnz]</div></div><div class="vocab-ru">визуальные отвлекающие факторы</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Maintain deep concentration</span><button class="btn-mini-audio" onclick="speak('Maintain deep concentration')">🔊 Audio</button></div><div class="vocab-ipa">[meɪnˈteɪn diːp ˌkɒnsnˈtreɪʃn]</div></div><div class="vocab-ru">поддержание глубокой концентрации</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Sluggish initially</span><button class="btn-mini-audio" onclick="speak('Sluggish initially')">🔊 Audio</button></div><div class="vocab-ipa">[ˈslʌɡɪʃ ɪˈnɪʃəli]</div></div><div class="vocab-ru">вялый поначалу</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">To-do list</span><button class="btn-mini-audio" onclick="speak('To-do list')">🔊 Audio</button></div><div class="vocab-ipa">[tuː duː lɪst]</div></div><div class="vocab-ru">список дел</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Energized and productive</span><button class="btn-mini-audio" onclick="speak('Energized and productive')">🔊 Audio</button></div><div class="vocab-ipa">[ˈenədʒaɪzd ænd prəˈdʌktɪv]</div></div><div class="vocab-ru">прилив энергии и продуктивность</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Supportive atmosphere</span><button class="btn-mini-audio" onclick="speak('Supportive atmosphere')">🔊 Audio</button></div><div class="vocab-ipa">[səˈpɔːtɪv ˈætməsfɪə]</div></div><div class="vocab-ru">поддерживающая атмосфера</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Ergonomic seating</span><button class="btn-mini-audio" onclick="speak('Ergonomic seating')">🔊 Audio</button></div><div class="vocab-ipa">[ˌɜːɡəˈnɒmɪk ˈsiːtɪŋ]</div></div><div class="vocab-ru">эргономичные кресла</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Overall well-being</span><button class="btn-mini-audio" onclick="speak('Overall well-being')">🔊 Audio</button></div><div class="vocab-ipa">[ˌəʊvərˈɔːl ˌwel ˈbiːɪŋ]</div></div><div class="vocab-ru">общее самочувствие</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Vibrant local culture</span><button class="btn-mini-audio" onclick="speak('Vibrant local culture')">🔊 Audio</button></div><div class="vocab-ipa">[ˈvaɪbrənt ˈləʊkl ˈkʌltʃə]</div></div><div class="vocab-ru">яркая местная культура</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Historic landmarks</span><button class="btn-mini-audio" onclick="speak('Historic landmarks')">🔊 Audio</button></div><div class="vocab-ipa">[hɪˈstɒrɪk ˈlændmɑːks]</div></div><div class="vocab-ru">исторические достопримечательности</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Dynamic vibe</span><button class="btn-mini-audio" onclick="speak('Dynamic vibe')">🔊 Audio</button></div><div class="vocab-ipa">[daɪˈnæmɪk vaɪb]</div></div><div class="vocab-ru">динамичная атмосфера</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Strong sense of belonging</span><button class="btn-mini-audio" onclick="speak('Strong sense of belonging')">🔊 Audio</button></div><div class="vocab-ipa">[strɒŋ sens ɒv bɪˈlɒŋɪŋ]</div></div><div class="vocab-ru">сильное чувство принадлежности</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Fond childhood memories</span><button class="btn-mini-audio" onclick="speak('Fond childhood memories')">🔊 Audio</button></div><div class="vocab-ipa">[fɒnd ˈtʃaɪldhʊd ˈmeməriz]</div></div><div class="vocab-ru">тёплые детские воспоминания</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Diverse and welcoming</span><button class="btn-mini-audio" onclick="speak('Diverse and welcoming')">🔊 Audio</button></div><div class="vocab-ipa">[daɪˈvɜːs ænd ˈwelkəmɪŋ]</div></div><div class="vocab-ru">разнообразный и гостеприимный</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Young professionals</span><button class="btn-mini-audio" onclick="speak('Young professionals')">🔊 Audio</button></div><div class="vocab-ipa">[jʌŋ prəˈfeʃənlz]</div></div><div class="vocab-ru">молодые специалисты</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Picturesque local park</span><button class="btn-mini-audio" onclick="speak('Picturesque local park')">🔊 Audio</button></div><div class="vocab-ipa">[ˌpɪktʃəˈresk ˈləʊkl pɑːk]</div></div><div class="vocab-ru">живописный местный парк</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Escape the hustle and bustle</span><button class="btn-mini-audio" onclick="speak('Escape the hustle and bustle')">🔊 Audio</button></div><div class="vocab-ipa">[ɪˈskeɪp ðə ˈhʌsl ænd ˈbʌsl]</div></div><div class="vocab-ru">убежать от городской суеты</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Open to relocating</span><button class="btn-mini-audio" onclick="speak('Open to relocating')">🔊 Audio</button></div><div class="vocab-ipa">[ˈəʊpən tuː ˌriːləʊˈkeɪtɪŋ]</div></div><div class="vocab-ru">открыт к переезду</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Bustling metropolis</span><button class="btn-mini-audio" onclick="speak('Bustling metropolis')">🔊 Audio</button></div><div class="vocab-ipa">[ˈbʌslɪŋ mɪˈtrɒpəlɪs]</div></div><div class="vocab-ru">бурлящий мегаполис</div></div>
+        </div>
+ 
+        <!-- NEW: vocabulary from the new practice sets (rendered by script below) -->
+        <h3 class="sub-title">👟 Shoes (Topic 4)</h3>
+        <div class="vocab-grid" id="vocShoes"></div>
+        <h3 class="sub-title">🎓 Course Cue Card</h3>
+        <div class="vocab-grid" id="vocCourse"></div>
+        <h3 class="sub-title">💻 Computers &amp; Personal Narrative — Idioms (Band 7.5+)</h3>
+        <div class="vocab-grid" id="vocIdioms"></div>
+        <h3 class="sub-title">🤝 Politeness &amp; Wasting Time</h3>
+        <div class="vocab-grid" id="vocPolite"></div>
+        <h3 class="sub-title">⏱️ Part 3: Time Management &amp; Routine</h3>
+        <div class="vocab-grid" id="vocPart3"></div>
+    </section>
+ 
+    <!-- SECTION 1B: ELS READING VOCABULARY (NEW) -->
+    <section class="tab-panel" id="tab-reading">
+        <h2 class="section-title">📖 Section 1B: ELS Reading Master Guide &amp; Vocabulary Bank</h2>
+ 
+        <h3 class="sub-title">UNIT: Tea Innovations</h3>
+        <div class="card"><div class="tbl-wrap" id="tblTea"></div></div>
+ 
+        <h3 class="sub-title">UNIT: Possessing a Mathematical Mind</h3>
+        <div class="card"><div class="tbl-wrap" id="tblMath"></div></div>
+ 
+        <h3 class="sub-title">ELS Vocabulary Master List <small>IPA + Synonyms</small></h3>
+        <div class="card"><div class="tbl-wrap" id="tblMaster"></div></div>
+ 
+        <h3 class="sub-title">ELS Reading Word List <small>Weaning, Satellite, Missile...</small></h3>
+        <div class="vocab-grid" id="vocReading"></div>
+    </section>
+ 
+    <!-- SECTION 2: SLANG -->
+    <section class="tab-panel" id="tab-slang">
+        <h2 class="section-title">🔥 Section 2: Real Life Short Phrases & Everyday Slang</h2>
+        <div class="vocab-grid">
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm tired as fuck</span><button class="btn-mini-audio" onclick="speak('I\'m tired as fuck')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈtaɪəd æz fʌk]</div></div><div class="vocab-ru">Я устал до чертиков / в хлам</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">That ain't right</span><button class="btn-mini-audio" onclick="speak('That ain\'t right')">🔊 Audio</button></div><div class="vocab-ipa">[ðæt eɪnt raɪt]</div></div><div class="vocab-ru">Это неправильно / так дело не пойдет</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">So you don't wanna apologize?</span><button class="btn-mini-audio" onclick="speak('So you don\'t wanna apologize?')">🔊 Audio</button></div><div class="vocab-ipa">[səʊ juː dəʊnt ˈwɒnə əˈpɒlədʒaɪz]</div></div><div class="vocab-ru">Так ты не хочешь извиниться?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Back off</span><button class="btn-mini-audio" onclick="speak('Back off')">🔊 Audio</button></div><div class="vocab-ipa">[bæk ɒf]</div></div><div class="vocab-ru">Отстань / отвали / отступи</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Bet bro</span><button class="btn-mini-audio" onclick="speak('Bet bro')">🔊 Audio</button></div><div class="vocab-ipa">[bet brəʊ]</div></div><div class="vocab-ru">Замётано / базара нет / договорились</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Bruh, what are you doing?</span><button class="btn-mini-audio" onclick="speak('Bruh, what are you doing?')">🔊 Audio</button></div><div class="vocab-ipa">[brʌ wɒt ɑː juː ˈduːɪŋ]</div></div><div class="vocab-ru">Брат/братан, ты чё делаешь?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm kinda busy right now</span><button class="btn-mini-audio" onclick="speak('I\'m kinda busy right now')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈkaɪndə ˈbɪzi raɪt naʊ]</div></div><div class="vocab-ru">Я немного занят прямо сейчас</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">No cap</span><button class="btn-mini-audio" onclick="speak('No cap')">🔊 Audio</button></div><div class="vocab-ipa">[nəʊ kæp]</div></div><div class="vocab-ru">Без пиздежа / честно / без вранья</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">By any chance, have you seen him?</span><button class="btn-mini-audio" onclick="speak('By any chance, have you seen him?')">🔊 Audio</button></div><div class="vocab-ipa">[baɪ ˈeni tʃɑːns hæv juː siːn hɪm]</div></div><div class="vocab-ru">Случайно не видел его?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Just chill</span><button class="btn-mini-audio" onclick="speak('Just chill')">🔊 Audio</button></div><div class="vocab-ipa">[dʒʌst tʃɪl]</div></div><div class="vocab-ru">Просто расслабься / остынь</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">C'mon let's go</span><button class="btn-mini-audio" onclick="speak('C\'mon let\'s go')">🔊 Audio</button></div><div class="vocab-ipa">[kʌm ɒn lets ɡəʊ]</div></div><div class="vocab-ru">Давай, погнали</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">You gonna come see what he's gonna do</span><button class="btn-mini-audio" onclick="speak('You gonna come see what he\'s gonna do')">🔊 Audio</button></div><div class="vocab-ipa">[juː ˈɡənə kʌm siː wɒt hiːz ˈɡənə duː]</div></div><div class="vocab-ru">Ты пойдешь посмотреть, что он сделает</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm on my way</span><button class="btn-mini-audio" onclick="speak('I\'m on my way')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ɒn maɪ weɪ]</div></div><div class="vocab-ru">Я уже в пути / еду</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Da fuck?</span><button class="btn-mini-audio" onclick="speak('Da fuck?')">🔊 Audio</button></div><div class="vocab-ipa">[ðə fʌk]</div></div><div class="vocab-ru">Какого хера?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I dunno</span><button class="btn-mini-audio" onclick="speak('I dunno')">🔊 Audio</button></div><div class="vocab-ipa">[aɪ dəˈnəʊ]</div></div><div class="vocab-ru">Я без понятия / не знаю</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">That's exactly what I mean</span><button class="btn-mini-audio" onclick="speak('That\'s exactly what I mean')">🔊 Audio</button></div><div class="vocab-ipa">[ðæts ɪɡˈzæktli wɒt aɪ miːn]</div></div><div class="vocab-ru">Вот именно это я и имею в виду</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Forget about it</span><button class="btn-mini-audio" onclick="speak('Forget about it')">🔊 Audio</button></div><div class="vocab-ipa">[fəˈɡet əˈbaʊt ɪt]</div></div><div class="vocab-ru">Забудь об этом / проехали</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">For real?</span><button class="btn-mini-audio" onclick="speak('For real?')">🔊 Audio</button></div><div class="vocab-ipa">[fə rɪəl]</div></div><div class="vocab-ru">Серьёзно? / Реально?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the fuck is going on?</span><button class="btn-mini-audio" onclick="speak('What the fuck is going on?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə fʌk ɪz ˈɡəʊɪŋ ɒn]</div></div><div class="vocab-ru">Какого хера происходит?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Get the fuck out</span><button class="btn-mini-audio" onclick="speak('Get the fuck out')">🔊 Audio</button></div><div class="vocab-ipa">[ɡet ðə fʌk aʊt]</div></div><div class="vocab-ru">Убирайся нахуй</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Gimme a sec</span><button class="btn-mini-audio" onclick="speak('Gimme a sec')">🔊 Audio</button></div><div class="vocab-ipa">[ˈɡɪmi ə sek]</div></div><div class="vocab-ru">Дай секундку</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Gimme a minute</span><button class="btn-mini-audio" onclick="speak('Gimme a minute')">🔊 Audio</button></div><div class="vocab-ipa">[ˈɡɪmi ə ˈmɪnɪt]</div></div><div class="vocab-ru">Дай минутку</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm gonna go</span><button class="btn-mini-audio" onclick="speak('I\'m gonna go')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈɡənə ɡəʊ]</div></div><div class="vocab-ru">Я пошёл</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Aight I'm out see ya</span><button class="btn-mini-audio" onclick="speak('Aight I\'m out see ya')">🔊 Audio</button></div><div class="vocab-ipa">[ɔːlˈraɪt aɪm aʊt siː jə]</div></div><div class="vocab-ru">Ладно, я свалил, увидимся</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Gotcha bro</span><button class="btn-mini-audio" onclick="speak('Gotcha bro')">🔊 Audio</button></div><div class="vocab-ipa">[ˈɡɒtʃə brəʊ]</div></div><div class="vocab-ru">Понял тебя, брат</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I gotta go</span><button class="btn-mini-audio" onclick="speak('I gotta go')">🔊 Audio</button></div><div class="vocab-ipa">[aɪ ˈɡɒtə ɡəʊ]</div></div><div class="vocab-ru">Мне пора идти</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Can you help me out?</span><button class="btn-mini-audio" onclick="speak('Can you help me out?')">🔊 Audio</button></div><div class="vocab-ipa">[kæn juː help mi aʊt]</div></div><div class="vocab-ru">Можешь выручить / помочь?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'll hit you up later</span><button class="btn-mini-audio" onclick="speak('I\'ll hit you up later')">🔊 Audio</button></div><div class="vocab-ipa">[aɪl hɪt juː ʌp ˈleɪtə]</div></div><div class="vocab-ru">Я звякну / напишу тебе позже</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Hold up a sec</span><button class="btn-mini-audio" onclick="speak('Hold up a sec')">🔊 Audio</button></div><div class="vocab-ipa">[həʊld ʌp ə sek]</div></div><div class="vocab-ru">Подожди секундку</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I don't give a fuck</span><button class="btn-mini-audio" onclick="speak('I don\'t give a fuck')">🔊 Audio</button></div><div class="vocab-ipa">[aɪ dəʊnt ɡɪv ə fʌk]</div></div><div class="vocab-ru">Мне похуй</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm outta here</span><button class="btn-mini-audio" onclick="speak('I\'m outta here')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈaʊtə hɪə]</div></div><div class="vocab-ru">Я сваливаю отсюда</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">You gotta be kidding me?</span><button class="btn-mini-audio" onclick="speak('You gotta be kidding me?')">🔊 Audio</button></div><div class="vocab-ipa">[juː ˈɡɒtə bi ˈkɪdɪŋ mi]</div></div><div class="vocab-ru">Ты должно быть шутишь?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm kinda tired</span><button class="btn-mini-audio" onclick="speak('I\'m kinda tired')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈkaɪndə ˈtaɪəd]</div></div><div class="vocab-ru">Я вроде устал</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Knock it the fuck off</span><button class="btn-mini-audio" onclick="speak('Knock it the fuck off')">🔊 Audio</button></div><div class="vocab-ipa">[nɒk ɪt ðə fʌk ɒf]</div></div><div class="vocab-ru">Заткнись / прекрати блядь</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Leave me alone</span><button class="btn-mini-audio" onclick="speak('Leave me alone')">🔊 Audio</button></div><div class="vocab-ipa">[liːv mi əˈləʊn]</div></div><div class="vocab-ru">Оставь меня в покое</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Lemme see</span><button class="btn-mini-audio" onclick="speak('Lemme see')">🔊 Audio</button></div><div class="vocab-ipa">[ˈlemi siː]</div></div><div class="vocab-ru">Дай глянуть / дай посмотреть</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Let's get outta here</span><button class="btn-mini-audio" onclick="speak('Let\'s get outta here')">🔊 Audio</button></div><div class="vocab-ipa">[lets ɡet ˈaʊtə hɪə]</div></div><div class="vocab-ru">Убираемся отсюда / вали</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Maybe we'll see</span><button class="btn-mini-audio" onclick="speak('Maybe we\'ll see')">🔊 Audio</button></div><div class="vocab-ipa">[ˈmeɪbi wiːl siː]</div></div><div class="vocab-ru">Посмотрим</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">My bad bro</span><button class="btn-mini-audio" onclick="speak('My bad bro')">🔊 Audio</button></div><div class="vocab-ipa">[maɪ bæd brəʊ]</div></div><div class="vocab-ru">Мой косяк, сорян, брат</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Nah I'm good</span><button class="btn-mini-audio" onclick="speak('Nah I\'m good')">🔊 Audio</button></div><div class="vocab-ipa">[nɑː aɪm ɡʊd]</div></div><div class="vocab-ru">Не, спасибо / всё норм</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">No cap bro</span><button class="btn-mini-audio" onclick="speak('No cap bro')">🔊 Audio</button></div><div class="vocab-ipa">[nəʊ kæp brəʊ]</div></div><div class="vocab-ru">Честно скажу, братан</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Nope not today</span><button class="btn-mini-audio" onclick="speak('Nope not today')">🔊 Audio</button></div><div class="vocab-ipa">[nəʊp nɒt təˈdeɪ]</div></div><div class="vocab-ru">Не, не сегодня</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Never mind</span><button class="btn-mini-audio" onclick="speak('Never mind')">🔊 Audio</button></div><div class="vocab-ipa">[ˈnevə maɪnd]</div></div><div class="vocab-ru">Забей / проехали</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Get outta here</span><button class="btn-mini-audio" onclick="speak('Get outta here')">🔊 Audio</button></div><div class="vocab-ipa">[ɡet ˈaʊtə hɪə]</div></div><div class="vocab-ru">Да ладно тебе / вали отсюда</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Aight I'm out peace</span><button class="btn-mini-audio" onclick="speak('Aight I\'m out peace')">🔊 Audio</button></div><div class="vocab-ipa">[ɔːlˈraɪt aɪm aʊt piːs]</div></div><div class="vocab-ru">Ладно, я погнал, пока</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">You gotta chill</span><button class="btn-mini-audio" onclick="speak('You gotta chill')">🔊 Audio</button></div><div class="vocab-ipa">[juː ˈɡɒtə tʃɪl]</div></div><div class="vocab-ru">Тебе надо остыть / успокойся</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Say that again</span><button class="btn-mini-audio" onclick="speak('Say that again')">🔊 Audio</button></div><div class="vocab-ipa">[seɪ ðæt əˈɡen]</div></div><div class="vocab-ru">Повтори / ещё раз?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Anyway I gotta run</span><button class="btn-mini-audio" onclick="speak('Anyway I gotta run')">🔊 Audio</button></div><div class="vocab-ipa">[ˈeniweɪ aɪ ˈɡɒtə rʌn]</div></div><div class="vocab-ru">В любом случае, мне пора бежать</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Say less bro</span><button class="btn-mini-audio" onclick="speak('Say less bro')">🔊 Audio</button></div><div class="vocab-ipa">[seɪ les brəʊ]</div></div><div class="vocab-ru">Ни слова больше / понял тебя</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">See ya later</span><button class="btn-mini-audio" onclick="speak('See ya later')">🔊 Audio</button></div><div class="vocab-ipa">[siː jə ˈleɪtə]</div></div><div class="vocab-ru">Увидимся позже</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Are you fucking serious?</span><button class="btn-mini-audio" onclick="speak('Are you fucking serious?')">🔊 Audio</button></div><div class="vocab-ipa">[ɑː juː ˈfʌkɪŋ ˈsɪəriəs]</div></div><div class="vocab-ru">Ты блядь серьёзно?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Are you serious right now?</span><button class="btn-mini-audio" onclick="speak('Are you serious right now?')">🔊 Audio</button></div><div class="vocab-ipa">[ɑː juː ˈsɪəriəs raɪt naʊ]</div></div><div class="vocab-ru">Ты сейчас серьёзно?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Appreciate it bro</span><button class="btn-mini-audio" onclick="speak('Appreciate it bro')">🔊 Audio</button></div><div class="vocab-ipa">[əˈpriːʃieɪt ɪt brəʊ]</div></div><div class="vocab-ru">От души, брат / ценю</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Then get out</span><button class="btn-mini-audio" onclick="speak('Then get out')">🔊 Audio</button></div><div class="vocab-ipa">[ðen ɡet aʊt]</div></div><div class="vocab-ru">Тогда убирайся</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Bro you're trippin!</span><button class="btn-mini-audio" onclick="speak('Bro you\'re trippin!')">🔊 Audio</button></div><div class="vocab-ipa">[brəʊ jʊə ˈtrɪpɪŋ]</div></div><div class="vocab-ru">Брат, ты гонишь / бредишь!</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I'm tryna help</span><button class="btn-mini-audio" onclick="speak('I\'m tryna help')">🔊 Audio</button></div><div class="vocab-ipa">[aɪm ˈtraɪɪŋ tuː help]</div></div><div class="vocab-ru">Я пытаюсь помочь</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Wait a sec</span><button class="btn-mini-audio" onclick="speak('Wait a sec')">🔊 Audio</button></div><div class="vocab-ipa">[weɪt ə sek]</div></div><div class="vocab-ru">Подожди секундку</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">I wanna know</span><button class="btn-mini-audio" onclick="speak('I wanna know')">🔊 Audio</button></div><div class="vocab-ipa">[aɪ ˈwɒnə nəʊ]</div></div><div class="vocab-ru">Просто хочу знать</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Wassup bro</span><button class="btn-mini-audio" onclick="speak('Wassup bro')">🔊 Audio</button></div><div class="vocab-ipa">[wɒsˈʌp brəʊ]</div></div><div class="vocab-ru">Как оно, брат?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the fuck was that?</span><button class="btn-mini-audio" onclick="speak('What the fuck was that?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə fʌk wɒz ðæt]</div></div><div class="vocab-ru">Что это, блядь, было?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the actual fuck?</span><button class="btn-mini-audio" onclick="speak('What the actual fuck?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə ˈæktʃuəl fʌk]</div></div><div class="vocab-ru">Что за херня вообще?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">Whatever bro</span><button class="btn-mini-audio" onclick="speak('Whatever bro')">🔊 Audio</button></div><div class="vocab-ipa">[wɒtˈevə brəʊ]</div></div><div class="vocab-ru">Пофиг, брат / без разницы</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the hell is wrong with you?</span><button class="btn-mini-audio" onclick="speak('What the hell is wrong with you?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə hel ɪz rɒŋ wɪð juː]</div></div><div class="vocab-ru">Что с тобой, блядь, не так?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the fuck?</span><button class="btn-mini-audio" onclick="speak('What the fuck?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə fʌk]</div></div><div class="vocab-ru">Какого хера?</div></div>
+            <div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">What the hell?</span><button class="btn-mini-audio" onclick="speak('What the hell?')">🔊 Audio</button></div><div class="vocab-ipa">[wɒt ðə hel]</div></div><div class="vocab-ru">Какого черта?</div></div>
+        </div>
+    </section>
+</div>
+ 
+<script>
+    // ===== PROFILE SETTINGS: вставь свои ссылки и фото между кавычками =====
+    const PROFILE = {
+        photo: 'avatar.jpg.jpg',                 // фото профиля, например 'me.jpg' или ссылка на картинку
+        instagram: 'https://www.instagram.com/byil.khom?vrfl=MWo5aDN6anVtdmtmeA==',             // например 'https://instagram.com/твой_ник'
+        telegram: 'https://t.me/ilkhomvi',              // например 'https://t.me/твой_ник'
+        gallery: ['https://4kwallpapers.com/images/walls/thumbs_3t/27411.jpg', 'https://4kwallpapers.com/images/walls/thumbs_3t/25406.jpg', 'https://4kwallpapers.com/images/walls/thumbs_3t/3672.jpg']      // 3 картинки для блока Photo 1 / 2 / 3
+    };
+ 
+    // Динамические фоновые обои высокого качества (горы, ночной город, атмосферные виды)
+    const wallpapers = [
+        'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80',
+        'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1920&q=80',
+        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
+        'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1920&q=80'
+    ];
+    let bgIndex = 0;
+    function changeBackground() {
+        document.body.style.backgroundImage = `url('${wallpapers[bgIndex]}')`;
+        bgIndex = (bgIndex + 1) % wallpapers.length;
+    }
+    changeBackground();
+    setInterval(changeBackground, 15000); // Смена каждые 15 секунд
+ 
+    function toggleAnswer(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
+ 
+    // Озвучка с принудительным американским акцентом (en-US)
+    let voices = [];
+    function loadVoices() {
+        voices = window.speechSynthesis.getVoices();
+    }
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
+ 
+    function speak(text) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        utterance.lang = 'en-US'; // Американский английский
+ 
+        // Пытаемся найти нативное американское звучание в системе
+        const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('US')));
+        if (usVoice) {
+            utterance.voice = usVoice;
+        }
+ 
+        window.speechSynthesis.speak(utterance);
+    }
+ 
+    /* ===== NEW SCRIPT (added for the new sections) ===== */
+ 
+    // Универсальный обработчик кнопок: data-say = короткая фраза, data-target = id блока с длинным текстом
+    document.addEventListener('click', function (e) {
+        const b = e.target.closest('[data-say],[data-target]');
+        if (!b) return;
+        if (b.dataset.target) {
+            const el = document.getElementById(b.dataset.target);
+            if (el) speak(el.innerText);
+        } else {
+            speak(b.dataset.say);
+        }
+    });
+ 
+    // Формат: [слово/фраза, транскрипция, перевод]
+    function renderVocab(id, items) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = items.map(function (i) {
+            return '<div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">' + i[0] +
+                '</span><button class="btn-mini-audio" data-say="' + i[0].replace(/"/g, '&quot;') + '">🔊 Audio</button></div>' +
+                '<div class="vocab-ipa">[' + i[1] + ']</div></div><div class="vocab-ru">' + i[2] + '</div></div>';
+        }).join('');
+    }
+ 
+    renderVocab('vocShoes', [
+        ['On a seasonal basis', 'ɒn ə ˈsiːzənl ˈbeɪsɪs', 'по сезону / на сезонной основе'],
+        ['Wear and tear', 'weə ənd teə', 'износ, изнашивание'],
+        ['Shopping sprees', 'ˈʃɒpɪŋ spriːz', 'шопинг-загулы, походы по магазинам'],
+        ['Moderate amount', 'ˈmɒdərət əˈmaʊnt', 'умеренная сумма'],
+        ['Splurge on durable footwear', 'splɜːdʒ ɒn ˈdjʊərəbl ˈfʊtweə', 'раскошелиться на долговечную обувь'],
+        ['Arch support', 'ɑːtʃ səˈpɔːt', 'поддержка свода стопы'],
+        ['Getting the sizing wrong', 'ˈɡetɪŋ ðə ˈsaɪzɪŋ rɒŋ', 'ошибиться с размером'],
+        ['Worth taking the gamble', 'wɜːθ ˈteɪkɪŋ ðə ˈɡæmbl', 'стоит рискнуть'],
+        ['Comfort is paramount', 'ˈkʌmfət ɪz ˈpærəmaʊnt', 'комфорт превыше всего'],
+        ['Prioritize ergonomics', 'praɪˈɒrətaɪz ˌɜːɡəˈnɒmɪks', 'отдавать приоритет эргономике'],
+        ['Sacrifice comfort for fashion', 'ˈsækrɪfaɪs ˈkʌmfət fə ˈfæʃn', 'жертвовать комфортом ради моды'],
+        ['Practicality and ease', 'ˌpræktɪˈkæləti ənd iːz', 'практичность и удобство'],
+        ['Versatile sneakers', 'ˈvɜːsətaɪl ˈsniːkəz', 'универсальные кроссовки'],
+        ['Casual outfit', 'ˈkæʒuəl ˈaʊtfɪt', 'повседневная одежда / образ'],
+        ['Impulsive buying', 'ɪmˈpʌlsɪv ˈbaɪɪŋ', 'импульсивные покупки'],
+        ['Specialized footwear', 'ˈspeʃəlaɪzd ˈfʊtweə', 'специализированная обувь']
+    ]);
+ 
+    renderVocab('vocCourse', [
+        ['Digital marketing and content strategy', 'ˈdɪdʒɪtl ˈmɑːkɪtɪŋ ənd ˈkɒntent ˈstrætədʒi', 'цифровой маркетинг и контент-стратегия'],
+        ['Interactive e-learning platform', 'ˌɪntərˈæktɪv iː ˈlɜːnɪŋ ˈplætfɔːm', 'интерактивная платформа онлайн-обучения'],
+        ['Real-world case studies', 'rɪəl wɜːld keɪs ˈstʌdiz', 'реальные кейсы'],
+        ['Peer-review discussions', 'pɪə rɪˈvjuː dɪˈskʌʃnz', 'обсуждения с оценкой работ сокурсников'],
+        ['Engaging and well-structured', 'ɪnˈɡeɪdʒɪŋ ənd wel ˈstrʌktʃəd', 'увлекательный и хорошо структурированный'],
+        ['Industry expert', 'ˈɪndəstri ˈekspɜːt', 'отраслевой эксперт'],
+        ['Directly applicable', 'daɪˈrektli əˈplɪkəbl', 'напрямую применимый на практике']
+    ]);
+ 
+    renderVocab('vocIdioms', [
+        ['A piece of cake', 'ə piːs ɒv keɪk', 'проще простого'],
+        ['Graduate with top marks', 'ˈɡrædʒueɪt wɪð tɒp mɑːks', 'окончить с отличными оценками'],
+        ["Didn't cut me any slack", 'ˈdɪdnt kʌt mi ˈeni slæk', 'не давал(а) поблажек'],
+        ['Develop an interest in...', 'dɪˈveləp ən ˈɪntrəst ɪn', 'развить интерес к...'],
+        ['Essential tool', 'ɪˈsenʃl tuːl', 'незаменимый инструмент'],
+        ['Make eye contact', 'meɪk aɪ ˈkɒntækt', 'встретиться взглядами'],
+        ['Love at first sight', 'lʌv æt fɜːst saɪt', 'любовь с первого взгляда'],
+        ['Catch a glimpse of...', 'kætʃ ə ɡlɪmps ɒv', 'увидеть мельком'],
+        ['Nowhere to be found', 'ˈnəʊweə tə bi faʊnd', 'нигде не найти / исчез']
+    ]);
+ 
+    renderVocab('vocPolite', [
+        ['Strong sense of respect', 'strɒŋ sens ɒv rɪˈspekt', 'глубокое уважение'],
+        ['Good manners', 'ɡʊd ˈmænəz', 'хорошие манеры'],
+        ['Hospitable to guests', 'hɒˈspɪtəbl tə ɡests', 'гостеприимный к гостям'],
+        ['Rather impolite', 'ˈrɑːðər ˌɪmpəˈlaɪt', 'довольно невежливый'],
+        ['Mindlessly scrolling through social media', 'ˈmaɪndləsli ˈskrəʊlɪŋ θruː ˈsəʊʃl ˈmiːdiə', 'бездумно листать соцсети'],
+        ['Unwind and disconnect', 'ʌnˈwaɪnd ənd ˌdɪskəˈnekt', 'расслабиться и отключиться'],
+        ['Major time sink', 'ˈmeɪdʒə taɪm sɪŋk', 'огромный пожиратель времени'],
+        ['Disrupts my sleep cycle', 'dɪsˈrʌpts maɪ sliːp ˈsaɪkl', 'нарушает мой режим сна']
+    ]);
+ 
+    renderVocab('vocPart3', [
+        ['Constant digital connectivity', 'ˈkɒnstənt ˈdɪdʒɪtl ˌkɒnekˈtɪvəti', 'постоянная цифровая связь'],
+        ['Dedicated downtime', 'ˈdedɪkeɪtɪd ˈdaʊntaɪm', 'специально выделенное время на отдых'],
+        ['Automate daily decisions', 'ˈɔːtəmeɪt ˈdeɪli dɪˈsɪʒnz', 'автоматизировать повседневные решения'],
+        ['Paramount for productivity', 'ˈpærəmaʊnt fə ˌprɒdʌkˈtɪvəti', 'крайне важно для продуктивности'],
+        ['Strong rebellious streak', 'strɒŋ rɪˈbeljəs striːk', 'сильная бунтарская жилка'],
+        ['Unrealistic lifestyles', 'ˌʌnrɪəˈlɪstɪk ˈlaɪflstaɪlz', 'нереалистичный образ жизни'],
+        ['Societal expectations', 'səˈsaɪətl ˌekspekˈteɪʃnz', 'ожидания общества']
+    ]);
+ 
+    // Vocab из раздела Writing (кнопка «Writing Vocabulary»)
+    renderVocab('writingVocabGrid', [
+        ['Interact with', 'ˌɪntərˈækt wɪð', 'взаимодействовать с'],
+        ['Certain limitations', 'ˈsɜːtn ˌlɪmɪˈteɪʃnz', 'определённые ограничения'],
+        ['Strict rules', 'strɪkt ruːlz', 'строгие правила'],
+        ['Professional behavior', 'prəˈfeʃənl bɪˈheɪvjə', 'профессиональное поведение'],
+        ['Authentic way of life / daily local life', 'ɔːˈθentɪk weɪ ɒv laɪf / ˈdeɪli ˈləʊkl laɪf', 'настоящая повседневная жизнь'],
+        ['Much deeper understanding', 'mʌtʃ ˈdiːpə ˌʌndəˈstændɪŋ', 'гораздо более глубокое понимание'],
+        ['Partially agree', 'ˈpɑːʃəli əˈɡriː', 'частично согласен']
+    ]);
+ 
+    // Таблицы ELS Reading: [слово, IPA (можно пусто), перевод, синоним IELTS, перевод синонима]
+    function renderTable(id, rows, withIpa) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = '<table class="tpl-table"><thead><tr><th>' + (withIpa ? 'Word &amp; IPA' : 'Word') +
+            '</th><th>Translation</th><th>IELTS Synonym</th><th>Synonym Translation</th></tr></thead><tbody>' +
+            rows.map(function (r) {
+                return '<tr><td class="en">' + r[0] + ' <button class="btn-mini-audio" data-say="' + r[0] + '">🔊</button>' +
+                    (r[1] ? '<br><small style="color:var(--accent-purple);font-weight:400;">/' + r[1] + '/</small>' : '') +
+                    '</td><td class="ru">' + r[2] + '</td><td class="syn">' + r[3] + '</td><td class="ru">' + r[4] + '</td></tr>';
+            }).join('') + '</tbody></table>';
+    }
+ 
+    renderTable('tblTea', [
+        ['Innovation', '', 'Новшество, инновация', 'Breakthrough / Novelty', 'Прорыв / Новинка'],
+        ['Exposition', '', 'Выставка', 'Exhibition / Fair', 'Экспозиция / Ярмарка'],
+        ['Popularize', '', 'Популяризировать', 'Promote / Publicize', 'Продвигать, рекламировать'],
+        ['Desperation', '', 'Отчаяние', 'Hopelessness / Despair', 'Безысходность / Отчаяние'],
+        ['Simultaneously', '', 'Одновременно', 'Concurrently', 'Параллельно, одновременно'],
+        ['Sample', '', 'Образец, пробник', 'Specimen / Pattern', 'Образец, экземпляр'],
+        ['Pour in', '', 'Поступать в изобилии', 'Stream / Inundate', 'Течь рекой / Заполнять'],
+        ['Instant', '', 'Мгновенный, растворимый', 'Immediate / Prompt', 'Незамедлительный'],
+        ['Convenience', '', 'Удобство', 'Usability / Handiness', 'Удобство использования'],
+        ['Sediment', '', 'Осадок, гуща', 'Residue / Deposit', 'Остаток / Отложение']
+    ], false);
+ 
+    renderTable('tblMath', [
+        ['Discipline', '', 'Отрасль знаний, дисциплина', 'Branch of knowledge / Field', 'Область науки / Сфера'],
+        ['Illustrate', '', 'Наглядно объяснять', 'Demonstrate / Exemplify', 'Демонстрировать / Показывать'],
+        ['Flammable', '', 'Легковоспламеняемый', 'Combustible / Ignitable', 'Горючий / Воспламеняемый'],
+        ['Extinguish', '', 'Тушить, гасить огонь', 'Put out / Douse', 'Заливать водой / Гасить'],
+        ['Fervently', '', 'Пылко, с энтузиазмом', 'Passionately / Zealously', 'Горячо / Страстно'],
+        ['Murmur', '', 'Бормотать, тихо говорить', 'Mutter / Whisper', 'Шептать / Бормотать'],
+        ['Glance', '', 'Бегло взглянуть', 'Peek / Brief look', 'Быстрый взгляд / Взгляд мельком'],
+        ['Contented', '', 'Довольный, удовлетворенный', 'Satisfied / Gratified', 'Удовлетворенный']
+    ], false);
+ 
+    renderTable('tblMaster', [
+        ['Joke', 'dʒəʊk', 'Шутка, анекдот', 'Jest / Anecdote', 'Шутка / Историческая быль'],
+        ['Among', 'əˈmʌŋ', 'Среди, между', 'Amidst / In the midst of', 'Посреди / В окружении'],
+        ['Scientific', 'ˌsaɪənˈtɪfɪk', 'Научный', 'Academic / Empirical', 'Академический / Опытный'],
+        ['Difference', 'ˈdɪfrəns', 'Разница, различие', 'Disparity / Distinction', 'Неравенство / Отличие'],
+        ['Smell', 'smel', 'Запах, чуять, пахнуть', 'Scent / Odor / Detect', 'Аромат / Запах / Обнаруживать'],
+        ['Quickly', 'ˈkwɪkli', 'Быстро', 'Rapidly / Swiftly', 'Стремительно / Быстро'],
+        ['Grab', 'ɡræb', 'Схватить, выхватить', 'Seize / Snatch', 'Захватить / Выхватить'],
+        ['Garbage', 'ˈɡɑːbɪdʒ', 'Мусор, отходы', 'Waste / Refuse / Trash', 'Отходы / Мусор'],
+        ['Pail', 'peɪl', 'Ведро', 'Bucket / Vessel', 'Ведро / Емкость'],
+        ['Bucket', 'ˈbʌkɪt', 'Ведро', 'Container / Pail', 'Контейнер / Ведро'],
+        ['Fill', 'fɪl', 'Наполнять, заполнять', 'Replenish / Load', 'Пополнять / Загружать'],
+        ['Douse', 'daʊs', 'Обливать, гасить водой', 'Drench / Extinguish', 'Орошать / Тушить'],
+        ['Flammable', 'ˈflæməbl', 'Огнеопасный', 'Combustible / Ignitable', 'Горючий / Воспламеняемый'],
+        ['Pad', 'pæd', 'Блокнот, записная книжка', 'Notepad / Tablet', 'Записная книжка / Блокнот'],
+        ['Glance', 'ɡlɑːns', 'Бегло взглянуть', 'Peek / Glimpse', 'Быстрый взгляд / Взгляд мельком'],
+        ['Flame', 'fleɪm', 'Пламя, огонь', 'Blaze / Fire', 'Огонь / Пожар'],
+        ['Measure', 'ˈmeʒə', 'Измерять', 'Gauge / Calculate', 'Оценивать / Рассчитывать'],
+        ['Throw', 'θrəʊ', 'Бросать, кидать', 'Cast / Hurl / Pitch', 'Швырять / Швырять'],
+        ['Extinguish', 'ɪkˈstɪŋɡwɪʃ', 'Тушить (огонь)', 'Put out / Quench', 'Гасить / Заливать'],
+        ['Fervently', 'ˈfɜːvəntli', 'Пылко, с энтузиазмом', 'Passionately / Zealously', 'Страстно / Горячо'],
+        ['Satisfied', 'ˈsætɪsfaɪd', 'Удовлетворенный', 'Contented / Gratified', 'Довольный / Довольный'],
+        ['Produce', 'prəˈdjuːs', 'Производить, вынимать', 'Generate / Bring forth', 'Создавать / Представлять'],
+        ['Exist', 'ɪɡˈzɪst', 'Существовать', 'Subsist / Prevail', 'Проживать / Преобладать'],
+        ['Murmur', 'ˈmɜːmə', 'Бормотать, шептать', 'Mutter / Whisper', 'Шептать / Бормотать'],
+        ['Branch', 'brɑːntʃ', 'Отрасль, ветвь', 'Discipline / Sector', 'Дисциплина / Сфера'],
+        ['Roughly measured', 'ˈrʌfli ˈmeʒəd', 'Приблизительно измеренный', 'Approximately estimated', 'Ориентировочно оцененный'],
+        ['Accurately', 'ˈækjərətli', 'Точно, достоверно', 'Precisely / Correctly', 'Точно / Верно'],
+        ['Recently', 'ˈriːsntli', 'Недавно, в последнее время', 'Lately / Newly', 'В последнее время / Вновь'],
+        ['Offer', 'ˈɒfə', 'Предлагать', 'Propose / Provide', 'Предлагать / Предоставлять'],
+        ['Surveillance', 'səˈveɪləns', 'Наблюдение, слежка', 'Monitoring / Observation', 'Мониторинг / Отслеживание'],
+        ['Transaction', 'trænˈzækʃn', 'Сделка, операция', 'Deal / Business operation', 'Сделка / Операция'],
+        ['Occasion', 'əˈkeɪʒn', 'Случай, событие', 'Instance / Event', 'Случай / Событие'],
+        ['Furniture', 'ˈfɜːnɪtʃə', 'Мебель', 'Furnishings / Appointments', 'Предметы обстановки'],
+        ['Required', 'rɪˈkwaɪəd', 'Необходимый, обязательный', 'Mandatory / Essential', 'Обязательный / Важный'],
+        ['Retardant', 'rɪˈtɑːdənt', 'Замедлитель (пламени)', 'Inhibitor / Suppressant', 'Ингибитор / Подавитель'],
+        ['Carry', 'ˈkæri', 'Носить, нести', 'Convey / Transport', 'Переносить / Транспортировать'],
+        ['Growth', 'ɡrəʊθ', 'Рост, развитие', 'Expansion / Progress', 'Расширение / Прогресс'],
+        ['Development', 'dɪˈveləpmənt', 'Развитие, разработка', 'Advancement / Evolution', 'Продвижение / Эволюция'],
+        ['Most of all', 'məʊst əv ɔːl', 'Больше всего, прежде всего', 'Above all / Primarily', 'Прежде всего / В первую очередь'],
+        ['Competitive', 'kəmˈpetətɪv', 'Конкурентоспособный', 'Ambitious / Rivaling', 'Амбициозный / Соперничающий'],
+        ['Pressure', 'ˈpreʃə', 'Давление, нажим', 'Strain / Stress / Force', 'Напряжение / Стресс'],
+        ['Encouragement', 'ɪnˈkʌrɪdʒmənt', 'Поощрение, поддержка', 'Incentive / Motivation', 'Стимул / Мотивация'],
+        ['Conceivable', 'kənˈsiːvəbl', 'Мнимый, мыслимый', 'Imaginable / Possible', 'Вообразимый / Возможный'],
+        ['Length', 'leŋθ', 'Длина, протяженность', 'Extent / Duration', 'Протяженность / Длительность'],
+        ['Concise (concisely)', 'kənˈsaɪs', 'Краткий, лаконичный', 'Succinct / Brief', 'Сжатый / Краткий'],
+        ['Graphic (graphically)', 'ˈɡræfɪk', 'Наглядный, живописный', 'Vivid / Explicit', 'Яркий / Наглядный'],
+        ['Tumult', 'ˈtjuːmʌlt', 'Шум, смятение, суматоха', 'Commotion / Uproar', 'Волнение / Шум'],
+        ['Desire', 'dɪˈzaɪə', 'Желание, стремление', 'Aspiration / Craving', 'Стремление / Жажда'],
+        ['Eagerness', 'ˈiːɡənəs', 'Рвение, энтузиазм', 'Keenness / Enthusiasm', 'Усердие / Энтузиазм'],
+        ['Possible', 'ˈpɒsəbl', 'Возможный', 'Feasible / Viable', 'Осуществимый / Жизнеспособный'],
+        ['Achieve (achieving)', 'əˈtʃiːv', 'Достигать, добиваться', 'Attain / Accomplish', 'Добиваться / Выполнять'],
+        ['Confusion', 'kənˈfjuːʒn', 'Замешательство, путаница', 'Disarray / Perplexity', 'Беспорядок / Недоумение'],
+        ['Excitement', 'ɪkˈsaɪtmənt', 'Волнение, азарт', 'Thrill / Exhilaration', 'Азарт / Оживление'],
+        ['Unnecessary', 'ʌnˈnesəsəri', 'Ненужный, излишний', 'Redundant / Superfluous', 'Избыточный / Излишний'],
+        ['Restricted', 'rɪˈstrɪktɪd', 'Ограниченный', 'Constrained / Limited', 'Стесненный / Ограниченный'],
+        ['Whether', 'ˈweðə', 'Будь то, ли', 'Regardless if', 'Независимо от того, ли'],
+        ['Democracy', 'dɪˈmɒkrəsi', 'Демократия', 'Elected government', 'Выборное правительство'],
+        ['Author', 'ˈɔːθə', 'Автор, писатель', 'Writer / Creator', 'Писатель / Создатель'],
+        ['Suit', 'suːt', 'Подходить, устраивать', 'Befit / Accommodate', 'Соответствовать / Удовлетворять'],
+        ['Great asset', 'ɡreɪt ˈæset', 'Ценное преимущество', 'Major advantage / Benefit', 'Главное преимущество / Выгода'],
+        ['Wordy report', 'ˈwɜːdi rɪˈpɔːt', 'Многословный отчет', 'Verbose document', 'Избыточно подробный документ'],
+        ['Equipment', 'ɪˈkwɪpmənt', 'Оборудование, оснащение', 'Apparatus / Gear', 'Аппаратура / Оснащение']
+    ], true);
+ 
+    renderVocab('vocReading', [
+        ['Weaning', 'ˈwiːnɪŋ', 'отлучение от груди'],
+        ['Nourishment', 'ˈnʌrɪʃmənt', 'питание'],
+        ['Spirit', 'ˈspɪrɪt', 'дух'],
+        ['Neglected', 'nɪˈɡlektɪd', 'заброшенный'],
+        ['Substitute', 'ˈsʌbstɪtjuːt', 'заменять'],
+        ['Breast', 'brest', 'грудь'],
+        ['Lightly', 'ˈlaɪtli', 'слегка, легко'],
+        ['Intense', 'ɪnˈtens', 'интенсивный'],
+        ['Violently', 'ˈvaɪələntli', 'насильственно, больно'],
+        ['Desire', 'dɪˈzaɪə', 'желание'],
+        ['Surrender', 'səˈrendə', 'сдаваться'],
+        ['Suck', 'sʌk', 'сосать, присасывать'],
+        ['Accustom', 'əˈkʌstəm', 'привыкание, приучать'],
+        ['Caution', 'ˈkɔːʃn', 'предостерегать'],
+        ['Urging', 'ˈɜːdʒɪŋ', 'призывая'],
+        ['Device for ingesting', 'dɪˈvaɪs fər ɪnˈdʒestɪŋ', 'устройство для обработки'],
+        ['Modifying', 'ˈmɒdɪfaɪɪŋ', 'модификация'],
+        ['Enlarge', 'ɪnˈlɑːdʒ', 'увеличить'],
+        ['Brainpower', 'ˈbreɪnpaʊə', 'умственные способности'],
+        ['Man-made', 'ˌmæn ˈmeɪd', 'создано человеком'],
+        ['Express', 'ɪkˈspres', 'выражать'],
+        ['Instruct', 'ɪnˈstrʌkt', 'учить'],
+        ['Minutely', 'maɪˈnjuːtli', 'мельчайшими деталями, подробно'],
+        ['Chief', 'tʃiːf', 'главный'],
+        ['Swiftly', 'ˈswɪftli', 'быстро'],
+        ['Infinite', 'ˈɪnfɪnət', 'бесконечный'],
+        ['Satellite', 'ˈsætəlaɪt', 'спутник'],
+        ['Missile', 'ˈmɪsaɪl', 'ракета'],
+        ['Capability', 'ˌkeɪpəˈbɪləti', 'возможность']
+    ]);
+ 
+    // ===== Главное меню: показать / скрыть раздел по нажатию кнопки =====
+    function showTab(id) {
+        window.speechSynthesis.cancel();
+        const panel = document.getElementById(id);
+        const wasOpen = panel.classList.contains('active');
+        document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+        document.querySelectorAll('.nav-btn').forEach(function (b) { b.classList.remove('active'); });
+        if (!wasOpen) {
+            panel.classList.add('active');
+            const btn = document.querySelector('.nav-btn[data-tab="' + id + '"]');
+            if (btn) btn.classList.add('active');
+            document.getElementById('mainNav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        document.getElementById('tabHint').style.display = wasOpen ? 'block' : 'none';
+    }
+ 
+    // ===== Фото профиля, ссылки и картинки =====
+    (function initProfile() {
+        if (PROFILE.photo) {
+            const av = document.getElementById('avatarBox');
+            av.style.backgroundImage = "url('" + PROFILE.photo + "')";
+            document.getElementById('avatarPh').style.display = 'none';
+        }
+        if (PROFILE.instagram) document.getElementById('linkInstagram').href = PROFILE.instagram;
+        if (PROFILE.telegram) document.getElementById('linkTelegram').href = PROFILE.telegram;
+        document.querySelectorAll('#galleryBox .gallery-slot').forEach(function (slot, i) {
+            if (PROFILE.gallery[i]) {
+                slot.style.backgroundImage = "url('" + PROFILE.gallery[i] + "')";
+                slot.style.border = 'none';
+                slot.textContent = '';
+            }
+        });
+    })();
+</script>
+ 
+</body>
+</html>
+ 
