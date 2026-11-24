@@ -339,6 +339,55 @@
             .tpl-table.stack td.en { font-size: 1.05rem; }
             .tpl-table.stack td[data-label]:not([data-label=""])::before { content: attr(data-label) ": "; color: var(--text-sub); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; font-style: normal; }
         }
+
+        /* ===== HOME PAGE UPGRADE ===== */
+        .greeting { font-size: 0.85rem; color: var(--accent-blue); font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+        .stat { background: rgba(255, 255, 255, 0.07); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px 6px; text-align: center; }
+        .stat b { display: block; font-size: 1.4rem; color: var(--accent-blue); line-height: 1.15; }
+        .stat span { font-size: 0.66rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.6px; }
+
+        .search-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+        .search-row { display: flex; align-items: center; gap: 8px; background: rgba(11, 15, 25, 0.6); border: 1px solid var(--card-border); border-radius: 10px; padding: 0 10px; }
+        .search-row:focus-within { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }
+        .search-row input { flex: 1; min-width: 0; background: none; border: none; outline: none; color: var(--text-main); font-size: 1rem; padding: 12px 0; }
+        .search-row input::placeholder { color: var(--text-sub); opacity: 0.8; }
+        .search-row input[type="search"]::-webkit-search-cancel-button { display: none; }
+        .search-clear { display: none; background: none; border: none; color: var(--text-sub); font-size: 1.1rem; cursor: pointer; padding: 6px; }
+        .search-meta { display: none; font-size: 0.78rem; color: var(--text-sub); margin: 10px 2px 4px; }
+        .search-results { display: none; max-height: 55vh; overflow-y: auto; margin-top: 6px; }
+        .search-item { display: block; width: 100%; text-align: left; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; color: var(--text-main); cursor: pointer; }
+        .search-item:hover { background: rgba(255, 255, 255, 0.14); }
+        .search-item .si-title { display: block; font-weight: 700; color: var(--accent-blue); overflow-wrap: anywhere; }
+        .search-item .si-sub { display: block; font-size: 0.82rem; color: var(--text-sub); overflow-wrap: anywhere; }
+        .search-item .si-tab { display: inline-block; margin-top: 5px; font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; background: rgba(192, 132, 252, 0.2); color: var(--accent-purple); border: 1px solid rgba(192, 132, 252, 0.4); }
+        mark.sh { background: var(--hl-yellow); color: var(--hl-yellow-text); border-radius: 3px; padding: 0 2px; }
+
+        .continue-btn { display: block; width: 100%; margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--accent-green); background: rgba(34, 197, 94, 0.18); color: #86efac; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+        .continue-btn:hover { background: rgba(34, 197, 94, 0.3); }
+        .wotd { margin-top: 16px; text-align: left; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 14px; }
+        .wotd-label { font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-purple); font-weight: 700; }
+        .wotd-word { font-size: 1.25rem; font-weight: 800; color: var(--accent-blue); margin-top: 4px; overflow-wrap: anywhere; }
+        .wotd-ipa { font-size: 0.82rem; color: var(--accent-purple); }
+        .wotd-ru { color: var(--text-main); margin-top: 4px; }
+        .wotd-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+
+        .nav-btn.seen::after { content: " ✓"; color: var(--accent-green); font-weight: 800; }
+        .nav-btn.active.seen::after { color: #052e16; }
+
+        .fab { display: none; position: fixed; right: 14px; bottom: 18px; z-index: 50; background: var(--accent-blue); color: #0f172a; border: none; border-radius: 999px; padding: 11px 16px; font-weight: 800; font-size: 0.9rem; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); cursor: pointer; }
+        .fab.show { display: block; }
+
+        .flash { animation: flashGlow 2.2s ease; }
+        tr.flash td { background: rgba(254, 240, 138, 0.28) !important; }
+        @keyframes flashGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); } 20%, 60% { box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.85), 0 0 24px rgba(56, 189, 248, 0.6); } }
+        @media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
+
+        @media (max-width: 640px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .nav-row { display: grid; grid-template-columns: 1fr 1fr; }
+            .nav-btn { width: 100%; text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -349,6 +398,7 @@
         <div class="welcome">
             <div class="avatar" id="avatarBox"><span id="avatarPh">📷<small>Your photo</small></span></div>
             <div class="welcome-text">
+                <p class="greeting" id="greeting"></p>
                 <p class="welcome-small">Welcome to my web site</p>
                 <h2 class="welcome-name">I'm Ilkhom 👋</h2>
                 <div class="socials">
@@ -367,7 +417,24 @@
 
         <h1>Here my practice</h1>
         <p>yoooo it's been ages! how's it going?</p>
+        <div class="stats" id="statsRow">
+            <div class="stat"><b id="statQ">–</b><span>Questions</span></div>
+            <div class="stat"><b id="statW">–</b><span>Words &amp; phrases</span></div>
+            <div class="stat"><b id="statS">–</b><span>Slang</span></div>
+            <div class="stat"><b id="statT">–</b><span>Sections</span></div>
+        </div>
     </header>
+
+    <!-- SEARCH (NEW) -->
+    <div class="search-box" id="searchBox">
+        <div class="search-row">
+            <span aria-hidden="true">🔎</span>
+            <input id="siteSearch" type="search" placeholder="Search any word, phrase or question…" autocomplete="off" aria-label="Search the whole site">
+            <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+        </div>
+        <div class="search-meta" id="searchMeta"></div>
+        <div class="search-results" id="searchResults"></div>
+    </div>
 
     <!-- MAIN MENU: tap a button to show its words / questions -->
     <nav class="main-nav" id="mainNav">
@@ -384,6 +451,8 @@
                 <button class="nav-btn" data-tab="tab-topic3b" onclick="showTab('tab-topic3b')">🏙️ Hometown 2</button>
                 <button class="nav-btn" data-tab="tab-home" onclick="showTab('tab-home')">🏠 Home</button>
                 <button class="nav-btn" data-tab="tab-country" onclick="showTab('tab-country')">🌍 Your Country</button>
+                <button class="nav-btn" data-tab="tab-bored" onclick="showTab('tab-bored')">😴 Bored &amp; Travelling</button>
+                <button class="nav-btn" data-tab="tab-films" onclick="showTab('tab-films')">🎬 Films &amp; Friendship</button>
             </div>
         </div>
         <div class="nav-group">
@@ -398,11 +467,26 @@
                 <button class="nav-btn" data-tab="tab-vocab" onclick="showTab('tab-vocab')">🎓 From Speaking Vocabs</button>
                 <button class="nav-btn" data-tab="tab-reading" onclick="showTab('tab-reading')">📖 Reading Vocab</button>
                 <button class="nav-btn" data-tab="tab-slang" onclick="showTab('tab-slang')">🔥 Slang</button>
+                <button class="nav-btn" data-tab="tab-evens" onclick="showTab('tab-evens')">🌙 Evens Vocab</button>
             </div>
         </div>
     </nav>
 
-    <div class="card" id="tabHint" style="text-align:center; color:var(--text-sub);">👆 Choose a section above — tap a button to open it. Tap it again to close.</div>
+    <div class="card" id="tabHint" style="text-align:center; color:var(--text-sub);">👆 Choose a section above — tap a button to open it. Tap it again to close.
+        <div id="homeExtras">
+            <button class="continue-btn" id="continueBtn" style="display:none"></button>
+            <div class="wotd" id="wotd">
+                <div class="wotd-label">✨ Word of the day</div>
+                <div class="wotd-word" id="wotdWord"></div>
+                <div class="wotd-ipa" id="wotdIpa"></div>
+                <div class="wotd-ru" id="wotdRu"></div>
+                <div class="wotd-actions">
+                    <button class="btn btn-audio" id="wotdSpeak">🔊 Listen</button>
+                    <button class="btn btn-toggle" id="wotdShuffle">🔀 Another word</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- SPEAKING FILLERS (NEW) -->
     <section class="tab-panel" id="tab-fillers">
@@ -1345,6 +1429,439 @@
 
     </section>
 
+    <!-- DAY 6: BEING BORED / SHORT JOURNEY / TRAVELLING (NEW) -->
+    <section class="tab-panel" id="tab-bored">
+        <h2 class="section-title">😴 Topic 13: Being Bored (Part 1 — 6 Questions)</h2>
+
+        <div class="card">
+            <div class="q-en">1. Do you ever (often) get bored?</div>
+            <div class="q-ru">Вам когда-нибудь (часто) бывает скучно?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you ever (often) get bored?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans56')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans56" class="sample-box">
+                "Honestly, I rarely feel bored because I always keep myself occupied. With a <span class="hl-y">hectic schedule</span> full of studies and personal projects, I barely have any <span class="hl-g">idle moments</span>."
+                <div class="ru-line">(Честно говоря, мне редко бывает скучно, так как я всегда занят. При <span class="hl-y">плотном графике</span> у меня почти не бывает <span class="hl-g">свободных минут</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">2. When would you feel bored?</div>
+            <div class="q-ru">Когда вам становится скучно?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('When would you feel bored?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans57')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans57" class="sample-box">
+                "I usually experience boredom when I am <span class="hl-y">stuck in long queues</span> or waiting at an airport without internet access. Doing <span class="hl-b">monotonous tasks</span> that require zero creativity also drains my energy."
+                <div class="ru-line">(Обычно я скучаю, когда <span class="hl-y">застреваю в длинных очередях</span>. Выполнение <span class="hl-b">монотонных задач</span> без капли творчества тоже утомляет.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">3. Do you think school is boring?</div>
+            <div class="q-ru">Считаете ли вы, что школа — это скучно?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you think school is boring?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans58')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans58" class="sample-box">
+                "Not entirely, though it depends on the teaching style. Subjects taught through <span class="hl-y">rote memorization</span> can be tedious, whereas <span class="hl-g">interactive lessons</span> with real-life examples are genuinely captivating."
+                <div class="ru-line">(Не совсем, всё зависит от стиля преподавания. Предметы с <span class="hl-y">зубрёжкой</span> утомительны, а <span class="hl-g">интерактивные уроки</span> по-настоящему увлекают.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">4. What things are boring to you?</div>
+            <div class="q-ru">Какие вещи кажутся вам скучными?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What things are boring to you?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans59')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans59" class="sample-box">
+                "I find <span class="hl-y">repetitive paperwork</span> and watching slow-paced television dramas unbearably dull. Anything that lacks <span class="hl-b">mental stimulation</span> quickly makes me lose interest."
+                <div class="ru-line">(Я нахожу <span class="hl-y">однообразную бумажную работу</span> невыносимо скучной. Всё, чему не хватает <span class="hl-b">умственной стимуляции</span>, быстро вызывает потерю интереса.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">5. What do you do when you feel bored?</div>
+            <div class="q-ru">Что вы делаете, когда вам скучно?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What do you do when you feel bored?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans60')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans60" class="sample-box">
+                "Whenever boredom strikes, I usually listen to <span class="hl-y">thought-provoking podcasts</span> or go for a brisk walk outdoors to <span class="hl-g">clear my mind</span> and boost my mood."
+                <div class="ru-line">(Когда наступает скука, я обычно слушаю <span class="hl-y">заставляющие задуматься подкасты</span> или выхожу на быструю прогулку, чтобы <span class="hl-g">проветрить голову</span> и поднять настроение.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">6. Do you feel more bored than when you were young?</div>
+            <div class="q-ru">Вы скучаете сейчас больше, чем в детстве?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you feel more bored than when you were young?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans61')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans61" class="sample-box">
+                "Actually, quite the opposite. As a child, I relied on others for entertainment, whereas now I have <span class="hl-y">endless digital resources</span> and hobbies to <span class="hl-b">keep myself entertained</span>."
+                <div class="ru-line">(Наоборот. В детстве я зависел от других в плане развлечений, а сейчас у меня есть <span class="hl-y">бесконечные цифровые ресурсы</span> и хобби, чтобы <span class="hl-b">развлечь себя</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <h3 class="sub-title">Part 2: Individual Long Turn (Cue Card) <small>1–2 Minutes Speech</small></h3>
+
+        <div class="cue-card">
+            <h3>Describe a short journey that you often take but dislike</h3>
+            <div class="q-ru">Опишите короткую поездку, которую вы часто совершаете, но не любите</div>
+            <div class="cue-say">You should say:</div>
+            <ul>
+                <li>where you go &amp; how often you do this <i>(куда вы едете и как часто это делаете)</i></li>
+                <li>when you do this <i>(когда вы это делаете)</i></li>
+                <li><b>and explain why you dislike it</b> <i>(и объясните, почему она вам не нравится)</i></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="q-en">Ideal 2-Minute Full Speech / Идеальный монолог на 2 минуты</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" data-target="speechJourney">🔊 Listen to Speech</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('sp5')">💡 Show Full Speech</button>
+            </div>
+            <div id="sp5" class="sample-box">
+                <div id="speechJourney">"I'd like to describe my <span class="hl-y">daily morning commute</span> from my residential neighborhood to the university campus in the city center. Although the distance is relatively short—only about seven kilometers—I have to make this trip <span class="hl-g">five days a week</span>, typically around 8:00 AM.<br><br>The main reason I dread this journey is the <span class="hl-b">unbearable traffic congestion</span> during peak hours. Because thousands of commuters head downtown simultaneously, the roads turn into a <span class="hl-y">virtual parking lot</span>, stretching a fifteen-minute drive into nearly an hour.<br><br>Furthermore, the public buses are usually <span class="hl-g">packed like sardines</span>, leaving almost no personal space to breathe or read. By the time I finally arrive at my destination, I already feel <span class="hl-b">mentally exhausted and frustrated</span>, which makes it a truly unpleasant way to start the day."</div>
+                <div class="ru-line"><b>Перевод:</b> «Я бы хотел описать мою <span class="hl-y">ежедневную утреннюю поездку</span> из спального района в университет в центре города. Хотя расстояние небольшое — около 7 км, мне приходится ездить <span class="hl-g">пять дней в неделю</span>, обычно около 8 утра.<br>Главная причина, по которой я не переношу эту дорогу, — <span class="hl-b">невыносимые пробки</span> в час пик. Тысячи людей одновременно едут в центр, и дороги превращаются в <span class="hl-y">сплошную парковку</span>, растягивая 15-минутную поездку почти на час.<br>Более того, автобусы обычно <span class="hl-g">набиты как сельди в бочке</span>, и почти нет личного пространства, чтобы вздохнуть или почитать. К моменту прибытия я уже чувствую себя <span class="hl-b">морально истощённым и раздражённым</span>, и это ужасное начало дня.»</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <h3 class="sub-title">Part 3: Travelling (Topic 13) <small>7 Questions</small></h3>
+
+        <div class="card">
+            <div class="q-en">1. Why do some people prefer to travel in their own country rather than going abroad?</div>
+            <div class="q-ru">Почему некоторые люди предпочитают путешествовать по своей стране, а не ездить за границу?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do some people prefer to travel in their own country rather than going abroad?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans62')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans62" class="sample-box">
+                "Domestic travel is often much more <span class="hl-y">budget-friendly and convenient</span>. People don't have to worry about <span class="hl-g">language barriers</span>, visa paperwork, or currency exchange, allowing for a stress-free vacation."
+                <div class="ru-line">(Внутренний туризм гораздо <span class="hl-y">бюджетнее и удобнее</span>. Людям не нужно беспокоиться о <span class="hl-g">языковом барьере</span>, визах и обмене валюты, поэтому отпуск проходит без стресса.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">2. What problems arise when lots of people travel to work at the same time?</div>
+            <div class="q-ru">Какие проблемы возникают, когда множество людей едут на работу в одно и то же время?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What problems arise when lots of people travel to work at the same time?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans63')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans63" class="sample-box">
+                "It leads to severe <span class="hl-y">gridlock on major roads</span>, overcrowded public transit, and heightened air pollution. Additionally, chronic commuting delays negatively impact <span class="hl-b">employee productivity</span> and mental health."
+                <div class="ru-line">(Это приводит к серьёзным <span class="hl-y">заторам на главных дорогах</span>, переполненному общественному транспорту и загрязнению воздуха. Кроме того, постоянные задержки в пути снижают <span class="hl-b">продуктивность сотрудников</span> и вредят психическому здоровью.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">3. Why do people like travelling?</div>
+            <div class="q-ru">Почему людям нравится путешествовать?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do people like travelling?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans64')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans64" class="sample-box">
+                "Travelling allows individuals to <span class="hl-y">broaden their horizons</span>, break free from monotonous routines, and immerse themselves in <span class="hl-g">diverse cultures</span>, which fosters personal growth."
+                <div class="ru-line">(Путешествия позволяют <span class="hl-y">расширить кругозор</span>, вырваться из однообразной рутины и погрузиться в <span class="hl-g">разные культуры</span>, что способствует личностному росту.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">4. Do people in your country like travelling abroad?</div>
+            <div class="q-ru">Любят ли люди в вашей стране путешествовать за границу?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do people in your country like travelling abroad?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans65')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans65" class="sample-box">
+                "Yes, international tourism has <span class="hl-y">surged in popularity</span> over recent years. Many citizens are eager to explore historical landmarks, sample exotic cuisines, and experience <span class="hl-b">different lifestyles</span>."
+                <div class="ru-line">(Да, за последние годы зарубежный туризм <span class="hl-y">резко набрал популярность</span>. Многие стремятся увидеть исторические памятники, попробовать экзотическую кухню и ощутить <span class="hl-b">иной образ жизни</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">5. Why do people choose to travel or live abroad?</div>
+            <div class="q-ru">Почему люди выбирают путешествия или переезд за границу?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do people choose to travel or live abroad?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans66')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans66" class="sample-box">
+                "While short-term travelers seek adventure and relaxation, those who relocate usually pursue <span class="hl-y">lucrative career prospects</span>, higher educational standards, or an improved <span class="hl-g">quality of life</span>."
+                <div class="ru-line">(Туристы ищут приключений и отдыха, а те, кто переезжает, обычно преследуют <span class="hl-y">выгодные карьерные перспективы</span>, более высокие стандарты образования или лучшее <span class="hl-g">качество жизни</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">6. What are the benefits of travelling abroad?</div>
+            <div class="q-ru">Каковы преимущества путешествий за границу?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What are the benefits of travelling abroad?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans67')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans67" class="sample-box">
+                "It cultivates <span class="hl-y">cultural empathy and adaptability</span>. Navigating unfamiliar environments boosts self-reliance and helps people view global issues from <span class="hl-b">multiple perspectives</span>."
+                <div class="ru-line">(Это развивает <span class="hl-y">культурную эмпатию и адаптивность</span>. Ориентация в незнакомой среде укрепляет самостоятельность и помогает смотреть на мировые проблемы с <span class="hl-b">разных точек зрения</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">7. Who likes to travel more, older people or younger people?</div>
+            <div class="q-ru">Кто больше любит путешествовать — пожилые или молодые люди?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Who likes to travel more, older people or younger people?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans68')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans68" class="sample-box">
+                "Both groups enjoy it, though for different reasons. Youth often prefer <span class="hl-y">backpacking and thrill-seeking</span>, whereas retirees have more leisure time to enjoy <span class="hl-g">leisurely cultural tours</span>."
+                <div class="ru-line">(Обе группы любят путешествовать, но по-разному. Молодёжь часто предпочитает <span class="hl-y">походы и экстрим</span>, а у пенсионеров больше свободного времени для <span class="hl-g">неспешных культурных туров</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+    </section>
+
+    <!-- DAY 7: FILMS / ENJOYABLE EVENING / MEALS, LEISURE & FRIENDSHIP (NEW) -->
+    <section class="tab-panel" id="tab-films">
+        <h2 class="section-title">🎬 Topic 36: Films (Part 1 — 7 Questions)</h2>
+
+        <div class="card">
+            <div class="q-en">1. What kinds of movies do you like best?</div>
+            <div class="q-ru">Какие жанры фильмов вам нравятся больше всего?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What kinds of movies do you like best?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans69')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans69" class="sample-box">
+                "I'm particularly drawn to <span class="hl-y">thought-provoking sci-fi thrillers</span> and historical dramas. I love movies with <span class="hl-g">intricate plot twists</span> that keep me guessing until the very end."
+                <div class="ru-line">(Меня особенно привлекают <span class="hl-y">научно-фантастические триллеры, заставляющие задуматься</span>, и исторические драмы. Я люблю фильмы со <span class="hl-g">сложными сюжетными поворотами</span>, которые держат в напряжении до конца.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">2. How often do you go to a cinema to watch a movie?</div>
+            <div class="q-ru">Как часто вы ходите в кинотеатр смотреть фильмы?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How often do you go to a cinema to watch a movie?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans70')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans70" class="sample-box">
+                "Probably once or twice a month. While <span class="hl-y">streaming platforms</span> are convenient, nothing beats the <span class="hl-b">immersive surround sound</span> and giant screen of a movie theater for major blockbusters."
+                <div class="ru-line">(Наверное, раз или два в месяц. Хотя <span class="hl-y">стриминговые платформы</span> удобны, ничто не сравнится с <span class="hl-b">объёмным звуком</span> и огромным экраном кинотеатра на громких блокбастерах.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">3. Did you usually go to the cinema when you were a kid?</div>
+            <div class="q-ru">Вы часто ходили в кинотеатр, когда были ребёнком?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Did you usually go to the cinema when you were a kid?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans71')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans71" class="sample-box">
+                "Not very frequently, mostly on special occasions or school holidays. Going to the theater felt like a <span class="hl-y">memorable family treat</span>, especially when we bought popcorn beforehand."
+                <div class="ru-line">(Не очень часто, в основном по особым случаям или на школьных каникулах. Поход в кино ощущался как <span class="hl-y">запоминающийся семейный праздник</span>, особенно когда мы заранее покупали попкорн.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">4. What was the first film that you watched?</div>
+            <div class="q-ru">Какой первый фильм вы посмотрели?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What was the first film that you watched?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans72')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans72" class="sample-box">
+                "If memory serves me right, it was an <span class="hl-y">animated Disney classic</span> like The Lion King. I vividly remember being <span class="hl-g">captivated by the vibrant visuals</span> and emotional soundtrack."
+                <div class="ru-line">(Если мне не изменяет память, это была <span class="hl-y">классическая анимация Disney</span>, вроде «Короля Льва». Я отчётливо помню, как был <span class="hl-g">очарован яркой картинкой</span> и эмоциональным саундтреком.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">5. Do you like to watch movies alone or with your friends?</div>
+            <div class="q-ru">Вы любите смотреть фильмы в одиночку или с друзьями?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you like to watch movies alone or with your friends?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans73')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans73" class="sample-box">
+                "It depends on the genre. For comedies or action flicks, watching with friends creates a <span class="hl-y">lively shared experience</span>, whereas for complex dramas, I prefer watching alone to <span class="hl-b">fully absorb the storyline</span>."
+                <div class="ru-line">(Зависит от жанра. Комедии и боевики с друзьями дарят <span class="hl-y">живые совместные эмоции</span>, а сложные драмы я предпочитаю смотреть один, чтобы <span class="hl-b">полностью погрузиться в сюжет</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">6. Do you like to go to the cinema with your friends?</div>
+            <div class="q-ru">Вам нравится ходить в кинотеатр с друзьями?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you like to go to the cinema with your friends?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans74')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans74" class="sample-box">
+                "Definitely! The best part isn't just the movie itself, but <span class="hl-y">grabbing a bite afterward</span> to dissect the plot and <span class="hl-g">exchange opinions</span> over coffee."
+                <div class="ru-line">(Определённо! Лучшая часть — не только сам фильм, но и возможность <span class="hl-y">перекусить после сеанса</span>, чтобы разобрать сюжет и <span class="hl-g">обменяться мнениями</span> за кофе.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">7. Do you prefer foreign films or films made in your country?</div>
+            <div class="q-ru">Вы предпочитаете зарубежные фильмы или фильмы, снятые в вашей стране?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you prefer foreign films or films made in your country?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans75')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans75" class="sample-box">
+                "I generally lean toward foreign films because of their <span class="hl-y">high production value</span> and diverse storytelling. However, domestic cinema often carries a <span class="hl-b">unique cultural resonance</span> that feels closer to home."
+                <div class="ru-line">(Обычно я склоняюсь к зарубежным фильмам из-за <span class="hl-y">высокого качества съёмки</span> и разнообразных сюжетов. Однако отечественное кино обладает <span class="hl-b">уникальным культурным откликом</span>, который ближе сердцу.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <h3 class="sub-title">Part 2: Individual Long Turn (Cue Card) <small>1–2 Minutes Speech</small></h3>
+
+        <div class="cue-card">
+            <h3>Describe an enjoyable evening you had with your friends</h3>
+            <div class="q-ru">Опишите приятный вечер, который вы провели с друзьями</div>
+            <div class="cue-say">You should say:</div>
+            <ul>
+                <li>who organised this dinner, where you had it <i>(кто организовал ужин и где он проходил)</i></li>
+                <li>what you talked about during the meal <i>(о чём вы разговаривали во время еды)</i></li>
+                <li>what you ate and drank <i>(что вы ели и пили)</i></li>
+                <li><b>and explain why you had this meal with your friends</b> <i>(и объясните, почему вы устроили этот ужин)</i></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="q-en">Ideal 2-Minute Full Speech / Идеальный монолог на 2 минуты</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" data-target="speechEvening">🔊 Listen to Speech</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('sp6')">💡 Show Full Speech</button>
+            </div>
+            <div id="sp6" class="sample-box">
+                <div id="speechEvening">"I'd like to talk about a <span class="hl-y">truly unforgettable evening</span> I spent with my closest university friends last month. One of my best buddies organized the gathering at a <span class="hl-g">cozy rooftop restaurant</span> overlooking the city center, which had a wonderfully warm ambiance.<br><br>We decided to get together to celebrate finishing our demanding semester exams and simply <span class="hl-b">catch up after weeks of studying</span>. During the meal, we ordered a variety of dishes to share, including wood-fired pizzas, grilled kebabs, and fresh salads, accompanied by <span class="hl-y">homemade berry lemonade</span> and herbal tea.<br><br>Throughout the night, the conversation flowed effortlessly—we reminisced about funny college stories, debated recent movies, and shared our <span class="hl-g">ambitious career plans</span>. It was such a <span class="hl-b">heartwarming and rejuvenating experience</span> that reminded me how lucky I am to have such supportive friends."</div>
+                <div class="ru-line"><b>Перевод:</b> «Я бы хотел рассказать о <span class="hl-y">поистине незабываемом вечере</span>, который я провёл с близкими университетскими друзьями в прошлом месяце. Один из моих лучших друзей организовал встречу в <span class="hl-g">уютном ресторане на крыше</span> с видом на центр города, где была удивительно тёплая атмосфера.<br>Мы собрались, чтобы отпраздновать окончание сложных семестровых экзаменов и просто <span class="hl-b">поболтать после недель учёбы</span>. Во время ужина мы заказали разные блюда на всех, включая пиццу из дровяной печи, шашлыки и свежие салаты, а также <span class="hl-y">домашний ягодный лимонад</span> и травяной чай.<br>Весь вечер беседа текла легко: мы вспоминали забавные истории из студенческой жизни, обсуждали недавние фильмы и делились <span class="hl-g">амбициозными карьерными планами</span>. Это был такой <span class="hl-b">душевный и вдохновляющий опыт</span>, который напомнил мне, как мне повезло с такими поддерживающими друзьями.»</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <h3 class="sub-title">Part 3: Meals, Leisure &amp; Friendship (Topic 17) <small>6 Questions</small></h3>
+
+        <div class="card">
+            <div class="q-en">1. What leisure activities do old and young people prefer?</div>
+            <div class="q-ru">Какие виды досуга предпочитают пожилые и молодые люди?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What leisure activities do old and young people prefer?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans76')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans76" class="sample-box">
+                "Younger generations tend to gravitate toward <span class="hl-y">high-energy social outings</span>, gaming, and nightlife, whereas older adults usually favor <span class="hl-g">tranquil pastimes</span> like gardening, reading, or strolling in parks."
+                <div class="ru-line">(Молодёжь тяготеет к <span class="hl-y">активному отдыху в компании</span>, играм и ночной жизни, тогда как пожилые люди обычно предпочитают <span class="hl-g">спокойные занятия</span> вроде садоводства, чтения или прогулок по паркам.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">2. How do people spend their leisure time in your country?</div>
+            <div class="q-ru">Как люди проводят свободное время в вашей стране?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('How do people spend their leisure time in your country?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans77')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans77" class="sample-box">
+                "Hospitality is deeply ingrained in our culture, so people love <span class="hl-y">hosting family feasts</span>, visiting teahouses, or heading to the mountains for <span class="hl-b">weekend picnics</span> with relatives."
+                <div class="ru-line">(Гостеприимство глубоко укоренилось в нашей культуре, поэтому люди любят <span class="hl-y">устраивать семейные застолья</span>, ходить в чайханы или выезжать в горы на <span class="hl-b">пикники по выходным</span> с родственниками.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">3. What is the difference between staying with friends or family?</div>
+            <div class="q-ru">В чём разница времяпрепровождения с друзьями или с семьёй?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('What is the difference between staying with friends or family?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans78')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans78" class="sample-box">
+                "Family gatherings often revolve around <span class="hl-y">tradition and unconditional support</span>, while hanging out with friends feels more <span class="hl-g">spontaneous and carefree</span>, centered on shared hobbies and humor."
+                <div class="ru-line">(Семейные встречи часто строятся вокруг <span class="hl-y">традиций и безусловной поддержки</span>, а общение с друзьями ощущается более <span class="hl-g">спонтанным и беззаботным</span> и строится на общих увлечениях и юморе.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">4. Do young people prefer spending time with family or with friends?</div>
+            <div class="q-ru">Молодые люди предпочитают проводить время с семьёй или с друзьями?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do young people prefer spending time with family or with friends?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans79')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans79" class="sample-box">
+                "During adolescence and early adulthood, most youth lean toward friends because they seek <span class="hl-y">peer validation and independence</span>, although they still rely on family for major life advice."
+                <div class="ru-line">(В подростковом возрасте и в начале взрослой жизни большинство тянется к друзьям в поисках <span class="hl-y">одобрения сверстников и независимости</span>, хотя за важными жизненными советами всё равно идут к семье.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">5. Do you think friendship is important?</div>
+            <div class="q-ru">Считаете ли вы, что дружба важна?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Do you think friendship is important?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans80')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans80" class="sample-box">
+                "Undoubtedly. Genuine friendships act as an <span class="hl-y">essential emotional safety net</span>, helping individuals navigate stress, celebrate milestones, and maintain <span class="hl-b">overall mental well-being</span>."
+                <div class="ru-line">(Безусловно. Настоящая дружба служит <span class="hl-y">важной эмоциональной опорой</span>, помогая справляться со стрессом, отмечать важные события и поддерживать <span class="hl-b">общее психологическое благополучие</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+        <div class="card">
+            <div class="q-en">6. Why do people need friends?</div>
+            <div class="q-ru">Зачем людям нужны друзья?</div>
+            <div class="action-bar">
+                <button class="btn btn-audio" onclick="speak('Why do people need friends?')">🔊 Ask Question</button>
+                <button class="btn btn-toggle" onclick="toggleAnswer('ans81')">💡 Show Sample Answer</button>
+            </div>
+            <div id="ans81" class="sample-box">
+                "Humans are inherently social creatures who crave <span class="hl-y">mutual understanding and companionship</span>. Friends offer fresh perspectives on personal dilemmas and enrich our lives with <span class="hl-g">shared joy</span>."
+                <div class="ru-line">(Люди по природе социальные существа, которым нужны <span class="hl-y">взаимопонимание и общение</span>. Друзья помогают взглянуть на личные дилеммы по-новому и наполняют нашу жизнь <span class="hl-g">общей радостью</span>.)</div>
+            </div>
+            <textarea placeholder="My Answer &amp; Notes..."></textarea>
+        </div>
+
+    </section>
+
     <!-- WRITING TEMPLATES (NEW) -->
     <section class="tab-panel" id="tab-writing">
         <h2 class="section-title">✍️ Writing Task 2: Essay Templates</h2>
@@ -1452,6 +1969,18 @@
         <div class="vocab-grid" id="vocHome"></div>
         <h3 class="sub-title">🌍 Your Country</h3>
         <div class="vocab-grid" id="vocCountry"></div>
+        <h3 class="sub-title">😴 Being Bored (Topic 13)</h3>
+        <div class="vocab-grid" id="vocBored"></div>
+        <h3 class="sub-title">🚌 Short Journey (Part 2)</h3>
+        <div class="vocab-grid" id="vocJourney"></div>
+        <h3 class="sub-title">✈️ Travelling (Part 3)</h3>
+        <div class="vocab-grid" id="vocTravel"></div>
+        <h3 class="sub-title">🎬 Films (Topic 36)</h3>
+        <div class="vocab-grid" id="vocFilms"></div>
+        <h3 class="sub-title">🍽️ Enjoyable Evening (Part 2)</h3>
+        <div class="vocab-grid" id="vocEvening"></div>
+        <h3 class="sub-title">🤝 Meals, Leisure &amp; Friendship (Part 3)</h3>
+        <div class="vocab-grid" id="vocFriend"></div>
     </section>
 
     <!-- SECTION 1B: ELS READING VOCABULARY (NEW) -->
@@ -1496,6 +2025,24 @@
         <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>💰 Units 52–61 · Set 4</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU4"></div></div></div></div>
 
         <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🛏️ Units 52–61 · Set 5</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="card"><div class="tbl-wrap" id="tblU5"></div></div></div></div>
+    </section>
+
+    <!-- EVENS VOCAB (NEW) -->
+    <section class="tab-panel" id="tab-evens">
+        <h2 class="section-title">🌙 Evens Vocab</h2>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📖 Story &amp; Crime Words (7)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv1"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>💪 Hardship &amp; Effort (6)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv2"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>👅 Describing Taste (7)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv3"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🦊 Idioms (4)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv4"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>🚦 Road Safety &amp; Traffic (8)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv5"></div></div></div>
+
+        <div class="acc"><button class="acc-btn" onclick="toggleAcc(this)"><span>📝 Word List 1–30 (Carnival · Nobel · Computers)</span><span class="acc-arrow">▾</span></button><div class="acc-body"><div class="vocab-grid" id="vocEv6"></div></div></div>
+
     </section>
 
     <!-- SECTION 2: SLANG -->
@@ -1617,6 +2164,8 @@
         </div>
     </section>
 </div>
+
+<button class="fab" id="toMenu" aria-label="Back to menu">↑ Menu</button>
 
 <script>
     // ===== PROFILE SETTINGS: вставь свои ссылки и фото между кавычками =====
@@ -2147,6 +2696,230 @@
     renderVocab("vocHome2", [["Deep emotional bond", "diːp ɪˈməʊʃənl bɒnd", "глубокая эмоциональная связь"], ["Cherished memories", "ˈtʃerɪʃt ˈmeməriz", "заветные воспоминания"], ["Hustling professionals", "ˈhʌslɪŋ prəˈfeʃənlz", "энергичные специалисты"], ["Courteous and hospitable", "ˈkɜːtiəs ənd hɒˈspɪtəbl", "вежливые и гостеприимные"], ["Go-to sanctuary", "ɡəʊ tuː ˈsæŋktʃuəri", "любимое убежище"], ["Unwind after a stressful day", "ʌnˈwaɪnd ˈɑːftər ə ˈstresfl deɪ", "расслабиться после тяжёлого дня"], ["Keen to explore new horizons", "kiːn tə ɪkˈsplɔː njuː həˈraɪznz", "стремиться к новым горизонтам"]]);
     renderVocab("vocHome", [["Multi-functional space", "ˌmʌlti ˈfʌŋkʃənl speɪs", "многофункциональное пространство"], ["Soft natural lighting", "sɒft ˈnætʃrəl ˈlaɪtɪŋ", "мягкое естественное освещение"], ["Welcoming atmosphere", "ˈwelkəmɪŋ ˈætməsfɪə", "приветливая атмосфера"], ["Expand the kitchen area", "ɪkˈspænd ðə ˈkɪtʃɪn ˈeəriə", "расширить кухню"], ["Cramped and restrictive", "kræmpt ənd rɪˈstrɪktɪv", "тесный и ограничивающий"], ["Recharge my batteries", "ˌriːˈtʃɑːdʒ maɪ ˈbætəriz", "восполнить силы"], ["Security, emotional warmth", "sɪˈkjʊərəti ɪˈməʊʃənl wɔːmθ", "безопасность, душевное тепло"]]);
     renderVocab("vocCountry", [["Breathtaking landscapes", "ˈbreθteɪkɪŋ ˈlændskeɪps", "захватывающие пейзажи"], ["Heritage of our nation", "ˈherɪtɪdʒ əv ˈaʊə ˈneɪʃn", "наследие нации"], ["Vibrancy and rich aromas", "ˈvaɪbrənsi ənd rɪtʃ əˈrəʊməz", "яркость и богатые ароматы"], ["Rich historical architecture", "rɪtʃ hɪˈstɒrɪkl ˈɑːkɪtektʃə", "богатая историческая архитектура"], ["Breakneck pace", "ˈbreknek peɪs", "бешеный темп"], ["Hospitable, resilient, and culturally rich", "hɒˈspɪtəbl rɪˈzɪliənt ənd ˈkʌltʃərəli rɪtʃ", "гостеприимный, стойкий и богатый культурой"]]);
+
+    // ===================== NEW VOCAB (Day 6-7 speaking + Evens Vocab) =====================
+    function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    // like renderVocab, but a card may carry its own spoken text: [word, ipa, ru, spoken?]
+    function renderVocabX(id, items) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.innerHTML = items.map(function (i) {
+            return '<div class="vocab-card"><div><div class="vocab-header"><span class="vocab-word">' + escHtml(i[0]) +
+                '</span><button class="btn-mini-audio" data-say="' + escHtml(i[3] || i[0]) + '">🔊 Audio</button></div>' +
+                '<div class="vocab-ipa">[' + escHtml(i[1]) + ']</div></div><div class="vocab-ru">' + escHtml(i[2]) + '</div></div>';
+        }).join('');
+    }
+    renderVocabX("vocBored", [["Hectic schedule", "ˈhektɪk ˈʃedjuːl", "плотный график"], ["Idle moments", "ˈaɪdl ˈməʊmənts", "свободные минуты"], ["Stuck in long queues", "stʌk ɪn lɒŋ kjuːz", "застрять в длинных очередях"], ["Monotonous tasks", "məˈnɒtənəs tɑːsks", "монотонные задачи"], ["Rote memorization", "rəʊt ˌmeməraɪˈzeɪʃn", "зубрёжка"], ["Interactive lessons", "ˌɪntərˈæktɪv ˈlesnz", "интерактивные уроки"], ["Repetitive paperwork", "rɪˈpetətɪv ˈpeɪpəwɜːk", "однообразная бумажная работа"], ["Mental stimulation", "ˈmentl ˌstɪmjuˈleɪʃn", "умственная стимуляция"], ["Thought-provoking podcasts", "ˈθɔːt prəˌvəʊkɪŋ ˈpɒdkɑːsts", "подкасты, заставляющие задуматься"], ["Clear my mind", "klɪə maɪ maɪnd", "проветрить голову"], ["Endless digital resources", "ˈendləs ˈdɪdʒɪtl rɪˈzɔːsɪz", "бесконечные цифровые ресурсы"], ["Keep myself entertained", "kiːp maɪˈself ˌentəˈteɪnd", "развлечь себя"]]);
+    renderVocabX("vocJourney", [["Daily morning commute", "ˈdeɪli ˈmɔːnɪŋ kəˈmjuːt", "ежедневная утренняя поездка"], ["Five days a week", "faɪv deɪz ə wiːk", "пять дней в неделю"], ["Unbearable traffic congestion", "ʌnˈbeərəbl ˈtræfɪk kənˈdʒestʃən", "невыносимые пробки"], ["Virtual parking lot", "ˈvɜːtʃuəl ˈpɑːkɪŋ lɒt", "сплошная парковка (о дороге)"], ["Packed like sardines", "pækt laɪk sɑːˈdiːnz", "набиты как сельди в бочке"], ["Mentally exhausted and frustrated", "ˈmentəli ɪɡˈzɔːstɪd ənd frʌˈstreɪtɪd", "морально истощённый и раздражённый"]]);
+    renderVocabX("vocTravel", [["Budget-friendly and convenient", "ˈbʌdʒɪt ˈfrendli ənd kənˈviːniənt", "бюджетный и удобный"], ["Language barriers", "ˈlæŋɡwɪdʒ ˈbæriəz", "языковые барьеры"], ["Gridlock on major roads", "ˈɡrɪdlɒk ɒn ˈmeɪdʒə rəʊdz", "заторы на главных дорогах"], ["Employee productivity", "ɪmˈplɔɪiː ˌprɒdʌkˈtɪvəti", "продуктивность сотрудников"], ["Broaden their horizons", "ˈbrɔːdn ðeə həˈraɪznz", "расширить кругозор"], ["Diverse cultures", "daɪˈvɜːs ˈkʌltʃəz", "разные культуры"], ["Surged in popularity", "sɜːdʒd ɪn ˌpɒpjuˈlærəti", "резко набрал популярность"], ["Different lifestyles", "ˈdɪfrənt ˈlaɪflstaɪlz", "иной образ жизни"], ["Lucrative career prospects", "ˈluːkrətɪv kəˈrɪə ˈprɒspekts", "выгодные карьерные перспективы"], ["Quality of life", "ˈkwɒləti əv laɪf", "качество жизни"], ["Cultural empathy and adaptability", "ˈkʌltʃrəl ˈempəθi ənd əˌdæptəˈbɪləti", "культурная эмпатия и адаптивность"], ["Multiple perspectives", "ˈmʌltɪpl pəˈspektɪvz", "разные точки зрения"], ["Backpacking and thrill-seeking", "ˈbækpækɪŋ ənd ˈθrɪl siːkɪŋ", "походы и экстрим"], ["Leisurely cultural tours", "ˈleʒəli ˈkʌltʃrəl tʊəz", "неспешные культурные туры"]]);
+    renderVocabX("vocFilms", [["Thought-provoking sci-fi thrillers", "ˈθɔːt prəˌvəʊkɪŋ ˌsaɪ ˈfaɪ ˈθrɪləz", "научно-фантастические триллеры, заставляющие задуматься"], ["Intricate plot twists", "ˈɪntrɪkət plɒt twɪsts", "сложные сюжетные повороты"], ["Streaming platforms", "ˈstriːmɪŋ ˈplætfɔːmz", "стриминговые платформы"], ["Immersive surround sound", "ɪˈmɜːsɪv səˈraʊnd saʊnd", "объёмный звук с эффектом погружения"], ["Memorable family treat", "ˈmemərəbl ˈfæməli triːt", "запоминающийся семейный праздник"], ["Animated Disney classic", "ˈænɪmeɪtɪd ˈdɪzni ˈklæsɪk", "классическая анимация Disney"], ["Captivated by the vibrant visuals", "ˈkæptɪveɪtɪd baɪ ðə ˈvaɪbrənt ˈvɪʒuəlz", "очарован яркой картинкой"], ["Lively shared experience", "ˈlaɪvli ʃeəd ɪkˈspɪəriəns", "живые совместные эмоции"], ["Fully absorb the storyline", "ˈfʊli əbˈzɔːb ðə ˈstɔːrilaɪn", "полностью погрузиться в сюжет"], ["Grabbing a bite afterward", "ˈɡræbɪŋ ə baɪt ˈɑːftəwəd", "перекусить после сеанса"], ["Exchange opinions", "ɪksˈtʃeɪndʒ əˈpɪnjənz", "обменяться мнениями"], ["High production value", "haɪ prəˈdʌkʃn ˈvæljuː", "высокое качество съёмки"], ["Unique cultural resonance", "juˈniːk ˈkʌltʃrəl ˈrezənəns", "уникальный культурный отклик"]]);
+    renderVocabX("vocEvening", [["Truly unforgettable evening", "ˈtruːli ˌʌnfəˈɡetəbl ˈiːvnɪŋ", "поистине незабываемый вечер"], ["Cozy rooftop restaurant", "ˈkəʊzi ˈruːftɒp ˈrestrɒnt", "уютный ресторан на крыше"], ["Catch up after weeks of studying", "kætʃ ʌp ˈɑːftə wiːks əv ˈstʌdiɪŋ", "поболтать после недель учёбы"], ["Homemade berry lemonade", "ˌhəʊmˈmeɪd ˈberi ˌleməˈneɪd", "домашний ягодный лимонад"], ["Ambitious career plans", "æmˈbɪʃəs kəˈrɪə plænz", "амбициозные карьерные планы"], ["Heartwarming and rejuvenating experience", "ˈhɑːtwɔːmɪŋ ənd rɪˈdʒuːvəneɪtɪŋ ɪkˈspɪəriəns", "душевный и вдохновляющий опыт"]]);
+    renderVocabX("vocFriend", [["High-energy social outings", "haɪ ˈenədʒi ˈsəʊʃl ˈaʊtɪŋz", "активный отдых в компании"], ["Tranquil pastimes", "ˈtræŋkwɪl ˈpɑːstaɪmz", "спокойные занятия"], ["Hosting family feasts", "ˈhəʊstɪŋ ˈfæməli fiːsts", "устраивать семейные застолья"], ["Weekend picnics", "ˌwiːkˈend ˈpɪknɪks", "пикники по выходным"], ["Tradition and unconditional support", "trəˈdɪʃn ənd ˌʌnkənˈdɪʃənl səˈpɔːt", "традиции и безусловная поддержка"], ["Spontaneous and carefree", "spɒnˈteɪniəs ənd ˈkeəfriː", "спонтанный и беззаботный"], ["Peer validation and independence", "pɪə ˌvælɪˈdeɪʃn ənd ˌɪndɪˈpendəns", "одобрение сверстников и независимость"], ["Essential emotional safety net", "ɪˈsenʃl ɪˈməʊʃənl ˈseɪfti net", "важная эмоциональная опора"], ["Overall mental well-being", "ˌəʊvərˈɔːl ˈmentl ˌwel ˈbiːɪŋ", "общее психологическое благополучие"], ["Mutual understanding and companionship", "ˈmjuːtʃuəl ˌʌndəˈstændɪŋ ənd kəmˈpænjənʃɪp", "взаимопонимание и общение"], ["Shared joy", "ʃeəd dʒɔɪ", "общая радость"]]);
+    renderVocabX("vocEv1", [["Narrative", "ˈnærətɪv", "повествование, рассказ"], ["Embodiment", "ɪmˈbɒdimənt", "воплощение"], ["Wickedness", "ˈwɪkɪdnəs", "злодеяние"], ["Persecution", "ˌpɜːsɪˈkjuːʃn", "преследование"], ["Rodent", "ˈrəʊdnt", "грызун"], ["Wipe out", "waɪp aʊt", "уничтожить"], ["Forced entry", "fɔːst ˈentri", "взлом"]]);
+    renderVocabX("vocEv2", [["Inflict", "ɪnˈflɪkt", "причинять (боль, ущерб)"], ["Confine", "kənˈfaɪn", "запирать, ограничивать"], ["Endless toil", "ˈendləs tɔɪl", "нескончаемая работа"], ["Destitution", "ˌdestɪˈtjuːʃn", "крайняя нужда"], ["Incentive", "ɪnˈsentɪv", "побуждение"], ["Arduous", "ˈɑːdjuəs", "утомительный, изнурительный"]]);
+    renderVocabX("vocEv3", [["Divine / heavenly", "dɪˈvaɪn / ˈhevnli", "божественный, потрясающий вкус", "Divine, heavenly"], ["Gross / disgusting", "ɡrəʊs / dɪsˈɡʌstɪŋ", "отвратительный вкус", "Gross, disgusting"], ["Taste funny", "teɪst ˈfʌni", "иметь странный привкус"], ["Bitter", "ˈbɪtə", "горький"], ["Savor the taste", "ˈseɪvə ðə teɪst", "наслаждаться вкусом"], ["Mild / subtle flavor", "maɪld / ˈsʌtl ˈfleɪvə", "мягкий, деликатный вкус", "Mild, subtle flavor"], ["Bland taste", "blænd teɪst", "безвкусный"]]);
+    renderVocabX("vocEv4", [["As sly as a fox", "æz slaɪ æz ə fɒks", "хитрый как лиса"], ["Poke around", "pəʊk əˈraʊnd", "совать нос не в своё дело"], ["Mean business", "miːn ˈbɪznəs", "быть настроенным серьёзно"], ["Hit the hay", "hɪt ðə heɪ", "пойти спать"]]);
+    renderVocabX("vocEv5", [["Traffic rules", "ˈtræfɪk ruːlz", "правила дорожного движения"], ["Road signs", "rəʊd saɪnz", "дорожные знаки"], ["Hand signals", "hænd ˈsɪɡnlz", "сигналы рукой"], ["Dangerous situations", "ˈdeɪndʒərəs ˌsɪtʃuˈeɪʃnz", "опасные ситуации"], ["Risk of collisions", "rɪsk əv kəˈlɪʒnz", "риск столкновений"], ["Easing congestion", "ˈiːzɪŋ kənˈdʒestʃən", "уменьшение пробок"], ["Air pollution", "eə pəˈluːʃn", "загрязнение воздуха"], ["Responsible road users", "rɪˈspɒnsəbl rəʊd ˈjuːzəz", "ответственные участники дорожного движения"]]);
+    renderVocabX("vocEv6", [["Emigrated", "ˈemɪɡreɪtɪd", "эмигрировал, переселился"], ["Steel bands", "stiːl bændz", "музыкальные группы с металлическими барабанами"], ["Preparations", "ˌprepəˈreɪʃnz", "подготовка"], ["Beforehand", "bɪˈfɔːhænd", "заранее"], ["Floats", "fləʊts", "праздничные платформы с украшениями"], ["Shortly", "ˈʃɔːtli", "незадолго до, вскоре"], ["Streamers", "ˈstriːməz", "разноцветные ленты"], ["Amplifiers", "ˈæmplɪfaɪəz", "усилители звука"], ["Narrow", "ˈnærəʊ", "узкий"], ["Bankrupt", "ˈbæŋkrʌpt", "разорившийся"], ["Industrialist", "ɪnˈdʌstriəlɪst", "промышленник"], ["Cheerful", "ˈtʃɪəfl", "весёлый"], ["Mankind", "mænˈkaɪnd", "человечество"], ["Peacetime", "ˈpiːstaɪm", "мирное время"], ["Useless", "ˈjuːsləs", "бесполезный"], ["Entered life", "ˈentəd laɪf", "вступил в жизнь"], ["Avoided", "əˈvɔɪdɪd", "избегал"], ["Fame", "feɪm", "известность"], ["Glory", "ˈɡlɔːri", "почёт, слава"], ["Outstanding", "aʊtˈstændɪŋ", "выдающийся"], ["Locked up", "lɒkt ʌp", "заблокировался, завис"], ["Backed up", "bækt ʌp", "сделал резервную копию"], ["Verify", "ˈverɪfaɪ", "проверять"], ["Implement", "ˈɪmplɪment", "внедрять"], ["Burned", "bɜːnd", "записал (на диск)"], ["Frozen", "ˈfrəʊzn", "зависший"], ["Reboot", "ˌriːˈbuːt", "перезагружать"], ["Surfing", "ˈsɜːfɪŋ", "просматривать интернет"], ["Infected", "ɪnˈfektɪd", "заражённый (заражать)"], ["Annex", "əˈneks", "присоединять"]]);
+
+    // ===================== HOME PAGE UPGRADE =====================
+    function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+    (function homeInit() {
+        const byId = function (i) { return document.getElementById(i); };
+
+        // ---- greeting by the viewer's local time
+        const h = new Date().getHours();
+        const g = h >= 5 && h < 12 ? ['☀️', 'Good morning'] : h >= 12 && h < 18 ? ['🌤️', 'Good afternoon'] : h >= 18 && h < 22 ? ['🌙', 'Good evening'] : ['🦉', 'Late-night session'];
+        if (byId('greeting')) byId('greeting').textContent = g[0] + ' ' + g[1];
+
+        // ---- live stats (counted from the page itself, so they never go stale)
+        const cnt = function (sel) { return document.querySelectorAll(sel).length; };
+        const stats = [
+            ['statQ', cnt('.btn-toggle[onclick^="toggleAnswer(\'ans"]')],
+            ['statW', cnt('#tab-vocab .vocab-card') + cnt('#tab-evens .vocab-card') + cnt('#tab-reading .vocab-card') + cnt('#tab-reading tbody tr') + cnt('#tab-fillers .vocab-card')],
+            ['statS', cnt('#tab-slang .vocab-card')],
+            ['statT', cnt('.nav-btn')]
+        ];
+        const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        stats.forEach(function (s) {
+            const el = byId(s[0]);
+            if (!el) return;
+            if (reduce) { el.textContent = s[1]; return; }
+            const t0 = performance.now();
+            (function step(t) {
+                const p = Math.min(1, (t - t0) / 700);
+                el.textContent = Math.round(s[1] * (1 - Math.pow(1 - p, 3)));
+                if (p < 1) requestAnimationFrame(step); else el.textContent = s[1];
+            })(t0);
+        });
+
+        // ---- word of the day (same word all day; button picks another)
+        const pool = Array.prototype.slice.call(document.querySelectorAll('#tab-vocab .vocab-card, #tab-evens .vocab-card, #vocReading .vocab-card'));
+        let wi = 0;
+        function showWord(i) {
+            const c = pool[i];
+            if (!c) return;
+            wi = i;
+            byId('wotdWord').textContent = c.querySelector('.vocab-word').textContent.trim();
+            byId('wotdIpa').textContent = c.querySelector('.vocab-ipa').textContent.trim();
+            byId('wotdRu').textContent = c.querySelector('.vocab-ru').textContent.trim();
+            byId('wotdSpeak').setAttribute('data-say', c.querySelector('.btn-mini-audio').getAttribute('data-say') || c.querySelector('.vocab-word').textContent.trim());
+        }
+        if (pool.length) {
+            const d = new Date();
+            showWord((d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate()) % pool.length);
+            byId('wotdShuffle').addEventListener('click', function () {
+                let n = wi;
+                while (pool.length > 1 && n === wi) n = Math.floor(Math.random() * pool.length);
+                showWord(n);
+            });
+        } else if (byId('wotd')) { byId('wotd').style.display = 'none'; }
+        // the card's own audio button reads the fixed text; fall back for the old cards that use onclick
+        pool.forEach(function (c) {
+            const b = c.querySelector('.btn-mini-audio');
+            if (b && !b.hasAttribute('data-say')) {
+                const m = (b.getAttribute('onclick') || '').match(/speak\('(.*)'\)/);
+                b.setAttribute('data-say', m ? m[1].replace(/\\'/g, "'") : c.querySelector('.vocab-word').textContent.trim());
+            }
+        });
+        if (pool.length) showWord(wi);
+
+        // ---- visited ticks + "continue where you left off"
+        let seen = {};
+        try { seen = JSON.parse(lsGet('ih_seen') || '{}') || {}; } catch (e) { seen = {}; }
+        function tabLabel(id) {
+            const b = document.querySelector('.nav-btn[data-tab="' + id + '"]');
+            return b ? b.textContent.replace('✓', '').trim() : '';
+        }
+        function markSeen(id) {
+            if (!id || !document.getElementById(id)) return;
+            seen[id] = 1;
+            lsSet('ih_seen', JSON.stringify(seen));
+            lsSet('ih_last', id);
+            const b = document.querySelector('.nav-btn[data-tab="' + id + '"]');
+            if (b) b.classList.add('seen');
+        }
+        Object.keys(seen).forEach(function (id) {
+            const b = document.querySelector('.nav-btn[data-tab="' + id + '"]');
+            if (b) b.classList.add('seen');
+        });
+        byId('mainNav').addEventListener('click', function (e) {
+            const b = e.target.closest('.nav-btn');
+            if (!b) return;
+            const id = b.getAttribute('data-tab');
+            if (document.getElementById(id).classList.contains('active')) markSeen(id);
+        });
+        const last = lsGet('ih_last');
+        const cb = byId('continueBtn');
+        if (last && document.getElementById(last) && cb) {
+            cb.textContent = '▶ Continue: ' + tabLabel(last);
+            cb.style.display = 'block';
+            cb.addEventListener('click', function () {
+                if (!document.getElementById(last).classList.contains('active')) showTab(last);
+                markSeen(last);
+            });
+        }
+
+        // ---- search across everything
+        const input = byId('siteSearch'), box = byId('searchResults'), meta = byId('searchMeta'), clr = byId('searchClear');
+        let index = null;
+        function clean(el) {
+            const c = el.cloneNode(true);
+            c.querySelectorAll('button, small').forEach(function (x) { x.remove(); });
+            return c.textContent.replace(/\s+/g, ' ').trim();
+        }
+        function build() {
+            index = [];
+            document.querySelectorAll('.tab-panel').forEach(function (panel) {
+                const tab = panel.id;
+                panel.querySelectorAll('.vocab-card').forEach(function (el) {
+                    index.push({ tab: tab, el: el, kind: 'word', title: clean(el.querySelector('.vocab-word')), sub: clean(el.querySelector('.vocab-ru')), hay: el.textContent.toLowerCase() });
+                });
+                panel.querySelectorAll('tbody tr').forEach(function (el) {
+                    const tds = el.querySelectorAll('td');
+                    if (!tds.length) return;
+                    index.push({ tab: tab, el: el, kind: 'row', title: clean(tds[0]), sub: tds[1] ? clean(tds[1]) : '', hay: el.textContent.toLowerCase() });
+                });
+                panel.querySelectorAll('.card').forEach(function (el) {
+                    const q = el.querySelector(':scope > .q-en');
+                    if (!q || !el.querySelector('.sample-box')) return;
+                    const r = el.querySelector(':scope > .q-ru');
+                    index.push({ tab: tab, el: el, kind: 'q', title: clean(q), sub: r ? clean(r) : '', hay: el.textContent.toLowerCase() });
+                });
+            });
+        }
+        function hi(text, toks) {
+            let s = escHtml(text);
+            toks.forEach(function (t) {
+                const re = new RegExp('(' + escHtml(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+                s = s.replace(re, '<mark class="sh">$1</mark>');
+            });
+            return s;
+        }
+        function openResult(r) {
+            const panel = document.getElementById(r.tab);
+            if (!panel.classList.contains('active')) showTab(r.tab);
+            markSeen(r.tab);
+            const acc = r.el.closest('.acc');
+            if (acc) acc.classList.add('open');
+            if (r.kind === 'q') { const sb = r.el.querySelector('.sample-box'); if (sb) sb.classList.add('active'); }
+            setTimeout(function () {
+                r.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                r.el.classList.add('flash');
+                setTimeout(function () { r.el.classList.remove('flash'); }, 2300);
+            }, 150);
+            resetSearch();
+        }
+        function resetSearch() {
+            input.value = '';
+            box.style.display = 'none'; box.innerHTML = '';
+            meta.style.display = 'none';
+            clr.style.display = 'none';
+        }
+        function runSearch() {
+            const q = input.value.trim().toLowerCase();
+            clr.style.display = input.value ? 'block' : 'none';
+            if (q.length < 2) { box.style.display = 'none'; meta.style.display = 'none'; return; }
+            if (!index) build();
+            const toks = q.split(/\s+/).filter(Boolean);
+            const hits = index.filter(function (r) { return toks.every(function (t) { return r.hay.indexOf(t) !== -1; }); });
+            hits.sort(function (a, b) {
+                const f = function (r) { const t = r.title.toLowerCase(); return t.indexOf(q) === 0 ? 0 : t.indexOf(q) !== -1 ? 1 : 2; };
+                return f(a) - f(b);
+            });
+            meta.style.display = 'block';
+            meta.textContent = hits.length ? (hits.length > 40 ? 'Showing 40 of ' + hits.length + ' results — type more to narrow down' : hits.length + ' result' + (hits.length === 1 ? '' : 's')) : 'Nothing found — try another spelling or a Russian word';
+            box.innerHTML = '';
+            box.style.display = hits.length ? 'block' : 'none';
+            hits.slice(0, 40).forEach(function (r) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'search-item';
+                b.innerHTML = '<span class="si-title">' + hi(r.title, toks) + '</span>' +
+                    (r.sub ? '<span class="si-sub">' + hi(r.sub, toks) + '</span>' : '') +
+                    '<span class="si-tab">' + escHtml(tabLabel(r.tab)) + '</span>';
+                b.addEventListener('click', function () { openResult(r); });
+                box.appendChild(b);
+            });
+        }
+        let st = null;
+        input.addEventListener('input', function () { clearTimeout(st); st = setTimeout(runSearch, 120); });
+        input.addEventListener('keydown', function (e) { if (e.key === 'Escape') resetSearch(); });
+        clr.addEventListener('click', function () { resetSearch(); input.focus(); });
+
+        // ---- floating "back to menu" button
+        const fab = byId('toMenu');
+        let ticking = false;
+        window.addEventListener('scroll', function () {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function () { fab.classList.toggle('show', window.scrollY > 500); ticking = false; });
+        }, { passive: true });
+        fab.addEventListener('click', function () { byId('mainNav').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    })();
 </script>
 
 </body>
